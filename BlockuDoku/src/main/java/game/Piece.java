@@ -104,9 +104,9 @@ public abstract class Piece {
                 idx = String.valueOf((char) (65 + j));
                 idx = idx.concat(String.valueOf(i));
                 if (piece.containsKey(idx)) {
-                    sb.append(piece.get(idx));
+                    sb.append(piece.get(idx) + " ");
                 } else {
-                    sb.append(" ");
+                    sb.append("  ");
                 }
             }
             sb.append("\n");

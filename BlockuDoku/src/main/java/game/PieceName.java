@@ -10,8 +10,44 @@ package game;
  * @author rosap
  */
 public enum PieceName {
-    I_BLOCK, Q_BLOCK, T_BLOCK, L_BLOCK, J_BLOCK, S_BLOCK,Z_BLOCK, 
+    I_BLOCK, Q_BLOCK, T_BLOCK, L_BLOCK, J_BLOCK, S_BLOCK, Z_BLOCK, 
     I_ONE_BLOCK, I_TWO_BLOCK, I_THREE_BLOCK, L_MINIMUM_BLOCK, 
     L_MAXIMUM_BLOCK, T_EXTENDED_BLOCK, Q_EXTENDED_BLOCK;
+    
+    @Override
+    public String toString(){
+        
+        switch(this) {
+            case I_BLOCK: return "I Block";
+            
+            case Q_BLOCK: return "Q Block";
+            
+            case T_BLOCK: return "T Block";
+            
+            case L_BLOCK: return "L Block";
+            
+            case J_BLOCK: return "J Block";
+            
+            case S_BLOCK: return "S Block";
+            
+            case Z_BLOCK: return "Z Block";
+            
+            case I_ONE_BLOCK: return "I One Block";
+            
+            case I_TWO_BLOCK: return "I Two Block";
+            
+            case I_THREE_BLOCK: return "I Three Block";
+            
+            case L_MINIMUM_BLOCK: return "L Minimum Block";
+            
+            case L_MAXIMUM_BLOCK: return "L Maximum Block";
+            
+            case T_EXTENDED_BLOCK: return "T Extended Block";
+            
+            case Q_EXTENDED_BLOCK: return "Q Extended Block";
+            
+            default: return "None";
+        }
+    }
     
 }
