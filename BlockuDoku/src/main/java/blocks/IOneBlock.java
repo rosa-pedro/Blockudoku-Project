@@ -3,43 +3,45 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game;
+package blocks;
 
-import java.util.Random;
+import game.Piece;
+import game.PieceName;
 
 /**
  *
  * @author rosap
  */
-public class IBlock extends Piece {
+public class IOneBlock  extends Piece{
 
-    public IBlock() {
-        super(PieceName.I_BLOCK);
+    public IOneBlock() {
+        super(PieceName.I_ONE_BLOCK);
     }
     
-    @Override
+     @Override
     public void buildPieceWithzeroRotation() {
         
-        String[] coords = {"A1", "A2", "A3", "A4"};
+        String[] coords = {"A1"};
         buildPiece(coords, coords[0]);
     }
     
     @Override
     public void buildPieceWithNinetyRotation() {
        
-        String[] coords = {"A1", "B1", "C1", "D1"};
-        buildPiece(coords, coords[0]);
+        buildPieceWithzeroRotation();
     }
     
     @Override
     public void buildPieceWithHundredEightyRotation(){
         
         buildPieceWithzeroRotation();
+        
     }
     
     @Override
     public void buildPieceWithTwoHundredSeventyRotation(){
       
-        buildPieceWithNinetyRotation();
+        buildPieceWithzeroRotation();
     }
+    
 }
