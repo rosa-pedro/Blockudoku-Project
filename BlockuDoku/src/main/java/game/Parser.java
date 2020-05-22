@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.ips.blockudoku.game;
+package game;
 import java.util.Scanner;
 
 /**
