@@ -5,6 +5,22 @@
  */
 package game;
 
+import blocks.QBlock;
+import blocks.IOneBlock;
+import blocks.SBlock;
+import blocks.QExtendedBlock;
+import blocks.LBlock;
+import blocks.ITwoBlock;
+import blocks.ZBlock;
+import blocks.LMaximumBlock;
+import blocks.TExtendedBlock;
+import blocks.IThreeBlock;
+import blocks.TBlock;
+import blocks.LMinimumBlock;
+import blocks.JBlock;
+import blocks.IBlock;
+import java.util.ArrayList;
+
 /**
  *
  * @author rosap
@@ -16,11 +32,31 @@ public class Program {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+
+        ArrayList<Piece> pieces = new ArrayList<>();
+
+        pieces.add(new IBlock());
+        pieces.add(new QBlock());
+        pieces.add(new TBlock());
+        pieces.add(new LBlock());
+        pieces.add(new JBlock());
+        pieces.add(new SBlock());
+        pieces.add(new ZBlock());
+        pieces.add(new IOneBlock());
+        pieces.add(new ITwoBlock());
+        pieces.add(new IThreeBlock());
+        pieces.add(new LMinimumBlock());
+        pieces.add(new LMaximumBlock());
+        pieces.add(new TExtendedBlock());
+        pieces.add(new QExtendedBlock());
+
+        System.out.println("Blocos:\n");
         
-        IBlock iBlock = new IBlock();
-        System.out.println(iBlock);
-        
-        
+        pieces.forEach(p -> {
+            System.out.println(p.getPieceName());
+            System.out.println(p);
+        });
+
         /*
         boolean finished = false;
         
@@ -35,8 +71,7 @@ public class Program {
 
         }
         
-        */
-        
+         */
     }
-    
+
 }
