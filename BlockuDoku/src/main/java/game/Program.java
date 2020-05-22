@@ -32,6 +32,8 @@ public class Program {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        System.out.println("Blocos ########################\n");
 
         ArrayList<Piece> pieces = new ArrayList<>();
 
@@ -56,6 +58,25 @@ public class Program {
             System.out.println(p.getPieceName());
             System.out.println(p);
         });
+        
+        System.out.println("Board ########################\n");
+        
+        Board board = new Board();
+        
+        System.out.println(board);
+        
+        Piece piece = new LBlock();
+        
+        board.insertBlock(piece, "D4");
+        
+        //board.changeSquareVisibility("D4");
+        
+        System.out.println(board);
+        
+        
+        
+        
+        //
 
         /*
         boolean finished = false;

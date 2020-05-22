@@ -13,12 +13,18 @@ public class Square {
     
     private boolean isVisible;
     
-    public Square(){
-        this.isVisible = true;
+    public Square(Boolean isVisible){
+        
+        this.isVisible = isVisible;
+    }
+    
+    public void changeVisibility() {
+        
+        isVisible = (isVisible) ? false : true;
     }
     
     @Override
     public String toString(){
-        return "#";
+        return isVisible ? "#" : ".";
     }
 }

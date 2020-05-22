@@ -21,7 +21,7 @@ public class LMinimumBlock extends Piece{
     @Override
     public void buildPieceWithzeroRotation() {
         
-        String[] coords = {"A1", "A2", "A3"};
+        String[] coords = {"A1", "A2", "B2"};
         buildPiece(coords, coords[0]);
     }
     
