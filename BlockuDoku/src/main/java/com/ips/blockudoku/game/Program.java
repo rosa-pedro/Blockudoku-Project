@@ -18,6 +18,7 @@ public class Program {
         // TODO code application logic here
         
         IBlock iBlock = new IBlock();
+        System.out.println("Teste dois");
         System.out.println(iBlock);
         
     }
