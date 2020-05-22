@@ -5,23 +5,41 @@
  */
 package game;
 
-import java.util.HashMap;
+import java.util.Random;
 
 /**
  *
  * @author rosap
  */
-public class IBlock extends Piece{
-    
-    public IBlock(){
-        super("A1");
+public class IBlock extends Piece {
+
+    public IBlock() {
+        super(PieceName.I_BLOCK);
     }
     
     @Override
-    public void buildPiece(){
-        addSquare("A1");
-        addSquare("A2");
-        addSquare("A3");
+    public void buildPieceWithzeroRotation() {
+        
+        String[] coords = {"A1", "A2", "A3", "A4"};
+        buildPiece(coords, coords[0]);
     }
     
+    @Override
+    public void buildPieceWithNinetyRotation() {
+       
+        String[] coords = {"A1", "B1", "C1", "D1"};
+        buildPiece(coords, coords[0]);
+    }
+    
+    @Override
+    public void buildPieceWithHundredEightyRotation(){
+        
+        buildPieceWithzeroRotation();
+    }
+    
+    @Override
+    public void buildPieceWithTwoHundredSeventyRotation(){
+      
+        buildPieceWithNinetyRotation();
+    }
 }
