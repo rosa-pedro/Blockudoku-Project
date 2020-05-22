@@ -13,8 +13,8 @@ public class Square {
     
     private boolean isVisible;
     
-    public Square(Boolean isVisible){
-        this.isVisible = isVisible;
+    public Square(){
+        this.isVisible = true;
     }
     
     @Override

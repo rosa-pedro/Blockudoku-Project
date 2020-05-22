@@ -18,8 +18,24 @@ public class Program {
         // TODO code application logic here
         
         IBlock iBlock = new IBlock();
-        System.out.println("Bangue");
         System.out.println(iBlock);
+        
+        
+        /*
+        boolean finished = false;
+        
+        Parser p1 = new Parser();
+        User user = new User("Maleque");
+        ProcessCommand pc = new ProcessCommand();
+        Menu m1 = new Menu();
+
+        while(!finished){
+           m1.welcomeMenu(user);
+           finished = pc.processCommand(user, p1.readInput(), m1.getMenuState());
+
+        }
+        
+        */
         
     }
     
