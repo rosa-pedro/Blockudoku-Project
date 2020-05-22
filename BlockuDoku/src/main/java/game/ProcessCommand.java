@@ -28,10 +28,17 @@ public class ProcessCommand {
                 case "1":
                     System.out.println("New game");
                     menu.newGameMenu();
+                    //System.out.println(menu.getMenuState());
+                break;
                 case "2":
                     System.out.println("Load game");
+                break;
+                case "3":
+                    System.out.println("Personal scores");
+                break;
                 case "4":
                     System.out.println("TOP10 ranking");
+                break;
                 case "0":
                     System.out.println("Exit");
                     return finished = true;
@@ -39,18 +46,23 @@ public class ProcessCommand {
                     System.out.println("Invalid command");
                     return finished;
             }
-        } else if (menuState.contains("newGame")) {
+        } 
+        if (menuState.contains("newGame")) {
             
                switch (input.trim()) {
                 case "1":
                     System.out.println("Basic mode");
-                    menu.newGameMenu();
+                break;
                 case "2":
                     System.out.println("Advanced mode");
+                break;
                 case "0":
                     System.out.println("Return");
                     menu.welcomeMenu(user);
-            }
+                default:
+                    System.out.println("Invalid command");
+                    return finished;
+        }
 
         }
 

@@ -21,21 +21,20 @@ public class Program {
         System.out.println(iBlock);
         
         
-        /*
+        
         boolean finished = false;
         
         Parser p1 = new Parser();
         User user = new User("Maleque");
         ProcessCommand pc = new ProcessCommand();
         Menu m1 = new Menu();
-
+        m1.welcomeMenu(user);
+        
         while(!finished){
-           m1.welcomeMenu(user);
            finished = pc.processCommand(user, p1.readInput(), m1.getMenuState());
-
         }
         
-        */
+        
         
     }
     

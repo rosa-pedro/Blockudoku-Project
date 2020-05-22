@@ -20,7 +20,7 @@ public class Menu {
     public void welcomeMenu(User user){
         menuState = "welcome";
         System.out.println("Hello " + user.getName());
-        System.out.println("\n\n 1 - Iniciate New Game");
+        System.out.println("\n1 - Iniciate New Game");
         System.out.println("2 - Load Game");
         System.out.println("3 - Show Personal Scores");
         System.out.println("4 - TOP 10 Ranks");
