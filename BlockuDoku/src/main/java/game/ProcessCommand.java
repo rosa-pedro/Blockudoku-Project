@@ -14,22 +14,18 @@ public class ProcessCommand {
     private Menu menu;
     private boolean finished;
     public Parser p1;
+    public GameRound gr1;
+    public Board board;
 
     public ProcessCommand() {
         menu = new Menu();
         finished = false;
         p1 = new Parser();
+        board = new Board();
+        
     }
     
-    public String [] processGameCommand(String input){
-        String in = input;
-        String[] arrOfStr = in.split("-", 2); 
-        String removedBlockOption = arrOfStr[0];
-        String pivot = arrOfStr[1];
-        System.out.println(removedBlockOption);
-        System.out.println(pivot);
-        return arrOfStr;
-    }
+    
     
     
 
@@ -43,7 +39,8 @@ public class ProcessCommand {
                 switch (secondInput.trim()) {
                     case "1":
                         System.out.println("Entered Basic mode");
-                        processGameCommand(p1.readInput());
+                        //p1.processGameCommand(p1.readInput());
+                        gr1 = new GameRound(board,p1);
                         break;
                     case "2":
                         System.out.println("Entered Advanced mode");

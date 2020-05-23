@@ -22,5 +22,10 @@ public class Parser {
         return sc.nextLine();
     }
     
-    
+    public String[] processGameCommand(String input){
+        String in = input;
+        String[] arrOfStr = in.split("-");
+        
+        return arrOfStr;
+    }
 }
