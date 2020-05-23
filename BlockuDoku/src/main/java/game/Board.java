@@ -7,7 +7,6 @@ package game;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Set;
 
 /**
  *
@@ -74,16 +73,18 @@ public class Board {
         HashSet<String> coords = new HashSet<>();
         String coord;
 
-        for (String s : blockCoords.keySet()) {
+        for (String c : blockCoords.keySet()) {
 
-            coord = String.valueOf((char)(s.charAt(0) + columnDifference));
-            coord = coord.concat(String.valueOf((char)(s.charAt(1) + rowDifference)));
+            coord = String.valueOf((char)(c.charAt(0) + columnDifference));
+            coord = coord.concat(String.valueOf((char)(c.charAt(1) + rowDifference)));
 
             coords.add(coord);
         }
 
         return coords;
     }
+    
+    //public void check
 
     @Override
     public String toString() {

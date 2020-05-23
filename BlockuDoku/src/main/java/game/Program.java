@@ -5,20 +5,7 @@
  */
 package game;
 
-import blocks.QBlock;
-import blocks.IOneBlock;
-import blocks.SBlock;
-import blocks.QExtendedBlock;
-import blocks.LBlock;
-import blocks.ITwoBlock;
-import blocks.ZBlock;
-import blocks.LMaximumBlock;
-import blocks.TExtendedBlock;
-import blocks.IThreeBlock;
-import blocks.TBlock;
-import blocks.LMinimumBlock;
-import blocks.JBlock;
-import blocks.IBlock;
+import blocks.*;
 import java.util.ArrayList;
 
 /**
