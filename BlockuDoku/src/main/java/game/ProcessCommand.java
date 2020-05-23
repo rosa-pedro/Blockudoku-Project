@@ -13,47 +13,69 @@ public class ProcessCommand {
 
     private Menu menu;
     private boolean finished;
-    //private String menuState;
+    public Parser p1;
 
     public ProcessCommand() {
         menu = new Menu();
         finished = false;
+        p1 = new Parser();
     }
+    
+    public String [] processGameCommand(String input){
+        String in = input;
+        String[] arrOfStr = in.split("-", 2); 
+        String removedBlockOption = arrOfStr[0];
+        String pivot = arrOfStr[1];
+        System.out.println(removedBlockOption);
+        System.out.println(pivot);
+        return arrOfStr;
+    }
+    
+    
 
-    public boolean processCommand(User user, String input, String menuState) {
-
-        if (menuState.contains("welcome")) {
-            
-            switch (input.trim()) {
-                case "1":
-                    System.out.println("New game");
-                    menu.newGameMenu();
-                case "2":
-                    System.out.println("Load game");
-                case "4":
-                    System.out.println("TOP10 ranking");
-                case "0":
-                    System.out.println("Exit");
-                    return finished = true;
-                default:
-                    System.out.println("Invalid command");
-                    return finished;
-            }
-        } else if (menuState.contains("newGame")) {
-            
-               switch (input.trim()) {
-                case "1":
-                    System.out.println("Basic mode");
-                    menu.newGameMenu();
-                case "2":
-                    System.out.println("Advanced mode");
-                case "0":
-                    System.out.println("Return");
-                    menu.welcomeMenu(user);
-            }
-
+    public boolean processMenu(User user, String input) {
+        
+        switch (input.trim()) {
+            case "1":
+                System.out.println("New game");
+                menu.newGameMenu();
+                String secondInput = p1.readInput();
+                switch (secondInput.trim()) {
+                    case "1":
+                        System.out.println("Entered Basic mode");
+                        processGameCommand(p1.readInput());
+                        break;
+                    case "2":
+                        System.out.println("Entered Advanced mode");
+                        break;
+                    case "0":
+                        System.out.println("Returned to Main Menu");
+                        menu.mainMenu();
+                        break;
+                    default:
+                        System.out.println("Invalid command");
+                        return finished;
+                    }
+                break;
+            case "2":
+                System.out.println("Load game");
+                break;
+            case "3":
+                System.out.println("Personal scores");
+                break;
+            case "4":
+                System.out.println("TOP10 ranking");
+                
+                break;
+            case "0":
+                System.out.println("Exit");
+                finished = true;
+            break;
+            default:
+                System.out.println("Invalid command");
+                return finished;
         }
-
+        
         return finished;
     }
 

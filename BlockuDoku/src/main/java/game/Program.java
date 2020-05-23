@@ -51,8 +51,12 @@ public class Program {
         pieces.add(new LMaximumBlock());
         pieces.add(new TExtendedBlock());
         pieces.add(new QExtendedBlock());
-
+        
         System.out.println("Blocos:\n");
+        
+        IBlock iBlock = new IBlock();
+        System.out.println(iBlock);
+        
         
         pieces.forEach(p -> {
             System.out.println(p.getPieceName());
@@ -89,20 +93,20 @@ public class Program {
         //
 
         /*
+
         boolean finished = false;
         
         Parser p1 = new Parser();
         User user = new User("Maleque");
         ProcessCommand pc = new ProcessCommand();
         Menu m1 = new Menu();
-
-        while(!finished){
-           m1.welcomeMenu(user);
-           finished = pc.processCommand(user, p1.readInput(), m1.getMenuState());
-
-        }
+        m1.welcomeMenu(user);
         
+        while(!finished){
+           finished = pc.processCommand(user, p1.readInput(), m1.getMenuState());
+        }
          */
+
     }
 
 }
