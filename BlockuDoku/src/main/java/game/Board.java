@@ -39,35 +39,52 @@ public class Board {
             }
         }
     }
-    
-    
+
     public void changeSquareVisibility(String position) {
-        
+
         board.get(position).changeVisibility();
     }
-    
+
     public boolean insertBlock(Piece block, String position) {
-        
-        HashMap<String, Square> blockCoords = block.getPiece();
-        String pivot = block.getPivot();
-        
-        int columnDiff = position.charAt(0) - pivot.charAt(0);
-        int rowDiff = position.charAt(1) - pivot.charAt(1);
-        
-        String boardPosition;
-        
-        for(String s : blockCoords.keySet()) {
-            
-            boardPosition = String.valueOf((char)(s.charAt(0) + columnDiff));
-            boardPosition = boardPosition.concat(String.valueOf((char)(s.charAt(1) + rowDiff)));
-            
-            changeSquareVisibility(boardPosition);
+
+        HashSet<String> coords = parseBlockToBoardCoords(block, position);
+
+        if (!verifyBlock(coords)) {
+            return false;
         }
+        
+        coords.forEach(c -> changeSquareVisibility(c));
         
         return true;
     }
-    
-    
+
+    public boolean verifyBlock(HashSet<String> coords) {
+
+        return coords.stream().allMatch(c -> board.containsKey(c) && !board.get(c).isVisible());
+    }
+
+    public HashSet<String> parseBlockToBoardCoords(Piece block, String position) {
+
+        HashMap<String, Square> blockCoords = block.getPiece();
+        String pivot = block.getPivot();
+
+        int columnDifference = position.charAt(0) - pivot.charAt(0);
+        int rowDifference = position.charAt(1) - pivot.charAt(1);
+
+        HashSet<String> coords = new HashSet<>();
+        String coord;
+
+        for (String s : blockCoords.keySet()) {
+
+            coord = String.valueOf((char)(s.charAt(0) + columnDifference));
+            coord = coord.concat(String.valueOf((char)(s.charAt(1) + rowDifference)));
+
+            coords.add(coord);
+        }
+
+        return coords;
+    }
+
     @Override
     public String toString() {
 
@@ -86,7 +103,6 @@ public class Board {
                 key = key.concat(String.valueOf(i));
 
                 sb.append("|" + board.get(key));
-
             }
 
             sb.append("\n");
@@ -94,5 +110,4 @@ public class Board {
 
         return sb.toString();
     }
-
 }
