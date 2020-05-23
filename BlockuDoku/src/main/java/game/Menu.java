@@ -13,13 +13,11 @@ package game;
  */
 public class Menu {
     
-    private String menuState;
+    
     public Menu(){
     }
     
-    public void welcomeMenu(User user){
-        menuState = "welcome";
-        System.out.println("Hello " + user.getName());
+    public void mainMenu(){
         System.out.println("\n1 - Iniciate New Game");
         System.out.println("2 - Load Game");
         System.out.println("3 - Show Personal Scores");
@@ -27,12 +25,20 @@ public class Menu {
         System.out.println("0 - Exit");
     }   
     
+    public void welcomeMenu(User user){
+        System.out.println("Hello " + user.getName());
+        mainMenu();
+    } 
+    
+    
     public void newGameMenu(){
-        menuState = "newGame";
         System.out.println("1 - Basic mode");
         System.out.println("2 - Advanced mode");
         System.out.println("0 - Return");
     }
+    
+    
+    
     
     public void top10Menu(){
     
@@ -40,9 +46,5 @@ public class Menu {
     
     public void personalScoresMenu(){
         
-    }
-    
-    public String getMenuState(){
-        return menuState;
     }
 }
