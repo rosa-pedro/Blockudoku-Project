@@ -22,6 +22,10 @@ public class Square {
         
         isVisible = (isVisible) ? false : true;
     }
+
+    public boolean isVisible() {
+        return isVisible;
+    }
     
     @Override
     public String toString(){

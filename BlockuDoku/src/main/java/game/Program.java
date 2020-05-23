@@ -65,15 +65,25 @@ public class Program {
         
         System.out.println(board);
         
-        Piece piece = new LBlock();
+        Piece piece = BlockGenerator.nextBlock();
         
-        board.insertBlock(piece, "D4");
-        
-        //board.changeSquareVisibility("D4");
+        if(!board.insertBlock(piece, "D4")) {
+            System.out.println("Deu Asneira Capitão!!!");
+        };
         
         System.out.println(board);
         
+        if(!board.insertBlock(piece, "E5")) {
+            System.out.println("Deu Asneira Capitão!!!");
+        };
         
+        System.out.println(board);
+        
+        if(!board.insertBlock(piece, "C1")) {
+            System.out.println("Deu Asneira Capitão!!!");
+        };
+        
+        System.out.println(board);
         
         
         //
