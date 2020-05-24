@@ -18,6 +18,8 @@ public class Parser {
         sc = new Scanner(System.in);    
     }
     
+    
+    
     public String readInput(){
         return sc.nextLine();
     }

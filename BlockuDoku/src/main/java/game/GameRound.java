@@ -61,13 +61,13 @@ public class GameRound {
                 System.out.println("Enter a Valid Block\n"); 
             }
             
-            return true;
+            return finished = true;
         }
         if (input.equalsIgnoreCase("return")) {
             menu.mainMenu();
-            return false;
+            return finished;
         }
-        return true;
+        return finished = true;
     }
 
     public void showRound(Board board, ArrayList<Block> playableBlocks) {
@@ -77,6 +77,6 @@ public class GameRound {
             System.out.println(playableBlocks.get(i));
         }
 
-        System.out.println("\nType your next move (Block-ColumnLine) : ");
+        System.out.print("\nType your next move (Block-ColumnLine) : ");
     }
 }

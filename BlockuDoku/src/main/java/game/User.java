@@ -5,6 +5,8 @@
  */
 package game;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Storm
@@ -12,11 +14,19 @@ package game;
 public class User {
     
     private String name;
+    private Game game;
+    ArrayList<Score<User>> personalScores = new ArrayList<>();
     
     public User(String name){
         this.name = name;
     }   
 
+    public void addPersonalScore(Score score){
+        if(score != null){
+        personalScores.add(score);
+        }
+    }
+    
     public String getName(){
         return name;
     }
@@ -25,5 +35,13 @@ public class User {
         this.name = name;
     }
     
+    public void setGame(Game game){
+        
+    }
     
+    
+    
+    public Game getGame(){
+        return game;
+    }
 }
