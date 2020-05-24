@@ -13,43 +13,29 @@ import java.util.HashSet;
  *
  * @author rosap
  */
-public class GameLogic {
+public class BoardLogic {
 
-    public GameLogic() {
+    public BoardLogic() {
     }
 
-    public void parseBoard(Board board) {
+    public static void parseBoard(Board board) {
 
-        HashMap<String, Square> coords = board.getCoords();
+        HashSet<String> clearSquares = getFullSquares(board);
 
-        String key;
-        boolean full;
-
-        HashSet<String> fullRows = new HashSet<>();
-
-        for (int i = 1; i <= 9; i++) {
-
-            full = false;
-
-            for (int j = 0; j < 9; j++) {
-
-                key = String.valueOf((char) (65 + j));
-                key = key.concat(String.valueOf(i));
-
-                Square sqr = coords.get(key);
-                full = sqr.isVisible();
-
-            }
-
-            if (full) {
-
-                fullRows.add(String.valueOf(i));
-            }
+        if (!clearSquares.isEmpty()) {
+            
+            board.clearBoard(clearSquares);
         }
+        
+        HashSet<Integer> clearRows = getFullRows(board);
+        clearRows.forEach(r -> board.clearRow(r));
+        
+        HashSet<String> clearColumns = getFullColumns(board);
+        clearColumns.forEach(c -> board.clearColumn(c));
 
     }
 
-    public HashSet<Integer> getFullRows(Board board) {
+    public static HashSet<Integer> getFullRows(Board board) {
 
         HashMap<String, Square> coords = board.getCoords();
 
@@ -81,7 +67,7 @@ public class GameLogic {
         return fullRows;
     }
 
-    public HashSet<String> getFullColumns(Board board) {
+    public static HashSet<String> getFullColumns(Board board) {
 
         HashMap<String, Square> coords = board.getCoords();
 
@@ -113,7 +99,7 @@ public class GameLogic {
         return fullColumns;
     }
 
-    public HashSet<String> getFullSquares(Board board) {
+    public static HashSet<String> getFullSquares(Board board) {
 
         HashMap<String, Square> coords = board.getCoords();
 
@@ -156,16 +142,16 @@ public class GameLogic {
         if (ninethQuadrant.stream().allMatch(c -> coords.get(c).isVisible())) {
             fullSquares.addAll(ninethQuadrant);
         }
-        
+
         return fullSquares;
     }
-    
-    public boolean canInsertBlockInBoard(Board board, Piece piece) {
-        
+
+    public static boolean canInsertBlockInBoard(Board board, Piece piece) {
+
         HashMap<String, Square> coords = board.getCoords();
-        
+
         boolean canBeInserted = coords.entrySet().stream().anyMatch(e -> board.canInsertBlock(piece, e.getKey()));
-        
+
         return canBeInserted;
     }
 

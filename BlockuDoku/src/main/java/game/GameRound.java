@@ -18,49 +18,63 @@ public class GameRound {
     String[] commands;
     Menu menu;
     Block selectedBlock;
+    
+    boolean inserted = true;
+    boolean removed = true;
 
     public GameRound(Board board, Parser p) {
 
         boolean finished = true;
 
         menu = new Menu();
-        
-        playableBlocks.add(new Block("A", new BlockGenerator().nextBlock()));
-        playableBlocks.add(new Block("B", new BlockGenerator().nextBlock()));
-        playableBlocks.add(new Block("C", new BlockGenerator().nextBlock()));
-        
-        
-        showRound(board, playableBlocks);
-        
+
         while (finished) {
+
+            if (playableBlocks.isEmpty()) {
+                generateBlocks();
+            }
+            showRound(board, playableBlocks);
+
             finished = play(p, board);
+            
+            BoardLogic.parseBoard(board);
+            
+            
         }
     }
 
     public boolean play(Parser p, Board board) {
-        
-        String  input = p.readInput();
-        boolean finished = false;
-        boolean removed = false;
-        
+
+        String input = p.readInput();
+
         while (!input.equalsIgnoreCase("return")) {
-            
+
             commands = p.processGameCommand(input);
-            
-             Iterator<Block> itr = playableBlocks.iterator();
-            
+
+            Iterator<Block> itr = playableBlocks.iterator();
+
             while (itr.hasNext()) {
+
                 selectedBlock = itr.next();
-                if (selectedBlock.getBlockName().equals(commands[0])) {
+                removed = true;
+
+                if (selectedBlock.getBlockName().equalsIgnoreCase(commands[0])) {
+
+                    Piece piece = selectedBlock.getBlockPiece();
+
+                    inserted = board.insertBlock(piece, commands[1]);
+
+                    if (!inserted) {
+                        removed = false;
+                        continue;
+                    }
+
                     itr.remove();
-                    showRound(board, playableBlocks);
-                    
+                } else {
+                    removed = false;
                 }
             }
-            if(!removed){
-                System.out.println("Enter a Valid Block\n"); 
-            }
-            
+
             return true;
         }
         if (input.equalsIgnoreCase("return")) {
@@ -70,13 +84,28 @@ public class GameRound {
         return true;
     }
 
+    public void generateBlocks() {
+
+        playableBlocks.add(new Block("A", new BlockGenerator().nextBlock()));
+        playableBlocks.add(new Block("B", new BlockGenerator().nextBlock()));
+        playableBlocks.add(new Block("C", new BlockGenerator().nextBlock()));
+    }
+
     public void showRound(Board board, ArrayList<Block> playableBlocks) {
         System.out.println(board);
 
-        for (int i = 0; i < playableBlocks.size() ; i++) {
+        for (int i = 0; i < playableBlocks.size(); i++) {
             System.out.println(playableBlocks.get(i));
         }
+        
+        if (!removed) {
+            System.out.println("Enter a Valid Block\n");
+        }
+         
+        if (!inserted) {
+            System.out.println("Invalid position\n");
+        }
 
-        System.out.println("\nType your next move (Block-ColumnLine) : ");
+        System.out.println("Type your next move (Block-ColumnLine) : ");
     }
 }
