@@ -37,7 +37,10 @@ public class Menu {
         System.out.println("0 - Return");
     }
     
-    
+    public void requestUserName(){
+        System.out.println("Welcome to Blocku Doku\n\n");
+        System.out.print("Enter your User name: ");
+    }
     
     
     public void top10Menu(){

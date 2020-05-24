@@ -18,13 +18,12 @@ public class GameRound {
     String[] commands;
     Menu menu;
     Block selectedBlock;
-    
+
     boolean inserted = true;
     boolean removed = true;
+    boolean finished = true;
 
     public GameRound(Board board, Parser p) {
-
-        boolean finished = true;
 
         menu = new Menu();
 
@@ -36,10 +35,9 @@ public class GameRound {
             showRound(board, playableBlocks);
 
             finished = play(p, board);
-            
+
             BoardLogic.parseBoard(board);
-            
-            
+
         }
     }
 
@@ -74,14 +72,12 @@ public class GameRound {
                     removed = false;
                 }
             }
-
-            return true;
         }
         if (input.equalsIgnoreCase("return")) {
             menu.mainMenu();
-            return false;
+            return finished;
         }
-        return true;
+        return finished = true;
     }
 
     public void generateBlocks() {
@@ -97,15 +93,15 @@ public class GameRound {
         for (int i = 0; i < playableBlocks.size(); i++) {
             System.out.println(playableBlocks.get(i));
         }
-        
+
         if (!removed) {
             System.out.println("Enter a Valid Block\n");
         }
-         
+
         if (!inserted) {
             System.out.println("Invalid position\n");
         }
-
+        
         System.out.println("Type your next move (Block-ColumnLine) : ");
     }
 }

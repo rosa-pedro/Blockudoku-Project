@@ -5,6 +5,8 @@
  */
 package game;
 
+import java.time.LocalDateTime;
+
 /**
  *
  * @author Storm
@@ -14,7 +16,7 @@ public class Score<E> implements Comparable<Score<E>> {
 
     private int score;
     private E element;
-
+    private LocalDateTime time;
     /*
     public Score(E element, int value) {
         this.score = value;
@@ -28,6 +30,7 @@ public class Score<E> implements Comparable<Score<E>> {
     
     public void addScore(int score){
         this.score += score;
+        time = LocalDateTime.now();
     }
     
     public int getScore() {
@@ -36,6 +39,10 @@ public class Score<E> implements Comparable<Score<E>> {
 
     public E getElement() {
         return element;
+    }
+    
+    public LocalDateTime getTime(){
+        return time;
     }
 
     @Override
