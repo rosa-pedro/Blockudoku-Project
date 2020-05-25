@@ -6,18 +6,43 @@
  */
 package game;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 
 /**
  *
  * @author rosap
  */
 public class GameLogic {
-
+    private Scoreboard<User> userHighScores;
+    
     public GameLogic() {
+        userHighScores = new Scoreboard();
     }
-
+    
+    public void addUserHighScore(User user, int score){
+        if(user != null){
+            Score gameScore = new Score(user);
+            gameScore.addScore(score);
+        userHighScores.insertScore(new Score(user));
+        }
+    }
+    
+    public Scoreboard getScoreboard(){
+        return userHighScores;
+    }
+    
+    public void insertScoreboard(Scoreboard scoreboard){
+        Iterator it = scoreboard.getScoreboard().iterator();
+        ArrayList<Score<User>> scoreboard1 = userHighScores.getScoreboard();
+        while(it.hasNext()){
+            Score<User> next = (Score<User>)it.next();
+            userHighScores.getScoreboard().add(next);
+        }
+    }
+    
     public static void parseBoard(Board board) {
 
         HashSet<String> clearSquares = getFullSquares(board);
@@ -155,4 +180,8 @@ public class GameLogic {
         return canBeInserted;
     }
 
+    
+    
+    
+    
 }
