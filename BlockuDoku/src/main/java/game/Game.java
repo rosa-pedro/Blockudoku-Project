@@ -6,28 +6,48 @@
 package game;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.time.LocalDateTime;
+//import java.time.format.DateTimeFormatter;
 
 /**
  *
  * @author Storm
  */
-public class Game<E> implements Serializable{
+public class Game implements Serializable{
     
-    private E element;
+    private static final long serialVersionUID = 4L;
+    //private E element;
     private String name;
+    private LocalDateTime date;
     
-    public Game(E element ){
-        this.element = element;
+    
+    public Game(){
         name = "gamezao";
     }
     
     
-    public E getElement(){
-        return element;
+    public Game(String name){
+        this.name = name;
+    }
+    
+     public void play(){
+         System.out.println("playing!!!!!!!!!!!!!!!!!!!!!!!");
+    }
+    
+    public void setTime(LocalDateTime date){
+        this.date = date;
+    }
+    
+    public String getTime(){
+        return date.getDayOfMonth() + "/" + date.getMonthValue() + "  " + date.getHour()+ ":"+ date.getMinute();
     }
     
     public String getName(){
+        return name;
+    }
+    
+   @Override  
+    public String toString(){
         return name;
     }
 }

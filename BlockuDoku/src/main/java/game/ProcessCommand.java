@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package game;
+import static game.FileHandler.*;
+import static game.Users.*;
+import static game.GameLogic.*;
 
 /**
  *
@@ -17,6 +20,8 @@ public class ProcessCommand {
     public GameRound gr1;
     public Board board;
 
+    public Game testGame;
+    
     public ProcessCommand() {
         menu = new Menu();
         finished = false;
@@ -26,9 +31,6 @@ public class ProcessCommand {
     }
     
     
-    
-    
-
     public boolean processMenu(User user, String input) {
         
         switch (input.trim()) {
@@ -55,10 +57,14 @@ public class ProcessCommand {
                     }
                 break;
             case "2":
-                System.out.println("Load game");
+                
+                System.out.println("Loading game");
+                
+                user.loadGame();
                 break;
             case "3":
                 System.out.println("Personal scores");
+                System.out.println(user.getPersonalGameList());
                 break;
             case "4":
                 System.out.println("TOP10 ranking");
@@ -76,4 +82,8 @@ public class ProcessCommand {
         return finished;
     }
 
+    
+    
+    
+    
 }

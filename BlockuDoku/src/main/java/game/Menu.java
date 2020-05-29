@@ -5,6 +5,8 @@
  */
 package game;
 
+import static game.Users.*;
+
 
 
 /**
@@ -49,5 +51,22 @@ public class Menu {
     
     public void personalScoresMenu(){
         
+    }
+    
+    public User selectUser(String userName){
+    
+        User user = null;
+        
+    if(checkExistingUser(userName)){
+            System.out.println("Loading User...");
+            user = getExistingUser(userName);
+            
+        } else {
+            System.out.println("Creating new User...");
+            User newUser = new User(userName);
+            return newUser;
+        }
+    
+        return user;
     }
 }

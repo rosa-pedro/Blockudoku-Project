@@ -17,11 +17,12 @@ import java.util.Iterator;
  */
 public class Scoreboard<E> implements Serializable{
    
+    private static final long serialVersionUID = 4L;
     private E element;
    
     ArrayList<Score<E>> scoreboard = new ArrayList<>();
    
-   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("m/dd HH:mm");
+   //DateTimeFormatter dtf = DateTimeFormatter.ofPattern("m/dd HH:mm");
    public Scoreboard(){
        scoreboard = new ArrayList<>();
    }
@@ -33,6 +34,7 @@ public class Scoreboard<E> implements Serializable{
    public ArrayList<Score<E>> getScoreboard(){
        return scoreboard;
    } 
+   
    
    
    public String toStringGame() {
@@ -49,7 +51,7 @@ public class Scoreboard<E> implements Serializable{
 
             if (it.hasNext()) {
                 Score<Game> gameHighScore = (Score<Game>) it.next();
-                sb.append(position + " - " + gameHighScore.getElement().getName() + ":\t    " + gameHighScore.getScore()+ /*dtf.format(score.getTime()) +*/ "\n");
+                sb.append(position + " - " + gameHighScore.getUserName() + "  " + gameHighScore.getScore()+ " " + gameHighScore.getElement().getTime() +  "\n");
                 
             } else {
                 sb.append(position + " -\n");

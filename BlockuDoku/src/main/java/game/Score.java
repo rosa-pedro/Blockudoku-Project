@@ -5,6 +5,7 @@
  */
 package game;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -12,24 +13,26 @@ import java.time.LocalDateTime;
  * @author Storm
  * @param <E>
  */
-public class Score<E> implements Comparable<Score<E>> {
+public class Score<E> implements Comparable<Score<E>> , Serializable{
 
+    private static final long serialVersionUID = 4L;
     private int score;
     private E element;
     private LocalDateTime time;
+    private String userName;
     /*
     public Score(E element, int value) {
         this.score = value;
         this.element = element;
     }*/
     
-    public Score(E element) {
+    public Score(E element){
         this.score = 0;
         this.element = element;
     }
     
     public void addScore(int score){
-        this.score += score;
+        this.score = this.score + score;
         time = LocalDateTime.now();
     }
     
@@ -39,6 +42,14 @@ public class Score<E> implements Comparable<Score<E>> {
 
     public E getElement() {
         return element;
+    }
+    
+    public void setUserName(String userName){
+        this.userName = userName;
+    }
+    
+    public String getUserName(){
+        return userName;
     }
     
     public LocalDateTime getTime(){

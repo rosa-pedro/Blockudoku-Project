@@ -17,7 +17,7 @@ import java.io.ObjectOutputStream;
  */
 public class FileHandler {
 
-    public static void saveFile(Scoreboard obj, String filename) {
+    public static void saveFile(Users obj, String filename) {
         try {
             ObjectOutputStream oos = new ObjectOutputStream(
                     new FileOutputStream(filename));
@@ -29,12 +29,12 @@ public class FileHandler {
         }
     }
 
-    public static Scoreboard readSerializedFile(String filename) {
-        Scoreboard obj = new Scoreboard();
+    public static Users readSerializedFile(String filename) {
+        Users obj = new Users();
         try {
             ObjectInputStream ois = new ObjectInputStream(
                     new FileInputStream(filename));
-            obj = (Scoreboard)ois.readObject();
+            obj = (Users)ois.readObject();
             ois.close();
         } catch (IOException e) {
             System.out.println(e.getMessage());

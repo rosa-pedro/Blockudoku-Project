@@ -7,6 +7,8 @@ package game;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 
 /**
  *
@@ -14,6 +16,7 @@ import java.util.ArrayList;
  */
 public class User implements Serializable{
     
+    private static final long serialVersionUID = 4L;
     private String name;
     private Game game;
     
@@ -22,17 +25,64 @@ public class User implements Serializable{
     //ArrayList<Score<User>> personalScores = new ArrayList<>();
     
     public User(String name){
+        
         this.name = name;
         personalScores = new Scoreboard();
+        
     }   
 
+    
+    public boolean loadGame(){
+        if(game != null){
+            game.play();
+            System.out.println("Loading Game...");
+            return true;
+        }else {
+            System.out.println("You don't have a game to load...");
+            return false;
+        }
+    }
+    
+    
+    public String getPersonalGameList(){
+        
+        return personalScores.toStringGame();
+    }
+    
     public void addPersonalScore(Game game, int score){
+        
         if(game != null){
             Score gameScore = new Score(game);
             gameScore.addScore(score);
-        personalScores.insertScore(new Score(game));
+            gameScore.setUserName(name);
+            personalScores.insertScore(gameScore);
         }
+        
     }
+    
+    public Score getHighScore(){
+        
+        ArrayList scores = personalScores.getScoreboard();
+        Score score = (Score)scores.get(0);
+        
+        
+        //int max = score.getScore();
+        
+        for (int i = 1; i < scores.size(); i++) {
+            
+            Score tmp = (Score)scores.get(i);
+            
+            if(tmp.getScore()>score.getScore()){
+                
+                score = tmp;
+            }
+        }
+        
+        return score;
+    }
+    
+    
+    
     
     public String getName(){
         return name;
