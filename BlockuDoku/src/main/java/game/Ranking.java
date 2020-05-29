@@ -6,19 +6,16 @@
  */
 package game;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
+
 
 /**
  *
  * @author rosap
  */
-public class GameLogic {
+public class Ranking {
     private static Scoreboard<User> userHighScores = new Scoreboard();
     
-    public GameLogic() {
+    public Ranking() {
         
     }
     

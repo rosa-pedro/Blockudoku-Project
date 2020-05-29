@@ -50,7 +50,7 @@ public class MenuPrint {
         
     }
     
-    public User selectUser(String userName){
+    public static User selectUser(String userName){
     
         User user = null;
         

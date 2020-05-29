@@ -6,7 +6,7 @@
 package game;
 import static game.FileHandler.*;
 import static game.Users.*;
-import static game.GameLogic.*;
+import static game.Ranking.*;
 
 /**
  *

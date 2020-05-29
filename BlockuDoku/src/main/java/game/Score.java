@@ -20,6 +20,7 @@ public class Score<E> implements Comparable<Score<E>> , Serializable{
     private E element;
     private LocalDateTime time;
     private String userName;
+    
     /*
     public Score(E element, int value) {
         this.score = value;
