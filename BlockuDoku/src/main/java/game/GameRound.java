@@ -15,6 +15,7 @@ import java.util.Iterator;
 public class GameRound {
 
     private boolean inserted;
+    private boolean blockFound;
     private Board board;
     private GameMode gameMode;
     private ArrayList<Block> roundBlocks;
@@ -22,6 +23,7 @@ public class GameRound {
     public GameRound(Board board, GameMode gameMode) {
 
         this.inserted = false;
+        this.blockFound = true;
         this.board = board;
         this.gameMode = gameMode;
         this.roundBlocks = new ArrayList<>();
@@ -36,15 +38,17 @@ public class GameRound {
             itrBlock = (Block) itr.next();
 
             if (itrBlock.getBlockName().equals(commands[0])) {
+                blockFound = true;
                 Piece piece = itrBlock.getBlockPiece();
                 inserted = board.insertBlock(piece, commands[1]);
-
+                
                 if (inserted) {
                     itr.remove();
                 }
                 return;
             }
         }
+        blockFound = false;
     }
 
     public boolean checkRound() {
@@ -82,7 +86,7 @@ public class GameRound {
             System.out.println(roundBlocks.get(i));
         }
 
-        if (!inserted) {
+        if (!inserted || !blockFound) {
             System.out.println("Invalid Move\n");
         }
 
