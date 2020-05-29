@@ -13,13 +13,10 @@ import static game.Users.*;
  *
  * @author Storm
  */
-public class Menu {
+public class MenuPrint {
     
     
-    public Menu(){
-    }
-    
-    public void mainMenu(){
+    public static void mainMenu(){
         System.out.println("\n1 - Iniciate New Game");
         System.out.println("2 - Load Game");
         System.out.println("3 - Show Personal Scores");
@@ -27,29 +24,29 @@ public class Menu {
         System.out.println("0 - Exit");
     }   
     
-    public void welcomeMenu(User user){
+    public static void welcomeMenu(User user){
         System.out.println("Hello " + user.getName());
         mainMenu();
     } 
     
     
-    public void newGameMenu(){
+    public static void newGameMenu(){
         System.out.println("1 - Basic mode");
         System.out.println("2 - Advanced mode");
         System.out.println("0 - Return");
     }
     
-    public void requestUserName(){
+    public static void requestUserName(){
         System.out.println("Welcome to Blocku Doku\n\n");
         System.out.print("Enter your User name: ");
     }
     
     
-    public void top10Menu(){
+    public static void top10Menu(){
     
     }
     
-    public void personalScoresMenu(){
+    public static void personalScoresMenu(){
         
     }
     

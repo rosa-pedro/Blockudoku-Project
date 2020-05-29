@@ -18,13 +18,12 @@ public class Parser {
         sc = new Scanner(System.in);    
     }
     
-    
-    
     public String readInput(){
         return sc.nextLine();
     }
     
     public String[] processGameCommand(String input){
+        
         String in = input;
         String[] arrOfStr = in.split("-");
         

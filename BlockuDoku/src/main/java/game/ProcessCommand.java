@@ -14,18 +14,18 @@ import static game.GameLogic.*;
  */
 public class ProcessCommand {
 
-    private Menu menu;
     private boolean finished;
-    public Parser p1;
+    public Parser parser;
     public GameRound gr1;
     public Board board;
+    
+    public Game game;
 
     public Game testGame;
     
     public ProcessCommand() {
-        menu = new Menu();
         finished = false;
-        p1 = new Parser();
+        parser = new Parser();
         board = new Board();
         
     }
@@ -36,20 +36,23 @@ public class ProcessCommand {
         switch (input.trim()) {
             case "1":
                 System.out.println("New game");
-                menu.newGameMenu();
-                String secondInput = p1.readInput();
+                MenuPrint.newGameMenu();
+                String secondInput = parser.readInput();
                 switch (secondInput.trim()) {
                     case "1":
                         System.out.println("Entered Basic mode");
                         //p1.processGameCommand(p1.readInput());
-                        gr1 = new GameRound(board,p1);
+                        //gr1 = new GameRound(board,p1);
+                        game = new Game(GameMode.BASIC_MODE);
+                        game.play(parser);
+                        MenuPrint.mainMenu();
                         break;
                     case "2":
                         System.out.println("Entered Advanced mode");
                         break;
                     case "0":
                         System.out.println("Returned to Main Menu");
-                        menu.mainMenu();
+                        MenuPrint.mainMenu();
                         break;
                     default:
                         System.out.println("Invalid command");

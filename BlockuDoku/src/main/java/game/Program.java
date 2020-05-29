@@ -27,8 +27,6 @@ public class Program {
         User user2 = new User("Leleque");
         User user3 = new User("Jaleque");
 
-        Menu m1 = new Menu();
-
         Score<User> sc1 = new Score(user1);
         Score<User> sc2 = new Score(user2);
         Score<User> sc3 = new Score(user3);
@@ -38,7 +36,7 @@ public class Program {
         sc3.addScore(223);
         
         Parser p1 = new Parser();
-        m1.welcomeMenu(user1);
+        MenuPrint.welcomeMenu(user1);
         ProcessCommand pc = new ProcessCommand();
         Scoreboard s1 = new Scoreboard();
 

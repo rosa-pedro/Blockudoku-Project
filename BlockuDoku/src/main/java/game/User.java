@@ -23,6 +23,7 @@ public class User implements Serializable{
     private Scoreboard<Game> personalScores; 
     
     //ArrayList<Score<User>> personalScores = new ArrayList<>();
+
     
     public User(String name){
         
@@ -34,7 +35,7 @@ public class User implements Serializable{
     
     public boolean loadGame(){
         if(game != null){
-            game.play();
+            //game.play();
             System.out.println("Loading Game...");
             return true;
         }else {

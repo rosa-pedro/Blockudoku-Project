@@ -14,7 +14,7 @@ import java.util.Random;
  */
 public class BlockGenerator {
 
-    public static Piece nextBlock() {
+    public static Piece nextAdvancedBlock() {
 
         Random random = new Random();
         int number = random.nextInt(14);
@@ -45,6 +45,29 @@ public class BlockGenerator {
             case 12: return new TExtendedBlock();
             
             case 13: return new ZBlock();
+
+            default: return new IBlock();
+        }
+    }
+    
+    public static Piece nextBasicBlock() {
+
+        Random random = new Random();
+        int number = random.nextInt(7);
+
+        switch (number) {
+            
+            case 1: return new JBlock();
+            
+            case 2: return new LBlock();
+            
+            case 3: return new QBlock();
+            
+            case 4: return new SBlock();
+            
+            case 5: return new TBlock();
+            
+            case 6: return new ZBlock();
 
             default: return new IBlock();
         }
