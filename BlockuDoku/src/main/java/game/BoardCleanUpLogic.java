@@ -15,9 +15,6 @@ import java.util.HashSet;
  */
 public class BoardCleanUpLogic {
 
-    public BoardCleanUpLogic() {
-    }
-
     public static void cleanUpBoard(Board board) {
 
         HashSet<String> toBeCleanUp = getFullSquares(board);

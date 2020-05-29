@@ -76,7 +76,7 @@ public class SandBoxy {
         addUserHighScore(selectedUser.getHighScore());
         
         System.out.println(getScoreboard().toStringGame());
-        saveFile(users,"poggers1.bin");
+        //saveFile(users,"poggers1.bin");
         
         
     }
