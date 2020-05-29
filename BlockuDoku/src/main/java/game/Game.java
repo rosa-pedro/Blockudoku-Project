@@ -9,16 +9,43 @@ package game;
  *
  * @author Storm
  */
-public class Game<E> {
-    private E element;
-    
-    
-    public Game(E element ){
-        this.element = element;
+public class Game {
+
+    private boolean running;
+    private Board board;
+    //private GameMode gameMode;
+    private GameRound gameRound;
+
+    public Game(GameMode gameMode) {
+
+        this.running = true;
+        this.board = new Board();
+        //this.gameMode = gameMode;
+        this.gameRound = new GameRound(board, gameMode);
     }
-    
-    
-    public E getElement(){
-        return element;
+
+    public boolean play(Parser parser) {
+
+        while (running) {
+
+            running = gameRound.checkRound();
+            gameRound.showRound();
+
+            if (!running) {
+                break;
+            }
+
+            String command = parser.readInput();
+
+            if (command.equalsIgnoreCase("cancel")) {
+                running = false;
+                break;
+            }
+
+            String[] moveCommand = parser.processGameCommand(command);
+
+            gameRound.move(moveCommand);
+        }
+        return running;
     }
 }

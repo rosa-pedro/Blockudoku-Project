@@ -15,6 +15,8 @@ public class User {
     
     private String name;
     private Game game;
+    private Scoreboard personalScoreBoard;
+    
     ArrayList<Score<User>> personalScores = new ArrayList<>();
     
     public User(String name){

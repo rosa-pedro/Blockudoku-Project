@@ -33,7 +33,7 @@ public class Test {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
+        /*
         System.out.println("Blocos ########################\n");
 
         ArrayList<Piece> pieces = new ArrayList<>();
@@ -69,7 +69,7 @@ public class Test {
 
         System.out.println(board);
 
-        Piece piece = BlockGenerator.nextBlock();
+        Piece piece = BlockGenerator.nextAdvancedBlock();
 
         if (!board.insertBlock(piece, "D4")) {
             System.out.println("Deu Asneira Capitão!!!");
@@ -113,11 +113,11 @@ public class Test {
 
         BoardLogic gameLogic = new BoardLogic();
 
-        HashSet<Integer> fullRows = gameLogic.getFullRows(board);
+        //HashSet<Integer> fullRows = gameLogic.getFullRows(board);
 
-        fullRows.forEach(r -> System.out.println(r));
+        //fullRows.forEach(r -> System.out.println(r));
 
-        board.clearRow(9);
+        //board.clearRow(9);
 
         System.out.println(board);
 
@@ -137,7 +137,7 @@ public class Test {
 
         fullColumns.forEach(c -> System.out.println(c));
 
-        board.clearColumn("I");
+        //board.clearColumn("I");
 
         System.out.println(board);
 
@@ -145,17 +145,17 @@ public class Test {
 
         System.out.println(board);
 
-        HashSet<String> squareCoords1 = board.getBoardSquare("A1", "H3");
+        //HashSet<String> squareCoords1 = board.getBoardSquare("A1", "H3");
 
-        squareCoords1.forEach(c -> System.out.println(c));
+        //squareCoords1.forEach(c -> System.out.println(c));
 
         squareCoords1.forEach(c -> board.changeSquareVisibility(c));
 
         System.out.println(board);
 
-        HashSet<String> squareCoords2 = board.getBoardSquare("A4", "H8");
+        //HashSet<String> squareCoords2 = board.getBoardSquare("A4", "H8");
 
-        squareCoords2.forEach(c -> board.changeSquareVisibility(c));
+        //squareCoords2.forEach(c -> board.changeSquareVisibility(c));
 
         System.out.println(board);
         

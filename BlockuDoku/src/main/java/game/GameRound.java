@@ -14,94 +14,78 @@ import java.util.Iterator;
  */
 public class GameRound {
 
-    ArrayList<Block> playableBlocks = new ArrayList<>();
-    String[] commands;
-    Menu menu;
-    Block selectedBlock;
+    private boolean inserted;
+    private Board board;
+    private GameMode gameMode;
+    private ArrayList<Block> roundBlocks;
 
-    boolean inserted = true;
-    boolean removed = true;
-    boolean finished = true;
+    public GameRound(Board board, GameMode gameMode) {
 
-    public GameRound(Board board, Parser p) {
+        this.inserted = false;
+        this.board = board;
+        this.gameMode = gameMode;
+        this.roundBlocks = new ArrayList<>();
+    }
 
-        menu = new Menu();
+    public void move(String[] commands) {
 
-        while (finished) {
+        Iterator itr = roundBlocks.iterator();
+        Block itrBlock;
 
-            if (playableBlocks.isEmpty()) {
-                generateBlocks();
+        while (itr.hasNext()) {
+            itrBlock = (Block) itr.next();
+
+            if (itrBlock.getBlockName().equals(commands[0])) {
+                Piece piece = itrBlock.getBlockPiece();
+                inserted = board.insertBlock(piece, commands[1]);
+
+                if (inserted) {
+                    itr.remove();
+                }
+                return;
             }
-            showRound(board, playableBlocks);
-
-            finished = play(p, board);
-
-            BoardLogic.parseBoard(board);
-
         }
     }
 
-    public boolean play(Parser p, Board board) {
+    public boolean checkRound() {
 
-        String input = p.readInput();
-
-        while (!input.equalsIgnoreCase("return")) {
-
-            commands = p.processGameCommand(input);
-
-            Iterator<Block> itr = playableBlocks.iterator();
-
-            while (itr.hasNext()) {
-
-                selectedBlock = itr.next();
-                removed = true;
-
-                if (selectedBlock.getBlockName().equalsIgnoreCase(commands[0])) {
-
-                    Piece piece = selectedBlock.getBlockPiece();
-
-                    inserted = board.insertBlock(piece, commands[1]);
-
-                    if (!inserted) {
-                        removed = false;
-                        continue;
-                    }
-
-                    itr.remove();
-                } else {
-                    removed = false;
-                }
-            }
+        if (roundBlocks.isEmpty()) {
+            generateBlocks();
         }
-        if (input.equalsIgnoreCase("return")) {
-            menu.mainMenu();
-            return finished;
-        }
-        return finished = true;
+        BoardCleanUpLogic.cleanUpBoard(board);
+        return !isGameOver();
+    }
+
+    public boolean isGameOver() {
+
+        return roundBlocks.stream().allMatch(b -> !board.isThereSpaceleftInTheBoard(b.getBlockPiece()));
     }
 
     public void generateBlocks() {
 
-        playableBlocks.add(new Block("A", new BlockGenerator().nextBlock()));
-        playableBlocks.add(new Block("B", new BlockGenerator().nextBlock()));
-        playableBlocks.add(new Block("C", new BlockGenerator().nextBlock()));
+        if (gameMode == GameMode.BASIC_MODE) {
+            roundBlocks.add(new Block("A", new BlockGenerator().nextBasicBlock()));
+            roundBlocks.add(new Block("B", new BlockGenerator().nextBasicBlock()));
+            roundBlocks.add(new Block("C", new BlockGenerator().nextBasicBlock()));
+        } else {
+            roundBlocks.add(new Block("A", new BlockGenerator().nextAdvancedBlock()));
+            roundBlocks.add(new Block("B", new BlockGenerator().nextAdvancedBlock()));
+            roundBlocks.add(new Block("C", new BlockGenerator().nextAdvancedBlock()));
+        }
     }
 
-    public void showRound(Board board, ArrayList<Block> playableBlocks) {
+    public void showRound() {
+
         System.out.println(board);
 
-        for (int i = 0; i < playableBlocks.size(); i++) {
-            System.out.println(playableBlocks.get(i));
-        }
-
-        if (!removed) {
-            System.out.println("Enter a Valid Block\n");
+        for (int i = 0; i < roundBlocks.size(); i++) {
+            System.out.println(roundBlocks.get(i));
         }
 
         if (!inserted) {
-            System.out.println("Invalid position\n");
+            System.out.println("Invalid Move\n");
         }
-        
-        System.out.println("Type your next move (Block-ColumnLine) : ");
+
+        System.out.print("Type your next move (Block-ColumnLine) : ");
     }
 }

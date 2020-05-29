@@ -17,6 +17,7 @@ public class GameLogic {
 
     public GameLogic() {
     }
+    /*
 
     public static void parseBoard(Board board) {
 
@@ -154,5 +155,6 @@ public class GameLogic {
 
         return canBeInserted;
     }
+    */
 
 }
