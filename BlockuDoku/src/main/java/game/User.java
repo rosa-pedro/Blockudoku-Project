@@ -16,7 +16,7 @@ import java.util.Iterator;
  */
 public class User implements Serializable{
     
-    private static final long serialVersionUID = 4L;
+    private static final long serialVersionUID = 9873268974234L;
     private String name;
     private Game game;
     
@@ -56,6 +56,7 @@ public class User implements Serializable{
             Score gameScore = new Score(game);
             gameScore.addScore(score);
             gameScore.setUserName(name);
+            game.setGameScore(score);
             personalScores.insertScore(gameScore);
         }
         

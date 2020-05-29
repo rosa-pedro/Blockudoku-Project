@@ -5,6 +5,7 @@
  */
 package game;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -12,7 +13,9 @@ import java.util.Iterator;
  *
  * @author Storm
  */
-public class GameRound {
+public class GameRound implements Serializable {
+    
+    private static final long serialVersionUID = 9873268974234L;
 
     private boolean inserted;
     private boolean blockFound;

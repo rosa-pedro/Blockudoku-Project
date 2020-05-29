@@ -16,8 +16,8 @@ import java.util.Iterator;
  * @author Storm
  */
 public class Scoreboard<E> implements Serializable{
-   
-    private static final long serialVersionUID = 4L;
+    
+    private static final long serialVersionUID = 9873268974234L;
     private E element;
    
     ArrayList<Score<E>> scoreboard = new ArrayList<>();

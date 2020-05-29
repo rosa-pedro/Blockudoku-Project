@@ -15,8 +15,8 @@ import java.util.Iterator;
  * @author Storm
  */
 public class Users implements Serializable{
-
-    private static final long serialVersionUID = 4L;
+    
+    private static final long serialVersionUID = 9873268974234L;
     ArrayList<User> users = new ArrayList<>();
 
     public User getUser(String name) {

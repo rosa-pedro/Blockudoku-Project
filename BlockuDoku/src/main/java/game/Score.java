@@ -14,8 +14,8 @@ import java.time.LocalDateTime;
  * @param <E>
  */
 public class Score<E> implements Comparable<Score<E>> , Serializable{
-
-    private static final long serialVersionUID = 4L;
+    
+    private static final long serialVersionUID = 9873268974234L;
     private int score;
     private E element;
     private LocalDateTime time;

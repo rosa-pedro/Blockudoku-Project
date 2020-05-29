@@ -5,6 +5,7 @@
  */
 package game;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -12,8 +13,10 @@ import java.util.HashSet;
  *
  * @author rosap
  */
-public class Board {
-
+public class Board implements Serializable{
+    
+    private static final long serialVersionUID = 9873268974234L;
+    
     private HashMap<String, Square> board;
 
     public Board() {

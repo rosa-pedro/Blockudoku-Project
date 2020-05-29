@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
  */
 public class GameTest implements Serializable{
     
-    private static final long serialVersionUID = 4L;
+    private static final long serialVersionUID = 9873268974234L;
     String test;
     private LocalDateTime date;
     //DateTimeFormatter dtf = DateTimeFormatter.ofPattern("m/dd HH:mm");

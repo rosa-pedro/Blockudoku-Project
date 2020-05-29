@@ -5,11 +5,15 @@
  */
 package game;
 
+import java.io.Serializable;
+
 /**
  *
  * @author rosap
  */
-public class Square {
+public class Square implements Serializable{
+    
+    private static final long serialVersionUID = 9873268974234L;
     
     private boolean isVisible;
     

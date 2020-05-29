@@ -13,14 +13,15 @@ import java.time.LocalDateTime;
  *
  * @author Storm
  */
-public class Game implements Serializable {
-
-    private static final long serialVersionUID = 4L;
+public class Game implements Serializable{
+    
+    private static final long serialVersionUID = 9873268974234L;
     //private E element;
     private LocalDateTime date;
     private boolean running;
     private Board board;
     private GameRound gameRound;
+    private int gameScore;
 
     public Game(GameMode gameMode) {
 
@@ -36,6 +37,18 @@ public class Game implements Serializable {
 
     public String getTime() {
         return date.getDayOfMonth() + "/" + date.getMonthValue() + "  " + date.getHour() + ":" + date.getMinute();
+    }
+    
+    public void setGameScore(int gameScore){
+        this.gameScore =  gameScore;
+    }
+    
+    public void addGameScore(int gameScore){
+        this.gameScore += gameScore;
+    }
+    
+    public int getGameScore(){
+        return gameScore;
     }
 
     public boolean play(Parser parser) {
@@ -60,6 +73,8 @@ public class Game implements Serializable {
 
             gameRound.move(moveCommand);
         }
+        setTime(LocalDateTime.now());
+        System.out.println("Game Over");
         return running;
 
     }
