@@ -14,45 +14,38 @@ import java.util.Iterator;
  *
  * @author Storm
  */
-public class User implements Serializable{
-    
+public class User implements Serializable {
+
     private static final long serialVersionUID = 9873268974234L;
     private String name;
     private Game game;
-    
-    private Scoreboard<Game> personalScores; 
-    
-    //ArrayList<Score<User>> personalScores = new ArrayList<>();
 
-    
-    public User(String name){
-        
+    private Scoreboard<Game> personalScores;
+
+    //ArrayList<Score<User>> personalScores = new ArrayList<>();
+    public User(String name) {
         this.name = name;
         personalScores = new Scoreboard();
-        
-    }   
 
-    
-    public boolean loadGame(){
-        if(game != null){
+    }
+
+    /*public boolean loadGame() {
+        if (game != null) {
             game.play();
-            System.out.println("Loading Game...");
             return true;
-        }else {
-            System.out.println("You don't have a game to load...");
+        } else {
             return false;
         }
-    }
-    
-    
-    public String getPersonalGameList(){
-        
+    }*/
+
+    public String getPersonalGameList() {
+
         return personalScores.toStringGame();
     }
-    
-    public void addPersonalScore(Game game, int score){
-        
-        if(game != null){
+
+    public void addPersonalScore(Game game, int score) {
+
+        if (game != null) {
             Score<Game> gameScore = new Score<>(game);
             gameScore.addScore(score);
             gameScore.setUserName(name);
@@ -60,51 +53,54 @@ public class User implements Serializable{
             personalScores.insertScore(gameScore);
         }
     }
-    
-    public void addPersonalScore(Score<Game> score){
+
+    public void addPersonalScore(Score<Game> score) {
         personalScores.insertScore(score);
     }
-    
-    public Score getHighScore(){
-        
+
+    public Score getHighScore() {
+
         /*ArrayList scores = personalScores.getScoreboard();
         Score score = (Score)scores.get(0);*/
-        
-        Score score = (Score)personalScores.getScoreboard().get(0);
-        
-        //int max = score.getScore();
+        Score score = (Score) personalScores.getScoreboard().get(0);
+
         
         for (int i = 1; i < personalScores.getScoreboard().size(); i++) {
-            
-            Score tmp = (Score)personalScores.getScoreboard().get(i);
-            
-            if(tmp.getScore()>score.getScore()){
-                
+
+            Score tmp = (Score) personalScores.getScoreboard().get(i);
+
+            if (tmp.getScore() > score.getScore()) {
+
                 score = tmp;
             }
         }
-        
+
         return score;
     }
-    
-    public String getName(){
+
+    public String getName() {
         return name;
     }
-    
-    public void setName(String name){
+
+    public void setName(String name) {
         this.name = name;
     }
-    
-    public void setGame(Game game){
+
+    public void setGame(Game game) {
         this.game = game;
     }
-    
-    public Scoreboard getScoreboard(){
+
+    public Scoreboard getScoreboard() {
         return personalScores;
     }
-    
-    public Game getGame(){
+
+    public Game getGame() {
         return game;
     }
+
+    public boolean hasGameSaved() {
+        return (game != null) ? true : false;
+    }
     
+   
 }

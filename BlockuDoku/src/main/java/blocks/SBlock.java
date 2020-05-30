@@ -8,16 +8,23 @@ package blocks;
 import game.Piece;
 import game.PieceName;
 
-/**
+/** This class consists exclusively of void methods that help building SBlock Piece
+ * 
  *
- * @author rosap
+ * @author Pedro Rosa - 190221015
+ * @author Joao Cetano - 190221010
  */
 public class SBlock extends Piece{
 
+    /** Constructor for class SBlock, creates a piece after the PieceName enum.
+     */
     public SBlock() {
         super(PieceName.S_BLOCK);
     }
     
+    /** Overrides the method buildPieceWithzeroRotation() to represent a SBlock
+     * with zero degree rotation.
+     */
     @Override
     public void buildPieceWithzeroRotation() {
         
@@ -25,6 +32,9 @@ public class SBlock extends Piece{
         buildPiece(coords, coords[2]);
     }
     
+     /** Overrides the method buildPieceWithNinetyRotation() to represent a SBlock
+     * with ninety degree rotation.
+     */
     @Override
     public void buildPieceWithNinetyRotation() {
        
@@ -32,13 +42,23 @@ public class SBlock extends Piece{
         buildPiece(coords, coords[0]);
     }
     
+    /** Overrides the method buildPieceWithHundredEightyRotation() to represent a SBlock
+     * with hundred and seventy degree rotation, since the SBlock is shaped like an s laid
+     * on its side whether it has suffered hundred and eighty or no rotation is indifferent
+     * thus the buildPieceWithzeroRotation() method is recalled.
+     */
     @Override
     public void buildPieceWithHundredEightyRotation(){
         
-        buildPieceWithNinetyRotation();
+        buildPieceWithzeroRotation();
         
     }
     
+    /** Overrides the method buildPieceWithHundredEightyRotation() to represent a SBlock
+     * with hundred and seventy degree rotation, since the SBlock is shaped like an s laid
+     * on its side whether it has suffered two hundred and seventy or ninety rotation is indifferent
+     * thus the buildPieceWithNinetyRotation() method is recalled.
+     */
     @Override
     public void buildPieceWithTwoHundredSeventyRotation(){
       

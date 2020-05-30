@@ -8,16 +8,23 @@ package blocks;
 import game.Piece;
 import game.PieceName;
 
-/**
+/** This class consists exclusively of void methods that help building QExtendedBlock Piece
+ * 
  *
- * @author rosap
+ * @author Pedro Rosa - 190221015
+ * @author Joao Cetano - 190221010
  */
 public class QExtendedBlock extends Piece {
-
+    
+    /** Constructor for class QExtendedBlock, creates a piece after the PieceName enum.
+     */
     public QExtendedBlock() {
         super(PieceName.Q_EXTENDED_BLOCK);
     }
     
+    /** Overrides the method buildPieceWithzeroRotation() to represent a QExtendedBlock
+     * with zero degree rotation.
+     */
     @Override
     public void buildPieceWithzeroRotation() {
         
@@ -25,12 +32,20 @@ public class QExtendedBlock extends Piece {
         buildPiece(coords, coords[0]);
     }
     
+    /** Overrides the method buildPieceWithHundredEightyRotation() to represent a QExtendedBlock
+     * with hundred and seventy degree rotation, since the QExtendedBlock is shaped like a square its 
+     * rotation is redundant this buildPieceWithzeroRotation() is recalled.
+     */
     @Override
     public void buildPieceWithNinetyRotation() {
        
         buildPieceWithzeroRotation();
     }
     
+    /** Overrides the method buildPieceWithHundredEightyRotation() to represent a QExtendedBlock
+     * with hundred and seventy degree rotation, since the QExtendedBlock is shaped like a square its 
+     * rotation is redundant this buildPieceWithzeroRotation() is recalled.
+     */
     @Override
     public void buildPieceWithHundredEightyRotation(){
         
@@ -38,6 +53,10 @@ public class QExtendedBlock extends Piece {
         
     }
     
+    /** Overrides the method buildPieceWithTwoHundredSeventyRotation() to represent a QExtendedBlock
+     * with two hundred and seventy degree rotation, since the QExtendedBlock is shaped like a square its 
+     * rotation is redundant this buildPieceWithzeroRotation() is recalled.
+     */
     @Override
     public void buildPieceWithTwoHundredSeventyRotation(){
       

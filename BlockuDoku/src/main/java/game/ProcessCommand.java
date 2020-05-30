@@ -17,19 +17,13 @@ public class ProcessCommand {
 
     private boolean finished;
     public Parser parser;
-    //public GameRound gr1;
-    //public Board board;
-
     public Game game;
     public Score<Game> score;
-
-    public Game testGame;
 
     public ProcessCommand() {
         finished = false;
         parser = new Parser();
-        //board = new Board();
-
+        game = null;
     }
 
     public boolean processMenu(User user, String input) {
@@ -60,17 +54,18 @@ public class ProcessCommand {
             case "2":
 
                 System.out.println("Loading game");
-                user.loadGame();
-                gameUpdate(user);
+                loadGame(user);
+                //gameUpdate(user);
+                MenuPrint.mainMenu();
                 break;
             case "3":
                 System.out.println(user.getPersonalGameList());
                 MenuPrint.mainMenu();
                 break;
             case "4":
-                //addAllHighScoresFromList(getUsersList());
+                addAllHighScoresFromList(getUsersList());
                 System.out.println(getHighScoreBoard().toStringGame());
-                
+
                 break;
             case "0":
                 System.out.println("Exit");
@@ -85,20 +80,44 @@ public class ProcessCommand {
     }
 
     public void startNewGame(GameMode gameMode, User user) {
+
         game = new Game(gameMode);
         game.play();
+
+        if (game.isSaved()) {
+            user.setGame(game);
+        }
+
         if (game.isOver()) {
             score = new Score<>(game, game.getGameScore(), user.getName());
-            user.setGame(game);
             user.addPersonalScore(score);
+            user.setGame(null);
         }
+
+        game = null;
+
         MenuPrint.mainMenu();
     }
 
-    public void gameUpdate(User user) {
-        user.setGame(game);
-        user.addPersonalScore(score);
-        MenuPrint.mainMenu();
+    public void loadGame(User user) {
+        
+        if (user.hasGameSaved()) {
+            
+            System.out.println("Loading Game...");
+            user.getGame().play();
+            
+            
+            if (user.getGame().isOver()) {
+                
+                score = new Score<>(game, game.getGameScore(), user.getName());
+                user.addPersonalScore(score);
+                user.setGame(null);
+            }
+            
+        } else {
+            
+            System.out.println("You don't have a game to load...");
+            
+        }
     }
-
 }

@@ -8,16 +8,23 @@ package blocks;
 import game.Piece;
 import game.PieceName;
 
-/**
+/** This class consists exclusively of void methods that help building LMinimumBlock Piece
+ * 
  *
- * @author rosap
+ * @author Pedro Rosa - 190221015
+ * @author Joao Cetano - 190221010
  */
 public class LMinimumBlock extends Piece{
 
+    /** Constructor for class LMinimumBlock, creates a piece after the PieceName enum.
+     */
     public LMinimumBlock() {
         super(PieceName.L_MINIMUM_BLOCK);
     }
     
+    /** Overrides the method buildPieceWithzeroRotation() to represent a LMinimumBlock
+     * with zero degree rotation.
+     */
     @Override
     public void buildPieceWithzeroRotation() {
         
@@ -25,6 +32,9 @@ public class LMinimumBlock extends Piece{
         buildPiece(coords, coords[0]);
     }
     
+    /** Overrides the method buildPieceWithNinetyRotation() to represent a LMinimumBlock
+     * with ninety degree rotation.
+     */
     @Override
     public void buildPieceWithNinetyRotation() {
        
@@ -32,6 +42,9 @@ public class LMinimumBlock extends Piece{
         buildPiece(coords, coords[0]);
     }
     
+    /** Overrides the method buildPieceWithHundredEightyRotation() to represent a LMinimumBlock
+     * with hundred and seventy degree rotation.
+     */
     @Override
     public void buildPieceWithHundredEightyRotation(){
         
@@ -40,6 +53,9 @@ public class LMinimumBlock extends Piece{
         
     }
     
+    /** Overrides the method buildPieceWithTwoHundredSeventyRotation() to represent a LMinimumBlock
+     * with two hundred and seventy degree rotation
+     */
     @Override
     public void buildPieceWithTwoHundredSeventyRotation(){
       

@@ -9,9 +9,10 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 //import java.time.format.DateTimeFormatter;
 
-/**
+/** This class contains the parts that make up the game
  *
- * @author Storm
+ * @author Pedro Rosa - 190221015
+ * @author Joao Cetano - 190221010
  */
 public class Game implements Serializable {
 
@@ -23,7 +24,15 @@ public class Game implements Serializable {
 
     private boolean running;
     private boolean saved;
-
+    
+    /**
+     * Constructor for game,
+     * initialises the Board
+     * and starts a new GameRound
+     * with the score at 0
+     * 
+     * @param gameMode selects the GameMode to start the game with
+     */
     public Game(GameMode gameMode) {
 
         this.board = new Board();
@@ -34,26 +43,59 @@ public class Game implements Serializable {
         this.saved = false;
     }
 
+    /**
+     * setter for the date of the Game
+     * @param date 
+     */
     public void setTime(LocalDateTime date) {
         this.date = date;
     }
 
+    /**
+     * Getter for the time of the Game
+     * 
+     * @return  time in d/M hh:mm
+     */
     public String getTime() {
         return date.getDayOfMonth() + "/" + date.getMonthValue() + "  " + date.getHour() + ":" + date.getMinute();
     }
 
+    /**
+     * sets gameScore to the value in the parameter
+     * 
+     * @param gameScore 
+     */
     public void setGameScore(int gameScore) {
         this.gameScore = gameScore;
     }
-
+    
+    /**
+     * adds the value in the parameter to the games current score
+     * 
+     * @param gameScore 
+     */
     public void addGameScore(int gameScore) {
         this.gameScore += gameScore;
     }
-
+    
+    /**
+     * getter for gameScore
+     * 
+     * @return the games score
+     */
     public int getGameScore() {
         return gameScore;
     }
 
+    
+    /**
+     * Method to start the game, iniciates the gameRound and
+     * starts recieving and parsing user inputs
+     * if the user cancels or saves it'll exit the method,
+     * if the game is completed it'll display gameOver()
+     * 
+     * 
+     */
     public void play() {
 
         running = true;
@@ -93,17 +135,30 @@ public class Game implements Serializable {
 
         gameOver();
     }
-
+    
+    /**
+     * method to signal that the game is over 
+     */
+    
     public void gameOver() {
-        System.out.println("Game Over");
+        System.out.println("\nGame Over");
+        System.out.println("Score: " + gameScore);
         setTime(LocalDateTime.now());
         gameScore = gameRound.getScore();
     }
 
+    /**
+     * 
+     * @return true if the game is over, false if not
+     */
     public boolean isOver() {
         return !running;
     }
 
+    /**
+     * 
+     * @return true if the game is saved  
+     */
     public boolean isSaved() {
         return saved;
     }

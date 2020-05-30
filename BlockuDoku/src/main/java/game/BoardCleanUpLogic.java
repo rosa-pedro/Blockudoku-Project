@@ -9,12 +9,22 @@ package game;
 import java.util.HashMap;
 import java.util.HashSet;
 
-/**
+/** This class consists of static methods 
+ * 
  *
- * @author rosap
+ * @author Pedro Rosa - 190221015
+ * @author Joao Cetano - 190221010
  */
 public class BoardCleanUpLogic {
 
+    /**
+     * Method that cleans up the board
+     * by checking if there are any completed Squares
+     * Rows or Columns and returns the according points
+     * 
+     * @param board the board we are applying the method to
+     * @return the score gathered by cleaning up the board
+     */
     public static int cleanUpBoard(Board board) {
         
         int scoreBycleanUp = 0;
@@ -32,6 +42,13 @@ public class BoardCleanUpLogic {
         return scoreBycleanUp;
     }
     
+    /**
+     * Converts the score from cleaning up the board into points 
+     * 
+     * @param board the board we are applying the method to
+     * @param toBeCleanUp HashSet containing the Columns Rows and Squares 
+     * @return the numerical score attached to the Squares cleared
+     */
     public static int getCleanUpBoardScore(Board board, HashSet<String> toBeCleanUp){
         
         int numberOfFullSquares = (getFullSquares(board).size())/9;
@@ -40,6 +57,13 @@ public class BoardCleanUpLogic {
         return scoreByCleanUp;
     }
 
+    /**
+     * Gets the row assigned to the int value
+     * 
+     * @param board board we are using the method in 
+     * @param row the row we want to get
+     * @return HashSet containing the coordinates of the Squares in the row 
+     */
     public static HashSet<String> getRowSection(Board board, int row) {
 
         HashSet<String> rowSectionCoords = new HashSet<>();
@@ -52,7 +76,13 @@ public class BoardCleanUpLogic {
         }
         return rowSectionCoords;
     }
-
+    
+    /**
+     * Gets the rows that are fully filled 
+     * 
+     * @param board we are using the method in 
+     * @return HashSet containing the  rows that are full
+     */
     public static HashSet<String> getFullRows(Board board) {
 
         HashMap<String, Square> boardCoords = board.getCoords();
@@ -69,7 +99,14 @@ public class BoardCleanUpLogic {
         }
         return fullRows;
     }
-
+    
+    /**
+     * Gets the column assigned to the String value
+     * 
+     * @param board board we are using the method in 
+     * @param column the column we want to get
+     * @return HashSet containing the coordinates of the Squares in the column 
+     */
     public static HashSet<String> getColumnSection(Board board, String column) {
 
         HashSet<String> columnSectionCoords = new HashSet<>();
@@ -82,7 +119,13 @@ public class BoardCleanUpLogic {
         }
         return columnSectionCoords;
     }
-
+    
+    /**
+     * Gets the columns that are fully filled 
+     * 
+     * @param board we are using the method in 
+     * @return HashSet containing the  columns that are full
+     */
     public static HashSet<String> getFullColumns(Board board) {
 
         HashMap<String, Square> boardCoords = board.getCoords();
@@ -100,6 +143,15 @@ public class BoardCleanUpLogic {
         return fullColumns;
     }
 
+    /**
+     * Gets the square section, a square is defined by the first coordinate(top left)
+     * and last cord (bottom right)
+     * 
+     * @param board where we are using the method in 
+     * @param firstCoord of the square
+     * @param lastCoord of the square
+     * @return HashSet contain the squares coordinates
+     */
     public static HashSet<String> getSquareSection(Board board, String firstCoord, String lastCoord) {
 
         HashSet<String> squareSectionCoords = new HashSet<>();
@@ -121,7 +173,13 @@ public class BoardCleanUpLogic {
         }
         return squareSectionCoords;
     }
-
+    
+    /**
+     * Gets the squares that are fully filled 
+     * 
+     * @param board we are using the method in 
+     * @return HashSet containing the squares that are full
+     */
     public static HashSet<String> getFullSquares(Board board) {
 
         HashMap<String, Square> boardCoords = board.getCoords();

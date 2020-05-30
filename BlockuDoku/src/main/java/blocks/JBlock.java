@@ -8,16 +8,23 @@ package blocks;
 import game.Piece;
 import game.PieceName;
 
-/**
+/** This class consists exclusively of void methods that help building JBlock Piece
+ * 
  *
- * @author rosap
+ * @author Pedro Rosa - 190221015
+ * @author Joao Cetano - 190221010
  */
 public class JBlock extends Piece{
     
+    /** Constructor for class JBlock, creates a piece after the PieceName enum.
+     */
     public JBlock() {
         super(PieceName.J_BLOCK);
     }
     
+    /** Overrides the method buildPieceWithzeroRotation() to represent a JBlock
+     * with zero degree rotation.
+     */
     @Override
     public void buildPieceWithzeroRotation() {
         
@@ -25,6 +32,9 @@ public class JBlock extends Piece{
         buildPiece(coords, coords[3]);
     }
     
+    /** Overrides the method buildPieceWithNinetyRotation() to represent a JBlock
+     * with ninety degree rotation.
+     */
     @Override
     public void buildPieceWithNinetyRotation() {
        
@@ -32,6 +42,9 @@ public class JBlock extends Piece{
         buildPiece(coords, coords[0]);
     }
     
+    /** Overrides the method buildPieceWithHundredEightyRotation() to represent a JBlock
+     * with hundred and seventy degree rotation.
+     */
     @Override
     public void buildPieceWithHundredEightyRotation(){
         
@@ -40,6 +53,9 @@ public class JBlock extends Piece{
         
     }
     
+    /** Overrides the method buildPieceWithTwoHundredSeventyRotation() to represent a JBlock
+     * with two hundred and seventy degree rotation
+     */
     @Override
     public void buildPieceWithTwoHundredSeventyRotation(){
       
