@@ -14,38 +14,37 @@ import java.util.Iterator;
  * @author Storm
  */
 public class GameRound implements Serializable {
-    
+
     private static final long serialVersionUID = 9873268974234L;
 
-    private boolean inserted;
-    private boolean blockFound;
-    private boolean isCommandValid;
     private Board board;
     private GameMode gameMode;
     private ArrayList<Block> roundBlocks;
     private int score;
+    private String errorMessage;
 
     public GameRound(Board board, GameMode gameMode) {
 
-        this.inserted = false;
-        this.blockFound = true;
-        this.isCommandValid = true;
         this.board = board;
         this.gameMode = gameMode;
         this.roundBlocks = new ArrayList<>();
         this.score = 0;
+        this.errorMessage = "";
     }
+    
+    public Command validateCommand(Command command) throws GameIllegalArgumentException {
 
-    /*public boolean checkMove(Command command){
-        return command.isCommandvalid(board);
-    }*/
-       
-    public void move(Command command) {
-        
-        if(!command.isCommandValid(board)){
-            isCommandValid = false;
-            return;
+        if(command == null || !command.isCommandValid(board)){
+            
+            throw new GameIllegalArgumentException(ErrorCode.INVALID_COMMAND);
         }
+        
+        return command;
+    }
+    
+    public void move(Command command) throws GameIllegalArgumentException {
+
+        Command c = validateCommand(command);
 
         Iterator itr = roundBlocks.iterator();
         Block itrBlock;
@@ -53,20 +52,18 @@ public class GameRound implements Serializable {
         while (itr.hasNext()) {
             itrBlock = (Block) itr.next();
 
-            if (itrBlock.getBlockName().equals(command.getBlockCommand())) {
-                
-                blockFound = true;
+            if (itrBlock.getBlockName().equals(c.getBlockCommand())) {
                 Piece piece = itrBlock.getBlockPiece();
-                inserted = board.insertBlock(piece, command.getCoordCommand());
-                
-                if (inserted) {
+
+                if (board.insertBlock(piece, c.getCoordCommand())) {
                     itr.remove();
                     score += piece.getPieceScore(gameMode);
+                    return;
                 }
-                return;
+                throw new GameIllegalArgumentException(ErrorCode.INVALID_BLOCK_INSERTION);
             }
         }
-        blockFound = false;
+        throw new GameIllegalArgumentException(ErrorCode.INVALID_ROUND_BLOCK);
     }
 
     public boolean checkRound() {
@@ -81,7 +78,6 @@ public class GameRound implements Serializable {
     public int getScore() {
         return score;
     }
-    
 
     public boolean isGameOver() {
 
@@ -101,35 +97,32 @@ public class GameRound implements Serializable {
         }
     }
 
+    
     public void showRound() {
 
         System.out.println();
-        
-        /*if(score > 0){
-            System.out.println("Score: " + score);
-        }*/
-        
+
         System.out.println(board);
-        
-        if(score > 0){
+
+        if (score > 0) {
             System.out.println("Score: " + score + "\n");
         }
-        
+
         System.out.println("Blocks to play:");
 
         for (int i = 0; i < roundBlocks.size(); i++) {
             System.out.println(roundBlocks.get(i));
         }
-
-        if (!inserted || !blockFound) {
-            System.out.println("Invalid Move\n");
-        }
         
-        if(isCommandValid) {
-            System.out.println("Invalid Command");
+        if(!errorMessage.isBlank()) {
+            System.out.println("WARNING:" + errorMessage + "\n");
+            this.errorMessage = "";
         }
 
         System.out.print("Type your next move (Block-ColumnLine) :");
-        //System.out.println(isCommandValid?"":"(Invalid Command)");
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 }

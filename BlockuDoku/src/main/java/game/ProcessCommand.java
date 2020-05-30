@@ -84,7 +84,7 @@ public class ProcessCommand {
 
     public void startNewGame(GameMode gameMode,User user) {
         game = new Game(gameMode);
-        game.play(parser);
+        game.play();
         score = new Score<>(game, game.getGameScore(), user.getName());
         user.setGame(game);
         user.addPersonalScore(score);

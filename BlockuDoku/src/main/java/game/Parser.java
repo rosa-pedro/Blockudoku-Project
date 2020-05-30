@@ -13,23 +13,28 @@ import java.util.Scanner;
  */
 public class Parser {
     static Scanner sc;
-    
-    public Parser(){
-        sc = new Scanner(System.in);    
+
+    public Parser() {
+        sc = new Scanner(System.in);
     }
-    
-    public static String readInput(){
+
+    public static String readInput() {
         return sc.nextLine();
     }
-    
-    public static Command getGameCommand(String input){
-        
+
+    public static Command getGameCommand(String input) {
+
+
         String in = input;
         String[] arrOfStr = in.split("-");
-        
-        Command command = new Command(arrOfStr[0], arrOfStr[1]);
+
+        Command command = null;
+
+        if (arrOfStr.length == 2) {
+            command = new Command(arrOfStr[0], arrOfStr[1]);
+        }
 
         return command;
     }
-    
+
 }

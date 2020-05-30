@@ -13,22 +13,19 @@ import java.time.LocalDateTime;
  *
  * @author Storm
  */
-public class Game implements Serializable{
-    
+public class Game implements Serializable {
+
     private static final long serialVersionUID = 9873268974234L;
     private LocalDateTime date;
     private boolean running;
     private Board board;
     private GameRound gameRound;
     private int gameScore;
-    //private Score<Game> gameScore;
 
     public Game(GameMode gameMode) {
 
         this.running = true;
         this.board = new Board();
-        //this.gameMode = gameMode;
-        //this.gameScore = new Score<>(this, 0);
         this.gameRound = new GameRound(board, gameMode);
         this.gameScore = 0;
     }
@@ -40,82 +37,63 @@ public class Game implements Serializable{
     public String getTime() {
         return date.getDayOfMonth() + "/" + date.getMonthValue() + "  " + date.getHour() + ":" + date.getMinute();
     }
-    
-    public void setGameScore(int gameScore){
-        this.gameScore =  gameScore;
+
+    public void setGameScore(int gameScore) {
+        this.gameScore = gameScore;
     }
-    
-    public void addGameScore(int gameScore){
+
+    public void addGameScore(int gameScore) {
         this.gameScore += gameScore;
     }
-    
-    public int getGameScore(){
+
+    public int getGameScore() {
         return gameScore;
     }
 
-    public boolean play(Parser parser) {
+    public boolean play() {
+
+        running = true;
 
         while (running) {
 
-            running = gameRound.checkRound();
-            gameRound.showRound();
+            try {
 
-            if (!running) {
-                break;
+                running = gameRound.checkRound();
+                gameRound.showRound();
+
+                if (!running) {
+                    break;
+                }
+
+
+                String command = Parser.readInput();
+
+                if (command.equalsIgnoreCase("cancel")) {
+                    running = false;
+                    break;
+                }
+
+                Command moveCommand = Parser.getGameCommand(command);
+
+
+                gameRound.move(moveCommand);
+
+            } catch (IllegalArgumentException e) {
+
+                gameRound.setErrorMessage(e.getMessage());
             }
-
-            String command = parser.readInput();
-
-            if (command.equalsIgnoreCase("cancel")) {
-                running = false;
-                break;
-            }
-
-            //String[] moveCommand = parser.getGameCommand(command);
-            Command moveCommand = parser.getGameCommand(command);
-
-            gameRound.move(moveCommand);
-            //gameScore = gameRound.move(moveCommand);
-            //gameRound.clearScore();
         }
+        
         gameScore = gameRound.getScore();
         setTime(LocalDateTime.now());
         System.out.println("Game Over");
         return running;
+
     }
     
-    public boolean play() {
-        running = true;
-        while (running) {
-
-            running = gameRound.checkRound();
-            gameRound.showRound();
-
-            if (!running) {
-                break;
-            }
-
-            String command = Parser.readInput();
-
-            if (command.equalsIgnoreCase("cancel")) {
-                running = false;
-                break;
-            }
-
-            //String[] moveCommand = parser.getGameCommand(command);
-            Command moveCommand = Parser.getGameCommand(command);
-
-            gameRound.move(moveCommand);
-            //gameScore = gameRound.move(moveCommand);
-            //gameRound.clearScore();
-        }
-        gameScore = gameRound.getScore();
-        setTime(LocalDateTime.now());
-        System.out.println("Game Over");
-        return running;
-    }
     
     public boolean isOver(){
         return !running;
+
     }
 }
