@@ -17,17 +17,21 @@ public class Game implements Serializable {
 
     private static final long serialVersionUID = 9873268974234L;
     private LocalDateTime date;
-    private boolean running;
     private Board board;
     private GameRound gameRound;
     private int gameScore;
 
+    private boolean running;
+    private boolean saved;
+
     public Game(GameMode gameMode) {
 
-        this.running = true;
         this.board = new Board();
         this.gameRound = new GameRound(board, gameMode);
         this.gameScore = 0;
+
+        this.running = true;
+        this.saved = false;
     }
 
     public void setTime(LocalDateTime date) {
@@ -50,11 +54,11 @@ public class Game implements Serializable {
         return gameScore;
     }
 
-    public boolean play() {
+    public void play() {
 
         running = true;
 
-        while (running) {
+        while (true) {
 
             try {
 
@@ -65,17 +69,19 @@ public class Game implements Serializable {
                     break;
                 }
 
-
                 String command = Parser.readInput();
 
                 if (command.equalsIgnoreCase("cancel")) {
-                   //running = false;
-                    //break;
-                    return false;
+
+                    return;
+                }
+                if (command.equalsIgnoreCase("save")) {
+                    saved = true;
+                    return;
+
                 }
 
                 Command moveCommand = Parser.getGameCommand(command);
-
 
                 gameRound.move(moveCommand);
 
@@ -84,17 +90,21 @@ public class Game implements Serializable {
                 gameRound.setErrorMessage(e.getMessage());
             }
         }
-        
-        gameScore = gameRound.getScore();
-        setTime(LocalDateTime.now());
-        System.out.println("Game Over");
-        return running;
 
+        gameOver();
     }
-    
-    
-    public boolean isOver(){
-        return !running;
 
+    public void gameOver() {
+        System.out.println("Game Over");
+        setTime(LocalDateTime.now());
+        gameScore = gameRound.getScore();
+    }
+
+    public boolean isOver() {
+        return !running;
+    }
+
+    public boolean isSaved() {
+        return saved;
     }
 }

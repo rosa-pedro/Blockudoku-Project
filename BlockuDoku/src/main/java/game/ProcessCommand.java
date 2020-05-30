@@ -65,10 +65,12 @@ public class ProcessCommand {
                 break;
             case "3":
                 System.out.println(user.getPersonalGameList());
+                MenuPrint.mainMenu();
                 break;
             case "4":
-                addAllHighScoresFromList(getUsersList());
+                //addAllHighScoresFromList(getUsersList());
                 System.out.println(getHighScoreBoard().toStringGame());
+                
                 break;
             case "0":
                 System.out.println("Exit");
