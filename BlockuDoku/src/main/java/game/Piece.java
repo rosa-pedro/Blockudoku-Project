@@ -80,6 +80,11 @@ public abstract class Piece {
             piece.put(coords[i], new Square(true));
         }
     }
+    
+    public int getPieceScore(GameMode gameMode){
+    
+        return (gameMode == GameMode.BASIC_MODE) ? piece.size() : 2 * piece.size();
+    }
 
     public void initializePieceDimensions(String coords[]) {
 
@@ -123,7 +128,7 @@ public abstract class Piece {
 
         return sb.toString();
     }
-
+    
     public HashMap<String, Square> getPiece() {
         return piece;
     }

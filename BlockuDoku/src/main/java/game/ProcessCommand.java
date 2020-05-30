@@ -16,17 +16,18 @@ public class ProcessCommand {
 
     private boolean finished;
     public Parser parser;
-    public GameRound gr1;
-    public Board board;
+    //public GameRound gr1;
+    //public Board board;
     
     public Game game;
+    public Score<Game> score;
 
     public Game testGame;
     
     public ProcessCommand() {
         finished = false;
         parser = new Parser();
-        board = new Board();
+        //board = new Board();
         
     }
     
@@ -41,10 +42,11 @@ public class ProcessCommand {
                 switch (secondInput.trim()) {
                     case "1":
                         System.out.println("Entered Basic mode");
-                        //p1.processGameCommand(p1.readInput());
+                        //p1.getGameCommand(p1.readInput());
                         //gr1 = new GameRound(board,p1);
                         game = new Game(GameMode.BASIC_MODE);
                         game.play(parser);
+                        //score = new Score<>(game, game.getScore());
                         MenuPrint.mainMenu();
                         break;
                     case "2":

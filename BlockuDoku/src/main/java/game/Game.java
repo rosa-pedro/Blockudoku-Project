@@ -16,19 +16,21 @@ import java.time.LocalDateTime;
 public class Game implements Serializable{
     
     private static final long serialVersionUID = 9873268974234L;
-    //private E element;
     private LocalDateTime date;
     private boolean running;
     private Board board;
     private GameRound gameRound;
     private int gameScore;
+    //private Score<Game> gameScore;
 
     public Game(GameMode gameMode) {
 
         this.running = true;
         this.board = new Board();
         //this.gameMode = gameMode;
+        //this.gameScore = new Score<>(this, 0);
         this.gameRound = new GameRound(board, gameMode);
+        this.gameScore = 0;
     }
 
     public void setTime(LocalDateTime date) {
@@ -68,11 +70,17 @@ public class Game implements Serializable{
                 running = false;
                 break;
             }
+            
+            
 
-            String[] moveCommand = parser.processGameCommand(command);
+            //String[] moveCommand = parser.getGameCommand(command);
+            Command moveCommand = parser.getGameCommand(command);
 
             gameRound.move(moveCommand);
+            //gameScore = gameRound.move(moveCommand);
+            //gameRound.clearScore();
         }
+        gameScore = gameRound.getScore();
         setTime(LocalDateTime.now());
         System.out.println("Game Over");
         return running;

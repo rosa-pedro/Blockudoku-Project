@@ -53,7 +53,7 @@ public class User implements Serializable{
     public void addPersonalScore(Game game, int score){
         
         if(game != null){
-            Score gameScore = new Score(game);
+            Score<Game> gameScore = new Score<>(game);
             gameScore.addScore(score);
             gameScore.setUserName(name);
             game.setGameScore(score);

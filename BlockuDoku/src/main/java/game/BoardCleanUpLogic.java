@@ -15,15 +15,29 @@ import java.util.HashSet;
  */
 public class BoardCleanUpLogic {
 
-    public static void cleanUpBoard(Board board) {
-
+    public static int cleanUpBoard(Board board) {
+        
+        int scoreBycleanUp = 0;
+        
         HashSet<String> toBeCleanUp = getFullSquares(board);
         toBeCleanUp.addAll(getFullRows(board));
         toBeCleanUp.addAll(getFullColumns(board));
 
         if (!toBeCleanUp.isEmpty()) {
+            
+            scoreBycleanUp = getCleanUpBoardScore(board, toBeCleanUp);
             board.clearBoard(toBeCleanUp);
+            
         }
+        return scoreBycleanUp;
+    }
+    
+    public static int getCleanUpBoardScore(Board board, HashSet<String> toBeCleanUp){
+        
+        int numberOfFullSquares = (getFullSquares(board).size())/9;
+        int scoreByCleanUp = toBeCleanUp.size()*4 + numberOfFullSquares*10;
+        
+        return scoreByCleanUp;
     }
 
     public static HashSet<String> getRowSection(Board board, int row) {

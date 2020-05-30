@@ -19,20 +19,33 @@ public class GameRound implements Serializable {
 
     private boolean inserted;
     private boolean blockFound;
+    private boolean isCommandValid;
     private Board board;
     private GameMode gameMode;
     private ArrayList<Block> roundBlocks;
+    private int score;
 
     public GameRound(Board board, GameMode gameMode) {
 
         this.inserted = false;
         this.blockFound = true;
+        this.isCommandValid = true;
         this.board = board;
         this.gameMode = gameMode;
         this.roundBlocks = new ArrayList<>();
+        this.score = 0;
     }
 
-    public void move(String[] commands) {
+    /*public boolean checkMove(Command command){
+        return command.isCommandvalid(board);
+    }*/
+       
+    public void move(Command command) {
+        
+        if(!command.isCommandValid(board)){
+            isCommandValid = false;
+            return;
+        }
 
         Iterator itr = roundBlocks.iterator();
         Block itrBlock;
@@ -40,13 +53,15 @@ public class GameRound implements Serializable {
         while (itr.hasNext()) {
             itrBlock = (Block) itr.next();
 
-            if (itrBlock.getBlockName().equals(commands[0])) {
+            if (itrBlock.getBlockName().equals(command.getBlockCommand())) {
+                
                 blockFound = true;
                 Piece piece = itrBlock.getBlockPiece();
-                inserted = board.insertBlock(piece, commands[1]);
+                inserted = board.insertBlock(piece, command.getCoordCommand());
                 
                 if (inserted) {
                     itr.remove();
+                    score += piece.getPieceScore(gameMode);
                 }
                 return;
             }
@@ -59,9 +74,14 @@ public class GameRound implements Serializable {
         if (roundBlocks.isEmpty()) {
             generateBlocks();
         }
-        BoardCleanUpLogic.cleanUpBoard(board);
+        score += BoardCleanUpLogic.cleanUpBoard(board);
         return !isGameOver();
     }
+
+    public int getScore() {
+        return score;
+    }
+    
 
     public boolean isGameOver() {
 
@@ -83,7 +103,19 @@ public class GameRound implements Serializable {
 
     public void showRound() {
 
+        System.out.println();
+        
+        /*if(score > 0){
+            System.out.println("Score: " + score);
+        }*/
+        
         System.out.println(board);
+        
+        if(score > 0){
+            System.out.println("Score: " + score + "\n");
+        }
+        
+        System.out.println("Blocks to play:");
 
         for (int i = 0; i < roundBlocks.size(); i++) {
             System.out.println(roundBlocks.get(i));
@@ -92,7 +124,12 @@ public class GameRound implements Serializable {
         if (!inserted || !blockFound) {
             System.out.println("Invalid Move\n");
         }
+        
+        if(isCommandValid) {
+            System.out.println("Invalid Command");
+        }
 
-        System.out.print("Type your next move (Block-ColumnLine) : ");
+        System.out.print("Type your next move (Block-ColumnLine) :");
+        //System.out.println(isCommandValid?"":"(Invalid Command)");
     }
 }

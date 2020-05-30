@@ -22,11 +22,14 @@ public class Parser {
         return sc.nextLine();
     }
     
-    public String[] processGameCommand(String input){
+    public Command getGameCommand(String input){
         
         String in = input;
         String[] arrOfStr = in.split("-");
         
-        return arrOfStr;
+        Command command = new Command(arrOfStr[0], arrOfStr[1]);
+
+        return command;
     }
+    
 }
