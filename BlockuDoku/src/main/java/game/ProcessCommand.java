@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package game;
+
 import static game.FileHandler.*;
 import static game.Users.*;
 import static game.Ranking.*;
@@ -18,22 +19,21 @@ public class ProcessCommand {
     public Parser parser;
     //public GameRound gr1;
     //public Board board;
-    
+
     public Game game;
     public Score<Game> score;
 
     public Game testGame;
-    
+
     public ProcessCommand() {
         finished = false;
         parser = new Parser();
         //board = new Board();
-        
+
     }
-    
-    
+
     public boolean processMenu(User user, String input) {
-        
+
         switch (input.trim()) {
             case "1":
                 System.out.println("New game");
@@ -42,15 +42,11 @@ public class ProcessCommand {
                 switch (secondInput.trim()) {
                     case "1":
                         System.out.println("Entered Basic mode");
-                        //p1.getGameCommand(p1.readInput());
-                        //gr1 = new GameRound(board,p1);
-                        game = new Game(GameMode.BASIC_MODE);
-                        game.play(parser);
-                        //score = new Score<>(game, game.getScore());
-                        MenuPrint.mainMenu();
+                        startNewGame(GameMode.BASIC_MODE, user);
                         break;
                     case "2":
                         System.out.println("Entered Advanced mode");
+                        startNewGame(GameMode.ADVANCED_MODE, user);
                         break;
                     case "0":
                         System.out.println("Returned to Main Menu");
@@ -59,36 +55,46 @@ public class ProcessCommand {
                     default:
                         System.out.println("Invalid command");
                         return finished;
-                    }
+                }
                 break;
             case "2":
-                
+
                 System.out.println("Loading game");
-                
                 user.loadGame();
+                gameUpdate(user);
                 break;
             case "3":
-                System.out.println("Personal scores");
                 System.out.println(user.getPersonalGameList());
                 break;
             case "4":
-                System.out.println("TOP10 ranking");
-                
+                addAllHighScoresFromList(getUsersList());
+                System.out.println(getHighScoreBoard().toStringGame());
                 break;
             case "0":
                 System.out.println("Exit");
                 finished = true;
-            break;
+                break;
             default:
                 System.out.println("Invalid command");
                 return finished;
         }
-        
+
         return finished;
     }
 
+    public void startNewGame(GameMode gameMode,User user) {
+        game = new Game(gameMode);
+        game.play(parser);
+        score = new Score<>(game, game.getGameScore(), user.getName());
+        user.setGame(game);
+        user.addPersonalScore(score);
+        MenuPrint.mainMenu();
+    }
     
-    
-    
-    
+    public void gameUpdate(User user){
+        user.setGame(game);
+        user.addPersonalScore(score);
+        MenuPrint.mainMenu();
+    }
+
 }

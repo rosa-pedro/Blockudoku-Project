@@ -58,9 +58,11 @@ public class MenuPrint {
             System.out.println("Loading User...");
             user = getExistingUser(userName);
             
+            
         } else {
             System.out.println("Creating new User...");
             User newUser = new User(userName);
+            addUser(newUser);
             return newUser;
         }
     

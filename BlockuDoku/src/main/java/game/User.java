@@ -35,7 +35,7 @@ public class User implements Serializable{
     
     public boolean loadGame(){
         if(game != null){
-            //game.play();
+            game.play();
             System.out.println("Loading Game...");
             return true;
         }else {
@@ -59,20 +59,24 @@ public class User implements Serializable{
             game.setGameScore(score);
             personalScores.insertScore(gameScore);
         }
-        
+    }
+    
+    public void addPersonalScore(Score<Game> score){
+        personalScores.insertScore(score);
     }
     
     public Score getHighScore(){
         
-        ArrayList scores = personalScores.getScoreboard();
-        Score score = (Score)scores.get(0);
+        /*ArrayList scores = personalScores.getScoreboard();
+        Score score = (Score)scores.get(0);*/
         
+        Score score = (Score)personalScores.getScoreboard().get(0);
         
         //int max = score.getScore();
         
-        for (int i = 1; i < scores.size(); i++) {
+        for (int i = 1; i < personalScores.getScoreboard().size(); i++) {
             
-            Score tmp = (Score)scores.get(i);
+            Score tmp = (Score)personalScores.getScoreboard().get(i);
             
             if(tmp.getScore()>score.getScore()){
                 
@@ -82,9 +86,6 @@ public class User implements Serializable{
         
         return score;
     }
-    
-    
-    
     
     public String getName(){
         return name;

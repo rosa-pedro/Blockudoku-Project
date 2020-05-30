@@ -35,8 +35,6 @@ public class Scoreboard<E> implements Serializable{
        return scoreboard;
    } 
    
-   
-   
    public String toStringGame() {
         
        Collections.sort(scoreboard);

@@ -32,6 +32,12 @@ public class Score<E> implements Comparable<Score<E>> , Serializable{
         this.element = element;
     }
     
+    public Score(E element, int score, String userName){
+        this.element = element;
+        this.score =  score;
+        this.userName = userName;
+    }         
+    
     public void addScore(int score){
         this.score = this.score + score;
         time = LocalDateTime.now();

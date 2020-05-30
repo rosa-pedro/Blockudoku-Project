@@ -17,7 +17,7 @@ import java.util.Iterator;
 public class Users implements Serializable{
     
     private static final long serialVersionUID = 9873268974234L;
-    ArrayList<User> users = new ArrayList<>();
+    static ArrayList<User> users = new ArrayList<>();
 
     public User getUser(String name) {
         
@@ -41,17 +41,17 @@ public class Users implements Serializable{
     
     public void loadUsersFromFile(Users loadedUsers){
         
-        ArrayList<User> loadedUsersList = loadedUsers.getUsers();
+        ArrayList<User> loadedUsersList = loadedUsers.getUsersList();
         
         users.addAll(loadedUsersList);
     }
     
-    public void addUser(User user){
+    public static void addUser(User user){
         
         users.add(user);
     }
     
-    public ArrayList<User> getUsers(){
+    public static ArrayList<User> getUsersList(){
         
         return users;
     }

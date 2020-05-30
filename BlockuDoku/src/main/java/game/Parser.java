@@ -12,17 +12,17 @@ import java.util.Scanner;
  * @author Storm
  */
 public class Parser {
-    Scanner sc;
+    static Scanner sc;
     
     public Parser(){
         sc = new Scanner(System.in);    
     }
     
-    public String readInput(){
+    public static String readInput(){
         return sc.nextLine();
     }
     
-    public Command getGameCommand(String input){
+    public static Command getGameCommand(String input){
         
         String in = input;
         String[] arrOfStr = in.split("-");

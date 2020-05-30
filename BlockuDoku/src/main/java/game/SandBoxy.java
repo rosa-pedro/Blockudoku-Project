@@ -20,13 +20,17 @@ public class SandBoxy {
     public static void main(String[] args) {
         
         Users users = new Users();
+        Users loadedUsers = readSerializedFile("poggers2.bin");
+        
         boolean finished = false;
         Parser parser = new Parser();
         ProcessCommand pc = new ProcessCommand();
-        
+       /*
         User user1 = new User("Maleque");
         User user2 = new User("Leleque");
         User user3 = new User("Jaleque");
+        
+        
         
         Game game1 = new Game(GameMode.BASIC_MODE);
         game1.setTime(LocalDateTime.now());
@@ -46,13 +50,17 @@ public class SandBoxy {
         game8.setTime(LocalDateTime.now());
         
         user1.addPersonalScore(game3, 13);
+        user1.setGame(game3);
         user1.addPersonalScore(game4, 203);
         user2.addPersonalScore(game5, 72);
         user3.addPersonalScore(game6, 23);
         
+        users.addUser(user1);
+        //users.addUser(selectedUser);
+        users.addUser(user2);
+        users.addUser(user3);
         
-        
-        
+        ^*/
 
         requestUserName();
         User selectedUser = selectUser(parser.readInput());
@@ -60,23 +68,20 @@ public class SandBoxy {
 
         while (!finished) {
             finished = pc.processMenu(selectedUser, parser.readInput());
+            
         }
         
+        /*
         selectedUser.addPersonalScore(game1, 23);
         selectedUser.addPersonalScore(game2, 133);
-        
-        users.addUser(user1);
-        users.addUser(selectedUser);
-        users.addUser(user2);
-        users.addUser(user3);
         
         addUserHighScore(user1.getHighScore());
         addUserHighScore(user2.getHighScore());
         addUserHighScore(user3.getHighScore());
-        addUserHighScore(selectedUser.getHighScore());
+        addUserHighScore(selectedUser.getHighScore());*/
         
-        System.out.println(getScoreboard().toStringGame());
-        //saveFile(users,"poggers1.bin");
+        //System.out.println(getHighScoreBoard().toStringGame());
+        //saveFile(users,"poggers2.bin");
         
         
     }

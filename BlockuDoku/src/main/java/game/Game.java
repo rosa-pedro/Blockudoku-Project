@@ -70,8 +70,6 @@ public class Game implements Serializable{
                 running = false;
                 break;
             }
-            
-            
 
             //String[] moveCommand = parser.getGameCommand(command);
             Command moveCommand = parser.getGameCommand(command);
@@ -84,6 +82,40 @@ public class Game implements Serializable{
         setTime(LocalDateTime.now());
         System.out.println("Game Over");
         return running;
+    }
+    
+    public boolean play() {
+        running = true;
+        while (running) {
 
+            running = gameRound.checkRound();
+            gameRound.showRound();
+
+            if (!running) {
+                break;
+            }
+
+            String command = Parser.readInput();
+
+            if (command.equalsIgnoreCase("cancel")) {
+                running = false;
+                break;
+            }
+
+            //String[] moveCommand = parser.getGameCommand(command);
+            Command moveCommand = Parser.getGameCommand(command);
+
+            gameRound.move(moveCommand);
+            //gameScore = gameRound.move(moveCommand);
+            //gameRound.clearScore();
+        }
+        gameScore = gameRound.getScore();
+        setTime(LocalDateTime.now());
+        System.out.println("Game Over");
+        return running;
+    }
+    
+    public boolean isOver(){
+        return !running;
     }
 }
