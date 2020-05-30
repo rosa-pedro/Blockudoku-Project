@@ -12,24 +12,29 @@ import java.util.Scanner;
  * @author Storm
  */
 public class Parser {
+
     Scanner sc;
-    
-    public Parser(){
-        sc = new Scanner(System.in);    
+
+    public Parser() {
+        sc = new Scanner(System.in);
     }
-    
-    public String readInput(){
+
+    public String readInput() {
         return sc.nextLine();
     }
-    
-    public Command getGameCommand(String input){
-        
+
+    public Command getGameCommand(String input) {
+
         String in = input;
         String[] arrOfStr = in.split("-");
-        
-        Command command = new Command(arrOfStr[0], arrOfStr[1]);
+
+        Command command = null;
+
+        if (arrOfStr.length == 2) {
+            command = new Command(arrOfStr[0], arrOfStr[1]);
+        }
 
         return command;
     }
-    
+
 }
