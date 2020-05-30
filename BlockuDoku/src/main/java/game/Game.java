@@ -20,16 +20,16 @@ public class Game implements Serializable {
     private Board board;
     private GameRound gameRound;
     private int gameScore;
+
     private boolean running;
     private boolean saved;
-    
 
     public Game(GameMode gameMode) {
- 
+
         this.board = new Board();
         this.gameRound = new GameRound(board, gameMode);
         this.gameScore = 0;
-        
+
         this.running = true;
         this.saved = false;
     }
@@ -58,7 +58,7 @@ public class Game implements Serializable {
 
         running = true;
 
-        while (running) {
+        while (true) {
 
             try {
 
@@ -69,21 +69,16 @@ public class Game implements Serializable {
                     break;
                 }
 
-
                 String command = Parser.readInput();
 
                 if (command.equalsIgnoreCase("cancel")) {
-                    //running = false;
-                    //break;
                     return;
                 }
-                if(command.equalsIgnoreCase("save")) {
+                if (command.equalsIgnoreCase("save")) {
                     saved = true;
                     return;
                 }
 
-                
-                
                 Command moveCommand = Parser.getGameCommand(command);
 
                 gameRound.move(moveCommand);
@@ -93,23 +88,21 @@ public class Game implements Serializable {
                 gameRound.setErrorMessage(e.getMessage());
             }
         }
-        
+
         gameOver();
-        
-        //gameScore = gameRound.getScore();
-        //setTime(LocalDateTime.now());
-        //gameOver()
-        //return running;
     }
-    
+
     public void gameOver() {
         System.out.println("Game Over");
         setTime(LocalDateTime.now());
         gameScore = gameRound.getScore();
     }
-  
-    public boolean isOver(){
-        return !running;
 
+    public boolean isOver() {
+        return !running;
+    }
+
+    public boolean isSaved() {
+        return saved;
     }
 }
