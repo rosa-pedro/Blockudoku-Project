@@ -69,8 +69,9 @@ public class Game implements Serializable {
                 String command = Parser.readInput();
 
                 if (command.equalsIgnoreCase("cancel")) {
-                    running = false;
-                    break;
+                   //running = false;
+                    //break;
+                    return false;
                 }
 
                 Command moveCommand = Parser.getGameCommand(command);

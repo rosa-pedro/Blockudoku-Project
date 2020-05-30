@@ -82,16 +82,18 @@ public class ProcessCommand {
         return finished;
     }
 
-    public void startNewGame(GameMode gameMode,User user) {
+    public void startNewGame(GameMode gameMode, User user) {
         game = new Game(gameMode);
         game.play();
-        score = new Score<>(game, game.getGameScore(), user.getName());
-        user.setGame(game);
-        user.addPersonalScore(score);
+        if (game.isOver()) {
+            score = new Score<>(game, game.getGameScore(), user.getName());
+            user.setGame(game);
+            user.addPersonalScore(score);
+        }
         MenuPrint.mainMenu();
     }
-    
-    public void gameUpdate(User user){
+
+    public void gameUpdate(User user) {
         user.setGame(game);
         user.addPersonalScore(score);
         MenuPrint.mainMenu();
