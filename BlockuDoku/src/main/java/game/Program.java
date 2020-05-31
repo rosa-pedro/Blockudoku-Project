@@ -5,10 +5,6 @@
  */
 package game;
 
-import blocks.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-
 /**
  *
  * @author rosap
@@ -19,31 +15,54 @@ public class Program {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
 
-        boolean finished = false;
-
+        Users loadedUsers = UsersFileHandler.readFile("save.bin");
+        /*
         User user1 = new User("Maleque");
         User user2 = new User("Leleque");
         User user3 = new User("Jaleque");
 
-        Score<User> sc1 = new Score(user1);
-        Score<User> sc2 = new Score(user2);
-        Score<User> sc3 = new Score(user3);
-
-        sc1.addScore(12);
-        sc2.addScore(52);
-        sc3.addScore(223);
+        Game game1 = new Game(GameMode.BASIC_MODE);
+        game1.setTime(LocalDateTime.now());
+        Game game2 = new Game(GameMode.BASIC_MODE);
+        game2.setTime(LocalDateTime.now());
+        Game game3 = new Game(GameMode.BASIC_MODE);
+        game3.setTime(LocalDateTime.now());
         
-        Parser p1 = new Parser();
-        MenuPrint.welcomeMenu(user1);
-        ProcessCommand pc = new ProcessCommand();
-        Scoreboard s1 = new Scoreboard();
+        user1.setGame(game1);
+        user2.setGame(game2);
+        user3.setGame(game3);
 
-        while(!finished){
-           finished = pc.processMenu(user1, p1.readInput());
+        user1.getPersonalScores().insertScore(game1, 13);
+        user2.getPersonalScores().insertScore(game2, 72);
+        user3.getPersonalScores().insertScore(game3, 23);
+
+        loadedUsers.addUser(user1);
+        loadedUsers.addUser(user2);
+        loadedUsers.addUser(user3);
+         */
+        //Ranking ranking = new Ranking();
+        //loadedUsers.getUsers().forEach(u -> ranking.addUserHighScore(u.getHighScore()));
+        //System.out.println(ranking.getHighScoreBoard().toStringGame());
+        
+        boolean finished = false;
+        Parser parser = new Parser();
+        Menu menu = new Menu(loadedUsers);
+
+        MenuPrint.requestUserName();
+        User selectedUser = menu.selectUser(parser.readInput(), loadedUsers);
+        MenuPrint.welcomeMenu(selectedUser);
+
+        while (!finished) {
+
+            String command = parser.readInput();
+            finished = menu.processCommand(selectedUser, command);
         }
-        
+
+        menu.getGameScoreboard().clear();
+
+        UsersFileHandler.saveFile(loadedUsers, "save.bin");
+
     }
 
 }

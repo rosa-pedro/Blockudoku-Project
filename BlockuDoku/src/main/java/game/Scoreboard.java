@@ -6,84 +6,78 @@
 package game;
 
 import java.io.Serializable;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
 /**
  *
- * @author Storm
+ * @author rosap
  */
-public class Scoreboard<E> implements Serializable{
-    
-    private static final long serialVersionUID = 9873268974234L;
+public class Scoreboard<E> implements Serializable {
+
+    ArrayList<Score<E>> scoreboard;
     private E element;
-   
-    ArrayList<Score<E>> scoreboard = new ArrayList<>();
-   
-   //DateTimeFormatter dtf = DateTimeFormatter.ofPattern("m/dd HH:mm");
-   public Scoreboard(){
-       scoreboard = new ArrayList<>();
-   }
-   
-   public void insertScore(Score score){
-       scoreboard.add(score);
-   }
-   
-   public ArrayList<Score<E>> getScoreboard(){
-       return scoreboard;
-   } 
-   
-   public String toStringGame() {
-        
-       Collections.sort(scoreboard);
-       StringBuilder sb = new StringBuilder();
-        
-       sb.append("------ Ranking ------\n");
-        
-       Iterator it = scoreboard.iterator();
-       
-       int position = 1;
-        while (position <= 10) {
 
-            if (it.hasNext()) {
-                Score<Game> gameHighScore = (Score<Game>) it.next();
-                sb.append(position + " - " + gameHighScore.getUserName() + "  " + gameHighScore.getScore()+ " " + gameHighScore.getElement().getTime() +  "\n");
-                
-            } else {
-                sb.append(position + " -\n");
-            }
-            position++;
-        }
-       
-        return sb.toString();
+    public Scoreboard() {
+        this.scoreboard = new ArrayList<>();
     }
-   
-   
-   @Override
+
+    public void insertScore(E element, int score) {
+
+        if (element != null) {
+            scoreboard.add(new Score<>(element, score));
+        }
+    }
+
+    public Score getHighestScore() {
+
+        return (scoreboard.isEmpty()) ? null : Collections.max(scoreboard);
+    }
+
+    public ArrayList<Score<E>> getScoreboard() {
+        return scoreboard;
+    }
+
+    public E getElement() {
+        return element;
+    }
+
+    public boolean isEmpty() {
+
+        return scoreboard.isEmpty();
+    }
+
+    public void clear() {
+        scoreboard.clear();
+    }
+
+    @Override
     public String toString() {
-        
-       Collections.sort(scoreboard);
-       StringBuilder sb = new StringBuilder();
-        
-       sb.append("------ Ranking ------\n");
-        
-       Iterator it = scoreboard.iterator();
-       
-       int position = 1;
+
+        Collections.sort(scoreboard);
+
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("------ Ranking ------\n");
+
+        Iterator it = scoreboard.iterator();
+
+        int position = 1;
         while (position <= 10) {
 
             if (it.hasNext()) {
-                Score<User> score = (Score<User>) it.next();
-                sb.append(position + " - " + score.getElement().getName() + ":\t    " + score.getScore()+ /*dtf.format(score.getTime()) +*/ "\n");
-                
+
+                Score<E> score = (Score<E>) it.next();
+
+                sb.append(position + " - " + score.getElement().toString() + " -\t    " + score.getValue() + "\n");
             } else {
+
                 sb.append(position + " -\n");
             }
             position++;
         }
-       
+
         return sb.toString();
     }
 }

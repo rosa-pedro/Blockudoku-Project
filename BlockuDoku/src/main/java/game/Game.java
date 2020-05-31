@@ -7,7 +7,6 @@ package game;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-//import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -15,7 +14,6 @@ import java.time.LocalDateTime;
  */
 public class Game implements Serializable {
 
-    private static final long serialVersionUID = 9873268974234L;
     private LocalDateTime date;
     private Board board;
     private GameRound gameRound;
@@ -32,26 +30,6 @@ public class Game implements Serializable {
 
         this.running = true;
         this.saved = false;
-    }
-
-    public void setTime(LocalDateTime date) {
-        this.date = date;
-    }
-
-    public String getTime() {
-        return date.getDayOfMonth() + "/" + date.getMonthValue() + "  " + date.getHour() + ":" + date.getMinute();
-    }
-
-    public void setGameScore(int gameScore) {
-        this.gameScore = gameScore;
-    }
-
-    public void addGameScore(int gameScore) {
-        this.gameScore += gameScore;
-    }
-
-    public int getGameScore() {
-        return gameScore;
     }
 
     public void play() {
@@ -88,7 +66,7 @@ public class Game implements Serializable {
                 gameRound.setErrorMessage(e.getMessage());
             }
         }
-
+        
         gameOver();
     }
 
@@ -98,11 +76,28 @@ public class Game implements Serializable {
         gameScore = gameRound.getScore();
     }
 
+    public void setTime(LocalDateTime date) {
+        this.date = date;
+    }
+
+    public String getTime() {
+        return date.getDayOfMonth() + "/" + date.getMonthValue() + " " + date.getHour() + ":" + date.getMinute();
+    }
+
+    public int getGameScore() {
+        return gameScore;
+    }
+
     public boolean isOver() {
         return !running;
     }
 
     public boolean isSaved() {
         return saved;
+    }
+
+    @Override
+    public String toString() {
+        return getTime();
     }
 }
