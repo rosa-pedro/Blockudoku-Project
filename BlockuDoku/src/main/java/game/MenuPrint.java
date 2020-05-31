@@ -5,8 +5,6 @@
  */
 package game;
 
-import static game.Users.*;
-
 /**
  *
  * @author Storm
@@ -14,70 +12,45 @@ import static game.Users.*;
 public class MenuPrint {
 
     public static void mainMenu() {
-        System.out.println("\n1 - Iniciate New Game");
+
+        System.out.println();
+        System.out.println("1 - Initialize New Game");
         System.out.println("2 - Load Game");
         System.out.println("3 - Show Personal Scores");
         System.out.println("4 - TOP 10 Ranks");
         System.out.println("0 - Exit");
+        System.out.println();
+        System.out.print("Choose a Menu Option: ");
     }
 
     public static void welcomeMenu(User user) {
+
+        System.out.println();
         System.out.println("Hello " + user.getName());
-        mainMenu();
     }
 
     public static void newGameMenu() {
+
+        System.out.println();
         System.out.println("1 - Basic mode");
         System.out.println("2 - Advanced mode");
         System.out.println("0 - Return");
+        System.out.println();
+        System.out.print("Choose a Game Difficulty: ");
     }
 
     public static void requestUserName() {
-        System.out.println("Welcome to Blocku Doku\n\n");
-        System.out.print("Enter your User name: ");
+
+        System.out.println();
+        System.out.println("Welcome to BlockuDoku");
+        System.out.println();
+        System.out.print("Enter your User Name: ");
     }
 
-    public static void top10Menu() {
+    public static void returnToMainMenu() {
 
+        System.out.println("0 - Return");
+        System.out.println();
+        System.out.print("Choose a Menu Option: ");
     }
-
-    public static void personalScoresMenu() {
-
-    }
-
-    /*public static User selectUser(String userName) {
-
-        User user = null;
-
-        if (checkExistingUser(userName)) {
-            System.out.println("Loading User...");
-            user = getExistingUser(userName);
-
-        } else {
-            System.out.println("Creating new User...");
-            User newUser = new User(userName);
-            addUser(newUser);
-            return newUser;
-        }
-
-        return user;
-    }*/
-/*
-    public static User selectUser(String userName, Users listOfUsers) {
-
-        User user = listOfUsers.getUser(userName);
-
-        if (user != null) {
-            System.out.println("Loading User...");
-
-        } 
-        else {
-            System.out.println("Creating new User...");
-            User newUser = new User(userName);
-            listOfUsers.addUser(newUser);
-        }
-
-        return user;
-    }*/
-
 }

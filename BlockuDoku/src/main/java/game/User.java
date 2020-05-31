@@ -24,27 +24,12 @@ public class User implements Serializable {
 
     }
 
-    public boolean loadGame() {
-        if (game != null) {
-            game.play();
-            System.out.println("Loading Game...");
-            return true;
-        } else {
-            System.out.println("You don't have a game to load...");
-            return false;
-        }
-    }
-
     public Scoreboard<Game> getPersonalScores() {
         return personalScores;
     }
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public void setGame(Game game) {
@@ -57,6 +42,6 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return name + ": " + game;
+        return name + ":  " + personalScores.getHighestScore().getElement();
     }
 }

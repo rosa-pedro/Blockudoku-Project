@@ -119,7 +119,7 @@ public class GameRound implements Serializable {
             this.errorMessage = "";
         }
 
-        System.out.print("Type your next move (Block-ColumnLine) :");
+        System.out.print("Type your next move (Block-ColumnLine): ");
     }
 
     public void setErrorMessage(String errorMessage) {

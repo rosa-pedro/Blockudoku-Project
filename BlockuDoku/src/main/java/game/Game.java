@@ -32,8 +32,9 @@ public class Game implements Serializable {
         this.saved = false;
     }
 
-    public void play() {
+    public void play(Parser parser) {
 
+        saved = false;
         running = true;
 
         while (true) {
@@ -47,7 +48,7 @@ public class Game implements Serializable {
                     break;
                 }
 
-                String command = Parser.readInput();
+                String command = parser.readInput();
 
                 if (command.equalsIgnoreCase("cancel")) {
                     return;
@@ -57,7 +58,7 @@ public class Game implements Serializable {
                     return;
                 }
 
-                Command moveCommand = Parser.getGameCommand(command);
+                Command moveCommand = parser.getGameCommand(command);
 
                 gameRound.move(moveCommand);
 
@@ -81,7 +82,7 @@ public class Game implements Serializable {
     }
 
     public String getTime() {
-        return date.getDayOfMonth() + "/" + date.getMonthValue() + " " + date.getHour() + ":" + date.getMinute();
+        return date.getHour() + ":" + date.getMinute() + " " + date.getDayOfMonth() + "/" + date.getMonthValue();
     }
 
     public int getGameScore() {
@@ -92,7 +93,7 @@ public class Game implements Serializable {
         return !running;
     }
 
-    public boolean isSaved() {
+    public boolean isToBeSaved() {
         return saved;
     }
 

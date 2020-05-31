@@ -5,6 +5,7 @@
  */
 package game;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Random;
@@ -14,7 +15,7 @@ import java.util.Set;
  *
  * @author rosap
  */
-public abstract class Piece {
+public abstract class Piece implements Serializable {
 
     private HashMap<String, Square> piece;
 

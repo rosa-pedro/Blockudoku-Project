@@ -32,7 +32,7 @@ public class Scoreboard<E> implements Serializable {
 
     public Score getHighestScore() {
 
-        return (scoreboard.isEmpty()) ? null : Collections.max(scoreboard);
+        return (scoreboard.isEmpty()) ? null : Collections.min(scoreboard);
     }
 
     public ArrayList<Score<E>> getScoreboard() {
@@ -59,7 +59,7 @@ public class Scoreboard<E> implements Serializable {
 
         StringBuilder sb = new StringBuilder();
 
-        sb.append("------ Ranking ------\n");
+        sb.append("------------ Scoreboard ------------\n");
 
         Iterator it = scoreboard.iterator();
 
@@ -69,8 +69,8 @@ public class Scoreboard<E> implements Serializable {
             if (it.hasNext()) {
 
                 Score<E> score = (Score<E>) it.next();
-
-                sb.append(position + " - " + score.getElement().toString() + " -\t    " + score.getValue() + "\n");
+                sb.append(String.format("%d - %-25s - %3d \n", position, score.getElement().toString(), score.getValue()));
+                
             } else {
 
                 sb.append(position + " -\n");

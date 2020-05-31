@@ -16,7 +16,7 @@ public class Program {
      */
     public static void main(String[] args) {
 
-        Users loadedUsers = UsersFileHandler.readFile("save.bin");
+        //Users loadedUsers = UsersFileHandler.readFile("save.bin");
         /*
         User user1 = new User("Maleque");
         User user2 = new User("Leleque");
@@ -44,7 +44,7 @@ public class Program {
         //Ranking ranking = new Ranking();
         //loadedUsers.getUsers().forEach(u -> ranking.addUserHighScore(u.getHighScore()));
         //System.out.println(ranking.getHighScoreBoard().toStringGame());
-        
+        /*
         boolean finished = false;
         Parser parser = new Parser();
         Menu menu = new Menu(loadedUsers);
@@ -63,6 +63,8 @@ public class Program {
 
         UsersFileHandler.saveFile(loadedUsers, "save.bin");
 
-    }
+    
 
+         */
+    }
 }

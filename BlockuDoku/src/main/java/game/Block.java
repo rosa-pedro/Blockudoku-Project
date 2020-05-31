@@ -5,11 +5,13 @@
  */
 package game;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Storm
  */
-public class Block {
+public class Block implements Serializable {
     String blockName;
     Piece piece;
     
@@ -31,7 +33,6 @@ public class Block {
         StringBuilder sb = new StringBuilder();
         sb.append("Block " + blockName + "\n");
         sb.append(piece);
-        //sb.append("\n");
         return sb.toString();
     }
 }

@@ -18,11 +18,11 @@ public class Parser {
         sc = new Scanner(System.in);
     }
 
-    public static String readInput() {
-        return sc.nextLine();
+    public String readInput() {
+        return sc.nextLine().trim();
     }
 
-    public static Command getGameCommand(String input) {
+    public Command getGameCommand(String input) {
 
 
         String in = input;
