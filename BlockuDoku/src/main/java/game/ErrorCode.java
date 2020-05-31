@@ -21,6 +21,7 @@ public enum ErrorCode {
      * 
      * @return String related to the enum value
      */
+    
     @Override
     public String toString(){
         switch(this){
