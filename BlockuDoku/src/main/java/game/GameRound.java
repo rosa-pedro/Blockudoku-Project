@@ -9,9 +9,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-/**
- *
- * @author Storm
+/** 
+ * This class represents an in-game round where the player selects the blocks and 
+ * where he wants to insert them within the board
+ * 
+ * @author Pedro Rosa - 190221015
+ * @author Joao Cetano - 190221010
  */
 public class GameRound implements Serializable {
 
@@ -23,6 +26,13 @@ public class GameRound implements Serializable {
     private int score;
     private String errorMessage;
 
+    /**
+     * Constructor for GameRound takes the board we are playing in and the GameMode
+     * that the game will be set to
+     * 
+     * @param board
+     * @param gameMode 
+     */
     public GameRound(Board board, GameMode gameMode) {
 
         this.board = board;
@@ -32,6 +42,13 @@ public class GameRound implements Serializable {
         this.errorMessage = "";
     }
     
+    /**
+     * Method to validate the Command it receives
+     * 
+     * @param command received 
+     * @return the Command if it's valid 
+     * @throws GameIllegalArgumentException if the command is invalid 
+     */
     public Command validateCommand(Command command) throws GameIllegalArgumentException {
 
         if(command == null || !command.isCommandValid(board)){
@@ -42,6 +59,15 @@ public class GameRound implements Serializable {
         return command;
     }
     
+    
+    /**
+     * Takes the command and removes the given block from the 
+     * three playable blocks each round has adds to the gameScore
+     * 
+     * @param command Command we are using
+     * @throws GameIllegalArgumentException when the Command has Blocks out of bound
+     * or is trying to insert Blocks in invalid coordinates
+     */
     public void move(Command command) throws GameIllegalArgumentException {
 
         Command c = validateCommand(command);
@@ -66,6 +92,11 @@ public class GameRound implements Serializable {
         throw new GameIllegalArgumentException(ErrorCode.INVALID_ROUND_BLOCK);
     }
 
+    /**
+     * checks if the round is over if all blocks have been inserted
+     * it'll generate new ones
+     * @return 
+     */
     public boolean checkRound() {
 
         if (roundBlocks.isEmpty()) {
@@ -75,15 +106,27 @@ public class GameRound implements Serializable {
         return !isGameOver();
     }
 
+    /**
+     * 
+     * @return score 
+     */
     public int getScore() {
         return score;
     }
 
+    /**
+     * returns if the game is over or not by checking if there is space left
+     * in the board for any of the remaining to be inserted pieces in the round
+     * @return true if unable to play more, false if the game can continue
+     */
     public boolean isGameOver() {
 
         return roundBlocks.stream().allMatch(b -> !board.isThereSpaceleftInTheBoard(b.getBlockPiece()));
     }
 
+    /**
+     * Generates the three new blocks based on the current GameMode
+     */
     public void generateBlocks() {
 
         if (gameMode == GameMode.BASIC_MODE) {
@@ -97,7 +140,9 @@ public class GameRound implements Serializable {
         }
     }
 
-    
+    /**
+     * Prints out the elements needed to display and play a round 
+     */
     public void showRound() {
 
         System.out.println();
@@ -122,6 +167,11 @@ public class GameRound implements Serializable {
         System.out.print("Type your next move (Block-ColumnLine) :");
     }
 
+    /**
+     * Setter for error message
+     * 
+     * @param errorMessage
+     */
     public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
     }

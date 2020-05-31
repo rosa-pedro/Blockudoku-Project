@@ -11,8 +11,12 @@ import java.util.Random;
 import java.util.Set;
 
 /**
+ * This class builds the piece based off its pieceName
+ * by initialising a HashMap containing its Coordinates 
+ * 
  *
- * @author rosap
+ * @author Pedro Rosa - 190221015
+ * @author Joao Cetano - 190221010
  */
 public abstract class Piece {
 
@@ -24,6 +28,12 @@ public abstract class Piece {
     private int rows;
     private int columns;
 
+    /**
+     * Constructor for Piece, initialises the HashMap
+     * sets the pieceName and initialises the other attributes 
+     * with standard values 
+     * @param pieceName 
+     */
     public Piece(PieceName pieceName) {
 
         piece = new HashMap<>();
@@ -37,6 +47,11 @@ public abstract class Piece {
         buildPieceWithRandomRotation();
     }
 
+    /**
+     * Generates a random number between [1,3] and uses it to 
+     * randomize the rotation that the piece will be built with 
+     * 
+     */
     public void buildPieceWithRandomRotation() {
 
         Random random = new Random();
@@ -60,15 +75,32 @@ public abstract class Piece {
                 buildPieceWithzeroRotation();
         }
     }
-
+    /**
+     * Necessary abstract method for buildPieceWithzeroRotation()
+     */
     public abstract void buildPieceWithzeroRotation();
 
+    /**
+     * Necessary abstract method for buildPieceWithNinetyRotation()
+     */
     public abstract void buildPieceWithNinetyRotation();
 
+    /**
+     * Necessary abstract method for buildPieceWithHundredEightyRotation()
+     */
     public abstract void buildPieceWithHundredEightyRotation();
 
+    /**
+     * Necessary abstract method for buildPieceWithTwoHundredSeventyRotation()
+     */
     public abstract void buildPieceWithTwoHundredSeventyRotation();
 
+    /**
+     * Void method that builds the piece 
+     * 
+     * @param coords coordinates that map the Piece
+     * @param pivot sets this as the pivot of the Piece
+     */
     public void buildPiece(String coords[], String pivot) {
 
         this.pivot = pivot;
@@ -81,11 +113,23 @@ public abstract class Piece {
         }
     }
     
+    /**
+     * Gets the score that a piece would give
+     * 
+     * @param gameMode The GameMode is necessary as BASIC gives one point for each Square and 
+     * ADVANCED gives two instead
+     * @return int representing the calculated score
+     */
     public int getPieceScore(GameMode gameMode){
     
         return (gameMode == GameMode.BASIC_MODE) ? piece.size() : 2 * piece.size();
     }
 
+    /**
+     * Initialises the matrix in which the piece will be put it initially 
+     * ensuring that we won't use bigger matrixes than what is needed
+     * @param coords Coordinates of the Piece
+     */
     public void initializePieceDimensions(String coords[]) {
 
         Set<Character> rowsSet = new HashSet<Character>();
@@ -101,6 +145,10 @@ public abstract class Piece {
         columns = columnsSet.size();
     }
 
+    /**
+     * Overrides toString() method to better display a piece
+     * @return String
+     */
     @Override
     public String toString() {
 
@@ -129,22 +177,44 @@ public abstract class Piece {
         return sb.toString();
     }
     
+    
+    /**
+     * getter for Piece
+     * @return returns a HashMap with the Coordinates as key and the corresponding Square
+     * as the value of each key
+     */
     public HashMap<String, Square> getPiece() {
         return piece;
     }
 
+    /**
+     * 
+     * @return pieceName 
+     */
     public PieceName getPieceName() {
         return pieceName;
     }
 
+    /**
+     * 
+     * @return pivot
+     */
     public String getPivot() {
         return pivot;
     }
 
+    /**
+     * 
+     * @return rows
+     */
     public int getRows() {
         return rows;
     }
 
+    /**
+     * 
+     * @return columns
+     */
     public int getColumns() {
         return columns;
     }

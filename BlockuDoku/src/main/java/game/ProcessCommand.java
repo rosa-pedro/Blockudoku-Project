@@ -5,13 +5,17 @@
  */
 package game;
 
-import static game.FileHandler.*;
+
 import static game.Users.*;
 import static game.Ranking.*;
 
 /**
+ * This class serves to parse Commands and to act as an intermediate
+ * between the menu and the user inputs
+ * 
  *
- * @author Storm
+ * @author Pedro Rosa - 190221015
+ * @author Joao Cetano - 190221010
  */
 public class ProcessCommand {
 
@@ -20,12 +24,23 @@ public class ProcessCommand {
     public Game game;
     public Score<Game> score;
 
+    /**
+     * Constructor for ProccessCommand
+     */
     public ProcessCommand() {
         finished = false;
         parser = new Parser();
         game = null;
     }
 
+    /**
+     * ProcessMenu receives the User and his input 
+     * and then calls other method based on the input it has received 
+     * 
+     * @param user User playing the game
+     * @param input Input from the User
+     * @return true until the game is closed
+     */
     public boolean processMenu(User user, String input) {
 
         switch (input.trim()) {
@@ -79,6 +94,12 @@ public class ProcessCommand {
         return finished;
     }
 
+    /**
+     * Initialises a new Game based on the GameMode and the User playing
+     * 
+     * @param gameMode GameMode to be played in 
+     * @param user User playing
+     */
     public void startNewGame(GameMode gameMode, User user) {
 
         game = new Game(gameMode);
@@ -99,6 +120,10 @@ public class ProcessCommand {
         MenuPrint.mainMenu();
     }
 
+    /**
+     * Loads the current game if the User has an ongoing valid game 
+     * @param user 
+     */
     public void loadGame(User user) {
         
         if (user.hasGameSaved()) {

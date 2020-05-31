@@ -9,9 +9,11 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 //import java.time.format.DateTimeFormatter;
 
-/**
+/** This class consists exclusively of void methods that help building JBlock Piece
+ * 
  *
- * @author Storm
+ * @author Pedro Rosa - 190221015
+ * @author Joao Cetano - 190221010
  */
 public class GameTest implements Serializable{
     
