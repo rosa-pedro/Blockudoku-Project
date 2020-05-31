@@ -8,8 +8,8 @@ package game;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-
-/** This class contains the parts that make up the game
+/**
+ * This class contains the parts that make up the game
  *
  * @author Pedro Rosa - 190221015
  * @author Joao Cetano - 190221010
@@ -18,40 +18,38 @@ public class Game implements Serializable {
 
     private LocalDateTime date;
     private Board board;
-    private GameRound gameRound;
+    private GameRoundsLogic gameRound;
     private int gameScore;
 
     private boolean running;
     private boolean saved;
-    
+
     /**
-     * Constructor for game,
-     * initialises the Board
-     * and starts a new GameRound
-     * with the score at 0
-     * 
+     * Constructor for game, initialises the Board and starts a new GameRoundsLogic
+ with the score at 0
+     *
      * @param gameMode selects the GameMode to start the game with
      */
     public Game(GameMode gameMode) {
 
         this.board = new Board();
-        this.gameRound = new GameRound(board, gameMode);
+        this.gameRound = new GameRoundsLogic(board, gameMode);
         this.gameScore = 0;
 
         this.running = true;
         this.saved = false;
     }
-    
-    /**
-     * Method to start the game, initiates the gameRound and
-     * starts receiving and parsing user inputs
-     * if the user cancels or saves it'll exit the method,
-     * if the game is completed it'll display gameOver()
-     * 
-     * 
-     */
-    public void play() {
 
+    /**
+     * Method to start the game, initiates the gameRound and starts receiving
+     * and parsing user inputs if the user cancels or saves it'll exit the
+     * method, if the game is completed it'll display gameOver()
+     *
+     *
+     */
+    public void play(Parser parser) {
+
+        saved = false;
         running = true;
 
         while (true) {
@@ -65,7 +63,7 @@ public class Game implements Serializable {
                     break;
                 }
 
-                String command = Parser.readInput();
+                String command = parser.readInput();
 
                 if (command.equalsIgnoreCase("cancel")) {
                     return;
@@ -75,7 +73,7 @@ public class Game implements Serializable {
                     return;
                 }
 
-                Command moveCommand = Parser.getGameCommand(command);
+                Command moveCommand = parser.getGameCommand(command);
 
                 gameRound.move(moveCommand);
 
@@ -84,12 +82,12 @@ public class Game implements Serializable {
                 gameRound.setErrorMessage(e.getMessage());
             }
         }
-        
+
         gameOver();
     }
-    
+
     /**
-     * method to signal that the game is over 
+     * method to signal that the game is over
      */
     public void gameOver() {
         System.out.println("\nGame Over");
@@ -100,7 +98,8 @@ public class Game implements Serializable {
 
     /**
      * setter for the date of the Game
-     * @param date 
+     *
+     * @param date
      */
     public void setTime(LocalDateTime date) {
         this.date = date;
@@ -108,16 +107,16 @@ public class Game implements Serializable {
 
     /**
      * Getter for the time of the Game
-     * 
-     * @return  time in d/M hh:mm
+     *
+     * @return time in d/M hh:mm
      */
     public String getTime() {
-        return date.getDayOfMonth() + "/" + date.getMonthValue() + " " + date.getHour() + ":" + date.getMinute();
+        return date.getHour() + ":" + date.getMinute() + " " + date.getDayOfMonth() + "/" + date.getMonthValue();
     }
 
     /**
      * getter for gameScore
-     * 
+     *
      * @return the games score
      */
     public int getGameScore() {
@@ -126,6 +125,7 @@ public class Game implements Serializable {
 
     /**
      * Checks if the game is over
+     *
      * @return true if games is not running, false if the game is still running
      */
     public boolean isOver() {
@@ -133,13 +133,13 @@ public class Game implements Serializable {
     }
 
     /**
-     * 
-     * @return true if the game is saved  
+     *
+     * @return true if the game is saved
      */
-    public boolean isSaved() {
+    public boolean isToBeSaved() {
         return saved;
     }
-    
+
     @Override
     public String toString() {
         return getTime();

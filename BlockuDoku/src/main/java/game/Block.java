@@ -5,6 +5,9 @@
  */
 package game;
 
+
+import java.io.Serializable;
+
 /** This class represents a Block used in game, a block is composed of its name 
  * and of the Piece it's represented by.
  * 
@@ -12,7 +15,7 @@ package game;
  * @author Pedro Rosa - 190221015
  * @author Joao Cetano - 190221010
  */
-public class Block {
+public class Block implements Serializable {
     String blockName;
     Piece piece;
     
@@ -56,7 +59,6 @@ public class Block {
         StringBuilder sb = new StringBuilder();
         sb.append("Block " + blockName + "\n");
         sb.append(piece);
-        //sb.append("\n");
         return sb.toString();
     }
 }

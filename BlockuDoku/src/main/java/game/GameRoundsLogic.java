@@ -16,7 +16,7 @@ import java.util.Iterator;
  * @author Pedro Rosa - 190221015
  * @author Joao Cetano - 190221010
  */
-public class GameRound implements Serializable {
+public class GameRoundsLogic implements Serializable {
 
     private static final long serialVersionUID = 9873268974234L;
 
@@ -33,7 +33,7 @@ public class GameRound implements Serializable {
      * @param board
      * @param gameMode 
      */
-    public GameRound(Board board, GameMode gameMode) {
+    public GameRoundsLogic(Board board, GameMode gameMode) {
 
         this.board = board;
         this.gameMode = gameMode;
@@ -164,7 +164,7 @@ public class GameRound implements Serializable {
             this.errorMessage = "";
         }
 
-        System.out.print("Type your next move (Block-ColumnLine) :");
+        System.out.print("Type your next move (Block-ColumnLine): ");
     }
 
     /**

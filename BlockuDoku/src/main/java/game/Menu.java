@@ -6,185 +6,209 @@
  */
 package game;
 
-import java.util.ArrayList;
-
 /**
- * This class serves to parse Commands and to act as an intermediate
- * between the menu and the user inputs
- * 
+ * This class serves to parse Commands and to act as an intermediate between the
+ * menu and the user inputs
+ *
  *
  * @author Pedro Rosa - 190221015
  * @author Joao Cetano - 190221010
  */
 public class Menu {
 
-    private boolean finished;
-    public Parser parser;
-    public Game game;
-    Scoreboard<User> gameScoreboard;
-    Users listOfUsers;
-    ArrayList<User> usersArray;
-
-    public Game testGame;
+    private Parser parser;
+    private Scoreboard<User> gameScoreboard;
+    private Users listOfUsers;
+    private User currentUser;
 
     /**
-     * Constructor for Menu, initialises parser, the ArrayList and the ScoreBoard
-     * 
-     * 
+     * Constructor for Menu, initialises parser, the ArrayList and the
+     * ScoreBoard
+     *
+     *
      * @param listOfUsers assigns the listOfUsers
      */
     public Menu(Users listOfUsers) {
-        finished = false;
-        parser = new Parser();
+
+        this.parser = new Parser();
+        this.gameScoreboard = new Scoreboard<>();
         this.listOfUsers = listOfUsers;
-
-        ArrayList<User> usersArray = new ArrayList<>();
-
-        gameScoreboard = new Scoreboard<>();
-
-    }
-    
-    /**
-     * ProcessCommand receives the User and his input 
-     * and then calls other method based on the input it has received 
-     * 
-     * @param user User playing the game
-     * @param input Input from the User
-     * @return true until the game is closed
-     */
-    public boolean processCommand(User user, String input) {
-
-        switch (input.trim()) {
-            case "1":
-                System.out.println("New game");
-                MenuPrint.newGameMenu();
-                String secondInput = parser.readInput();
-                switch (secondInput.trim()) {
-                    case "1":
-                        System.out.println("Entered Basic mode");
-                        startNewGame(GameMode.BASIC_MODE, user);
-                        break;
-                    case "2":
-                        System.out.println("Entered Advanced mode");
-                        startNewGame(GameMode.ADVANCED_MODE, user);
-                        break;
-                    case "0":
-                        System.out.println("Returned to Main Menu");
-                        MenuPrint.mainMenu();
-                        break;
-                    default:
-                        System.out.println("Invalid command");
-                        return finished;
-                }
-                break;
-            case "2":
-
-                System.out.println("Loading game");
-                user.loadGame();
-                gameUpdate(user);
-                break;
-            case "3":
-                System.out.println(user.getPersonalScores().toString());
-                break;
-            case "4":
-
-                usersArray = listOfUsers;
-
-                //listOfUsers.getUsers().forEach(u -> ranking.addUserHighScore(u.getHighScore()));
-                //usersArray.forEach(u -> ranking.addUserHighScore(u.getHighScore()));
-                for (int i = 0; i < usersArray.size(); i++) {
-
-                    User u = usersArray.get(i);
-
-                    if (!u.getPersonalScores().isEmpty()) {
-                        gameScoreboard.insertScore(u, u.getPersonalScores().getHighestScore().getValue());
-                    }
-
-                }
-
-                System.out.println(gameScoreboard);
-                
-                gameScoreboard.clear();
-
-                break;
-            case "0":
-                System.out.println("Exit");
-                finished = true;
-                break;
-            default:
-                System.out.println("Invalid command");
-                return finished;
-        }
-
-        return finished;
+        this.currentUser = null;
     }
 
-    /**
-     * Method starts a new game based on the given GameMode 
-     * and assigns the game to the provided User
-     * 
-     * @param gameMode to start the Game with
-     * @param user User we assign the game to
-     */
-    public void startNewGame(GameMode gameMode, User user) {
-        game = new Game(gameMode);
-        game.play();
-        if (game.isOver()) {
-            user.setGame(game);
-            user.getPersonalScores().insertScore(game, game.getGameScore());
-        }
+    public void WelcomeMenu() {
 
-        MenuPrint.mainMenu();
-    }
-    
-    /**
-     * Updates the Users game and gameScore
-     * 
-     * @param user User we are updating 
-     */
-    public void gameUpdate(User user) {
-        user.setGame(game);
-        user.getPersonalScores().insertScore(game, game.getGameScore());
-        MenuPrint.mainMenu();
+        MenuPrint.requestUserName();
+        this.currentUser = readUser(parser.readInput().toLowerCase());
+        MenuPrint.welcomeMenu(currentUser);
     }
 
-    
-    /**
-     * Method to select User, we check the listOfUsers for any matching userNames,
-     * if match found we return the same user if not we create a new one and add
-     * it to the list.
-     * 
-     * @param userName userName we are checking
-     * @param listOfUsers List of all Users
-     * @return the User we found or created 
-     */
-    public static User selectUser(String userName, Users listOfUsers) {
+    public User readUser(String userName) {
 
         User user = listOfUsers.getUser(userName);
 
         if (user != null) {
-            System.out.println("Loading User...");
+            System.out.println("\nLoading User...");
 
         } else {
-            System.out.println("Creating new User...");
+            System.out.println("\nCreating new User...");
             User newUser = new User(userName);
             listOfUsers.add(newUser);
             return newUser;
         }
-
         return user;
     }
-    
+
     /**
-     * returns gameScoreboard
-     * 
-     * @return gameScoreboard
+     * ProcessCommand receives the User and his input and then calls other
+     * method based on the input it has received
+     *
+     * @param user User playing the game
+     * @param input Input from the User
+     * @return true until the game is closed
      */
-    public Scoreboard<User> getGameScoreboard() {
-        return gameScoreboard;
+    public boolean mainMenu() {
+
+        MenuPrint.mainMenu();
+        String input = parser.readInput();
+
+        switch (input) {
+            case "1":
+                newGameMenu();
+                break;
+            case "2":
+                loadGame();
+                break;
+            case "3":
+                printPersonalScoresMenu();
+                break;
+            case "4":
+                printTop10RankingMenu();
+                break;
+            case "0":
+                System.out.println("\nExited the game!");
+                return true;
+            default:
+                System.out.println("\nInvalid command!");
+        }
+        return false;
     }
 
-    
-    
-}
+    public void newGameMenu() {
 
+        System.out.println("\nEntered to the New Game Menu!");
+
+        while (true) {
+
+            MenuPrint.newGameMenu();
+            String input = parser.readInput();
+
+            switch (input) {
+                case "1":
+                    System.out.println("\nEntered Basic mode!");
+                    InitializeNewGame(GameMode.BASIC_MODE);
+                    return;
+                case "2":
+                    System.out.println("\nEntered Advanced mode!");
+                    InitializeNewGame(GameMode.ADVANCED_MODE);
+                    return;
+                case "0":
+                    System.out.println("\nReturned to the Main Menu!");
+                    return;
+                default:
+                    System.out.println("\nInvalid command!");
+                    break;
+            }
+        }
+    }
+
+    public void printTop10RankingMenu() {
+
+        System.out.println("\nEntered to the Top 10 Ranking!");
+        printScoreboard(getTop10RankingToString());
+
+    }
+
+    public void printPersonalScoresMenu() {
+
+        System.out.println("\nEntered to the Personal Score!");
+        printScoreboard(getPersonalScoresToString());
+
+    }
+
+    public void printScoreboard(String scoreboard) {
+
+        while (true) {
+
+            System.out.println();
+            System.out.println(scoreboard);
+            MenuPrint.returnToMainMenu();
+
+            String input = parser.readInput();
+
+            if (input.equals("0")) {
+                System.out.println("\nReturned to the Main Menu!");
+                break;
+            }
+
+            System.out.println("\nInvalid command!");
+        }
+    }
+
+    public String getTop10RankingToString() {
+
+        listOfUsers.stream()
+                .filter(u -> !u.getPersonalScores().isEmpty())
+                .forEach(u -> gameScoreboard.insertScore(u, u.getPersonalScores().getHighestScore().getValue()));
+
+        String scoreboard = gameScoreboard.toString();
+        gameScoreboard.clear();
+
+        return scoreboard;
+    }
+
+    public String getPersonalScoresToString() {
+        return currentUser.getPersonalScores().toString();
+    }
+
+    public void InitializeNewGame(GameMode gameMode) {
+
+        Game game = new Game(gameMode);
+        currentUser.setGame(game);
+
+        game.play(parser);
+        System.out.println("\nReturned to the Main Menu!");
+
+        checkGame(game);
+    }
+
+    public void loadGame() {
+
+        Game game = currentUser.getGame();
+
+        if (game == null) {
+            System.out.println("\nYou don't have a game to load...");
+            return;
+        }
+
+        System.out.println("\nLoading Game...");
+        game.play(parser);
+        System.out.println("\nReturned to the Main Menu!");
+
+        checkGame(game);
+
+    }
+
+    public void checkGame(Game game) {
+
+        if (game.isOver()) {
+
+            currentUser.getPersonalScores().insertScore(game, game.getGameScore());
+            currentUser.setGame(null);
+        }
+
+        if (!game.isToBeSaved()) {
+            currentUser.setGame(null);
+        }
+    }
+}
