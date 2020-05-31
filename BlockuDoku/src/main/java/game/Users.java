@@ -5,88 +5,33 @@
  */
 package game;
 
-import static game.FileHandler.readSerializedFile;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Iterator;
 
-/**
+/** This class extends ArrayList<User> in order to create a List of Users
+ * 
  *
- * @author Storm
+ * @author Pedro Rosa - 190221015
+ * @author Joao Cetano - 190221010
  */
-public class Users implements Serializable{
-    
-    private static final long serialVersionUID = 9873268974234L;
-    
-    static ArrayList<User> users = new ArrayList<>();
 
-    public User getUser(String name) {
-        
-        User user = null;
-        
-        Iterator it = users.iterator();
-        
-                while(it.hasNext()){
-                    
-                    User current = (User) it.next();
-                    
-                    if(current.getName().equalsIgnoreCase(name)){
-                        
-                        return current;
-                    }
-                    
-                }
-                
-        return user;
-    }
-    
-    public void loadUsersFromFile(Users loadedUsers){
-        
-        ArrayList<User> loadedUsersList = loadedUsers.getUsersList();
-        
-        users.addAll(loadedUsersList);
-    }
-    
-    public static void addUser(User user){
-        
-        users.add(user);
-    }
-    
-    public static ArrayList<User> getUsersList(){
-        
-        return users;
-    }
-    
-    
-    
-    public static User getExistingUser(String selectedUser){
-        
-        Users users1 = new Users();
-        
-            users1.loadUsersFromFile(readSerializedFile("poggers2.bin"));
-        
-            User user = users1.getUser(selectedUser);
-        
-        return user;
-    }
-    
-    public static boolean checkExistingUser(String selectedUser){
-        User user = getExistingUser(selectedUser);
-        return user != null;
-    }
-    
-    /*public static Game getGameFromUser(String selectedUser){
-        
-        Game game = null;
-        
-            game = getExistingUser(selectedUser).getGame();
-            
-        return game;
+public class Users extends ArrayList<User> implements Serializable {
+
+    /**
+     * Constructor of User using super()
+     */
+    public Users() {
+        super();
     }
 
-    @Override
-    public String toString(){
-        
-        return "working!!!";
-    }*/
+    /**
+     * Getter for User, checks if a User with matching userName exists and returns it if it does
+     * 
+     * @return User if matched, null if no match found
+     */
+    public User getUser(String userName) {
+
+        return this.stream().filter(u -> u.getName().equalsIgnoreCase(userName)).findFirst().orElse(null);
+    }
+    
 }

@@ -9,63 +9,66 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- *
- * @author Storm
- * @param <E>
+ * This class Serves as helper implementing the Comparable Interface
+ * in order to help us sort our Lists
+ * 
+ * @author Pedro Rosa - 190221015
+ * @author Joao Cetano - 190221010
  */
-public class Score<E> implements Comparable<Score<E>> , Serializable{
-    
-    private static final long serialVersionUID = 9873268974234L;
-    private int score;
+public class Score<E> implements Comparable<Score<E>>, Serializable {
+
+    private int value;
     private E element;
+
     private LocalDateTime time;
-    private String userName;
-    
-    /*
+
+    /**
+     * Constructor receives and sets an E element and an int value
+     * 
+     * @param element Element to be set
+     * @param value value to be set
+     */
     public Score(E element, int value) {
-        this.score = value;
+        this.value = value;
         this.element = element;
-    }*/
-    
-    public Score(E element){
-        this.score = 0;
-        this.element = element;
-    }
-    
-    public Score(E element, int score, String userName){
-        this.element = element;
-        this.score =  score;
-        this.userName = userName;
-    }         
-    
-    public void addScore(int score){
-        this.score = this.score + score;
-        time = LocalDateTime.now();
-    }
-    
-    public int getScore() {
-        return score;
     }
 
+    /**
+     * Getter for value 
+     * 
+     * @return int value
+     */
+    public int getValue() {
+        return value;
+    }
+
+    /**
+     * Getter for element
+     * @return E element
+     */
     public E getElement() {
         return element;
     }
     
-    public void setUserName(String userName){
-        this.userName = userName;
-    }
-    
-    public String getUserName(){
-        return userName;
-    }
-    
-    public LocalDateTime getTime(){
+    /**
+     * Getter for time
+     * 
+     * @return LocalDateTime time
+     */
+    public LocalDateTime getTime() {
         return time;
     }
 
+    
+    /**
+     * Override compareTo() in order to order the Score object based off their
+     * int value
+     * 
+     * @param score we are ordering
+     * @return int difference between Objects allows us to determine if one is greater than the other
+     */
     @Override
     public int compareTo(Score<E> score) {
-        return score.getScore() - this.score;
+        return score.getValue() - this.value;
     }
 }
-

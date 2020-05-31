@@ -7,6 +7,7 @@ package game;
 
 import static game.Users.*;
 
+
 /** This class consists of method to help display the menu
  * 
  *
@@ -14,6 +15,7 @@ import static game.Users.*;
  * @author Joao Cetano - 190221010
  */
 public class MenuPrint {
+
 
     /**
      * Displays all the information regarding the main menu
@@ -26,6 +28,7 @@ public class MenuPrint {
         System.out.println("0 - Exit");
     }
 
+
     /**
      * Displays all the information regarding the welcome menu
      */
@@ -33,6 +36,7 @@ public class MenuPrint {
         System.out.println("Hello " + user.getName());
         mainMenu();
     }
+
 
     /**
      * Displays all the information regarding the new game menu
@@ -42,6 +46,7 @@ public class MenuPrint {
         System.out.println("2 - Advanced mode");
         System.out.println("0 - Return");
     }
+
 
     /**
      * Displays all the information regarding the request of a users name
@@ -59,28 +64,4 @@ public class MenuPrint {
 
     }
 
-    /**
-     * Checks if there is an existing user with the given name and
-     * returns it
-     * 
-     * @param userName of the user we are checking
-     * @return the user if match found, new user if  no match found
-     */
-    public static User selectUser(String userName) {
-
-        User user = null;
-
-        if (checkExistingUser(userName)) {
-            System.out.println("\nLoading User...\n");
-            user = getExistingUser(userName);
-
-        } else {
-            System.out.println("\nCreating new User...\n");
-            User newUser = new User(userName);
-            addUser(newUser);
-            return newUser;
-        }
-
-        return user;
-    }
 }

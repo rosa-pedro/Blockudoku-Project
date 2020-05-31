@@ -18,7 +18,7 @@ import java.io.ObjectOutputStream;
  * @author Pedro Rosa - 190221015
  * @author Joao Cetano - 190221010
  */
-public class FileHandler {
+public class UsersFileHandler {
 
     /**
      * Saves the Users obj to the filename 
@@ -26,14 +26,19 @@ public class FileHandler {
      * @param obj obj to be saved
      * @param filename filename where it'll be saved
      */
-    public static void saveFile(Users obj, String filename) {
+    public static void saveFile(Users listOfUsers, String filename) {
+    
         try {
+
             ObjectOutputStream oos = new ObjectOutputStream(
                     new FileOutputStream(filename));
-            oos.writeObject(obj);
+            oos.writeObject(listOfUsers);
+
             oos.flush();
             oos.close();
+
         } catch (IOException e) {
+
             System.out.println(e.getMessage());
         }
     }
@@ -45,18 +50,29 @@ public class FileHandler {
      * @param filename filename where Users is located
      * @return Users read from file
      */
-    public static Users readSerializedFile(String filename) {
-        Users obj = new Users();
+
+    public static Users readFile(String filename) {
+
+        Users listOfUsers = null;
         try {
+
             ObjectInputStream ois = new ObjectInputStream(
                     new FileInputStream(filename));
-            obj = (Users)ois.readObject();
+            listOfUsers = (Users) ois.readObject();
+
             ois.close();
+
         } catch (IOException e) {
+
             System.out.println(e.getMessage());
+            listOfUsers = new Users();
+
         } catch (ClassNotFoundException e) {
+
             System.out.println(e.getMessage());
+            listOfUsers = new Users();
+
         }
-        return obj;
+        return listOfUsers;
     }
 }

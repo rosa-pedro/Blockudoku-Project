@@ -7,7 +7,7 @@ package game;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-//import java.time.format.DateTimeFormatter;
+
 
 /** This class contains the parts that make up the game
  *
@@ -16,7 +16,6 @@ import java.time.LocalDateTime;
  */
 public class Game implements Serializable {
 
-    private static final long serialVersionUID = 9873268974234L;
     private LocalDateTime date;
     private Board board;
     private GameRound gameRound;
@@ -42,55 +41,10 @@ public class Game implements Serializable {
         this.running = true;
         this.saved = false;
     }
-
-    /**
-     * setter for the date of the Game
-     * @param date 
-     */
-    public void setTime(LocalDateTime date) {
-        this.date = date;
-    }
-
-    /**
-     * Getter for the time of the Game
-     * 
-     * @return  time in d/M hh:mm
-     */
-    public String getTime() {
-        return date.getDayOfMonth() + "/" + date.getMonthValue() + "  " + date.getHour() + ":" + date.getMinute();
-    }
-
-    /**
-     * sets gameScore to the value in the parameter
-     * 
-     * @param gameScore 
-     */
-    public void setGameScore(int gameScore) {
-        this.gameScore = gameScore;
-    }
     
     /**
-     * adds the value in the parameter to the games current score
-     * 
-     * @param gameScore 
-     */
-    public void addGameScore(int gameScore) {
-        this.gameScore += gameScore;
-    }
-    
-    /**
-     * getter for gameScore
-     * 
-     * @return the games score
-     */
-    public int getGameScore() {
-        return gameScore;
-    }
-
-    
-    /**
-     * Method to start the game, iniciates the gameRound and
-     * starts recieving and parsing user inputs
+     * Method to start the game, initiates the gameRound and
+     * starts receiving and parsing user inputs
      * if the user cancels or saves it'll exit the method,
      * if the game is completed it'll display gameOver()
      * 
@@ -114,13 +68,11 @@ public class Game implements Serializable {
                 String command = Parser.readInput();
 
                 if (command.equalsIgnoreCase("cancel")) {
-
                     return;
                 }
                 if (command.equalsIgnoreCase("save")) {
                     saved = true;
                     return;
-
                 }
 
                 Command moveCommand = Parser.getGameCommand(command);
@@ -132,14 +84,13 @@ public class Game implements Serializable {
                 gameRound.setErrorMessage(e.getMessage());
             }
         }
-
+        
         gameOver();
     }
     
     /**
      * method to signal that the game is over 
      */
-    
     public void gameOver() {
         System.out.println("\nGame Over");
         System.out.println("Score: " + gameScore);
@@ -148,8 +99,34 @@ public class Game implements Serializable {
     }
 
     /**
+     * setter for the date of the Game
+     * @param date 
+     */
+    public void setTime(LocalDateTime date) {
+        this.date = date;
+    }
+
+    /**
+     * Getter for the time of the Game
      * 
-     * @return true if the game is over, false if not
+     * @return  time in d/M hh:mm
+     */
+    public String getTime() {
+        return date.getDayOfMonth() + "/" + date.getMonthValue() + " " + date.getHour() + ":" + date.getMinute();
+    }
+
+    /**
+     * getter for gameScore
+     * 
+     * @return the games score
+     */
+    public int getGameScore() {
+        return gameScore;
+    }
+
+    /**
+     * Checks if the game is over
+     * @return true if games is not running, false if the game is still running
      */
     public boolean isOver() {
         return !running;
@@ -161,5 +138,10 @@ public class Game implements Serializable {
      */
     public boolean isSaved() {
         return saved;
+    }
+    
+    @Override
+    public String toString() {
+        return getTime();
     }
 }
