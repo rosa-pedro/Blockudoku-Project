@@ -18,22 +18,22 @@ public class Game implements Serializable {
 
     private LocalDateTime date;
     private Board board;
-    private GameRound gameRound;
+    private GameRoundsLogic gameRound;
     private int gameScore;
 
     private boolean running;
     private boolean saved;
 
     /**
-     * Constructor for game, initialises the Board and starts a new GameRound
-     * with the score at 0
+     * Constructor for game, initialises the Board and starts a new GameRoundsLogic
+ with the score at 0
      *
      * @param gameMode selects the GameMode to start the game with
      */
     public Game(GameMode gameMode) {
 
         this.board = new Board();
-        this.gameRound = new GameRound(board, gameMode);
+        this.gameRound = new GameRoundsLogic(board, gameMode);
         this.gameScore = 0;
 
         this.running = true;
