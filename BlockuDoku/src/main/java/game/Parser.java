@@ -8,22 +8,39 @@ package game;
 import java.util.Scanner;
 
 /**
+ * This class serves as the input reader for the program
  *
- * @author Storm
+ *
+ * @author Pedro Rosa - 190221015
+ * @author Joao Cetano - 190221010
  */
 public class Parser {
-    static Scanner sc;
 
+    private Scanner sc;
+
+    /**
+     * Constructor initiates the Scanner
+     */
     public Parser() {
         sc = new Scanner(System.in);
     }
 
+    /**
+     * Static method to read input
+     *
+     * @return next line written by the user
+     */
     public String readInput() {
         return sc.nextLine().trim();
     }
 
+    /**
+     * Takes a string and converts it to a Command object
+     *
+     * @param input String we are converting
+     * @return new Command object based off the string
+     */
     public Command getGameCommand(String input) {
-
 
         String in = input;
         String[] arrOfStr = in.split("-");

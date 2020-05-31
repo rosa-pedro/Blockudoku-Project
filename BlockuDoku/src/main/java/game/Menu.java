@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -6,8 +7,12 @@
 package game;
 
 /**
+ * This class serves to parse Commands and to act as an intermediate between the
+ * menu and the user inputs
  *
- * @author rosap
+ *
+ * @author Pedro Rosa - 190221015
+ * @author Joao Cetano - 190221010
  */
 public class Menu {
 
@@ -16,6 +21,13 @@ public class Menu {
     private Users listOfUsers;
     private User currentUser;
 
+    /**
+     * Constructor for Menu, initialises parser, the ArrayList and the
+     * ScoreBoard
+     *
+     *
+     * @param listOfUsers assigns the listOfUsers
+     */
     public Menu(Users listOfUsers) {
 
         this.parser = new Parser();
@@ -47,6 +59,14 @@ public class Menu {
         return user;
     }
 
+    /**
+     * ProcessCommand receives the User and his input and then calls other
+     * method based on the input it has received
+     *
+     * @param user User playing the game
+     * @param input Input from the User
+     * @return true until the game is closed
+     */
     public boolean mainMenu() {
 
         MenuPrint.mainMenu();
@@ -155,6 +175,7 @@ public class Menu {
 
         Game game = new Game(gameMode);
         currentUser.setGame(game);
+
         game.play(parser);
         System.out.println("\nReturned to the Main Menu!");
 
@@ -175,6 +196,7 @@ public class Menu {
         System.out.println("\nReturned to the Main Menu!");
 
         checkGame(game);
+
     }
 
     public void checkGame(Game game) {

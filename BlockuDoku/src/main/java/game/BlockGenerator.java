@@ -8,12 +8,21 @@ package game;
 import blocks.*;
 import java.util.Random;
 
-/**
+/** This class is used to generate the various blocks needed within the game
+ * based on the different GameMode it will produce different kinds of blocks
+ * 
  *
- * @author rosap
+ * @author Pedro Rosa - 190221015
+ * @author Joao Cetano - 190221010
  */
 public class BlockGenerator {
-
+    
+    /**
+     *  Static method nextAdvancedBlock randomizes a number between [1,13] 
+     * and then generates a pieces according to that number
+     * 
+     * @return The piece that was randomly generated
+     */
     public static Piece nextAdvancedBlock() {
 
         Random random = new Random();
@@ -50,6 +59,12 @@ public class BlockGenerator {
         }
     }
     
+    /**
+     *  Static method nextBasicBlock randomizes a number between [1,13] 
+     * and then generates a pieces according to that number
+     * 
+     * @return The piece that was randomly generated
+     */
     public static Piece nextBasicBlock() {
 
         Random random = new Random();

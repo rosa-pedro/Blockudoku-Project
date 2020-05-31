@@ -9,9 +9,14 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
 
-/**
+/** This class Creates and maintains the board
+ * it's composed by a HashMap where the key is the string 
+ * corresponding to the Coordinate and the value is the
+ * Square corresponding to the coordinate 
+ * 
  *
- * @author rosap
+ * @author Pedro Rosa - 190221015
+ * @author Joao Cetano - 190221010
  */
 public class Board implements Serializable{
     
@@ -19,12 +24,22 @@ public class Board implements Serializable{
     
     private HashMap<String, Square> board;
 
+    /**
+     * Constructor for class Board
+     * initializes the board HashMap
+     * and calls the initializeBoard() method
+     */
     public Board() {
 
         board = new HashMap<>();
         initializeBoard();
     }
 
+    
+    /**
+     * Method to initialize the board,
+     * fills the whole board with Squares that aren't visible 
+     */
     public void initializeBoard() {
 
         String coord;
@@ -39,6 +54,15 @@ public class Board implements Serializable{
         }
     }
 
+    /**
+     * Method to get a coordinate in our board
+     * takes the row and column integers and
+     * concats them into a String
+     * 
+     * @param row
+     * @param column
+     * @return String containing the coordinate
+     */
     public String getCoordinate(int row, int column) {
 
         String key = String.valueOf((char) (65 + column));
@@ -46,7 +70,16 @@ public class Board implements Serializable{
 
         return key;
     }
-
+    
+    /**
+     * Method to get a coordinate in our board
+     * takes the row and column integers and
+     * concats them into a String
+     * 
+     * @param row
+     * @param column
+     * @return String containing the coordinate
+     */
     public String getCoordinate(int row, String column) {
 
         String key = column;
@@ -54,12 +87,28 @@ public class Board implements Serializable{
 
         return key;
     }
-
-    public void changeCoordVisibility(String coord) {
+    
+    /**
+     * Takes a coordinate and change its visibility
+     * 
+     * @param coord the coordinate we choose to change visibility to 
+     */
+    private void changeCoordVisibility(String coord) {
 
         board.get(coord).changeVisibility();
     }
 
+    
+    /**
+     * Method to insert a block into the board,
+     * it takes the Piece and the Coordinates for 
+     * the pivot coordinate and then changes the visibility 
+     * of every block in order to display it 
+     * 
+     * @param block which we are inserting
+     * @param coord coordinates of where we are inserting
+     * @return true if successful  insert and false if the insert failed
+     */
     public boolean insertBlock(Piece block, String coord) {
 
         HashSet<String> coords = convertBlockCoordsToBoardCoords(block, coord);
@@ -72,6 +121,16 @@ public class Board implements Serializable{
         return true;
     }
 
+    
+    /**
+     * Checks if the block is insertable, 
+     * receives the coordinates of the block and the piece
+     * it represents 
+     * 
+     * @param block which we are checking 
+     * @param coord coordinates of where we are checking is its possible to insert
+     * @return true if insertable false if not 
+     */
     public boolean isBlockInsertable(Piece block, String coord) {
 
         HashSet<String> coords = convertBlockCoordsToBoardCoords(block, coord);
@@ -82,11 +141,28 @@ public class Board implements Serializable{
         return true;
     }
 
+    
+    /**
+     * Checks if the coordinates are within the board 
+     * and if it isn't already visible 
+     * 
+     * @param coords coordinates that we are checking  
+     * @return if the coordinates are valid or not
+     */
     public boolean isValidInsertionCoords(HashSet<String> coords) {
 
         return coords.stream().allMatch(c -> board.containsKey(c) && !board.get(c).isVisible());
     }
 
+    
+    /**
+     * Converts coordinates from Block to Board coordinates 
+     * so that we can insert the block into the Board
+     * 
+     * @param block Block piece 
+     * @param position String position we are inserting
+     * @return coordinates to be inserted onto the board
+     */
     public HashSet<String> convertBlockCoordsToBoardCoords(Piece block, String position) {
 
         HashMap<String, Square> blockCoords = block.getPiece();
@@ -108,21 +184,42 @@ public class Board implements Serializable{
         return coords;
     }
 
+    /**
+     * Changes the visibility of the inserted coordinates
+     * this clearing the board
+     * 
+     * @param coords coordinates which we are clearing
+     */
     public void clearBoard(HashSet<String> coords) {
 
         coords.stream().forEach(c -> changeCoordVisibility(c));
     }
 
+    /**
+     * Clears the board by changing every squares visibility 
+     */
     public void clearBoard() {
 
         board.entrySet().stream().filter(c -> c.getValue().isVisible()).forEach(c -> changeCoordVisibility(c.getKey()));
     }
-
+    
+    /**
+     * Takes a piece and checks if there is space left in the board for it to be inserted
+     * 
+     * @param piece we are trying to insert
+     * @return true if there is enough space left for the piece and false if there isn't
+     */
     public boolean isThereSpaceleftInTheBoard(Piece piece) {
 
         return board.entrySet().stream().anyMatch(e -> isBlockInsertable(piece, e.getKey()));
     }
 
+    /**
+     * Overrides the toString method to 
+     * better display the board
+     * 
+     * @return formatted board in String
+     */
     @Override
     public String toString() {
 

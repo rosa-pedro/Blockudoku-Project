@@ -6,11 +6,17 @@
 package game;
 
 /**
+ * This class consists of method to help display the menu
  *
- * @author Storm
+ *
+ * @author Pedro Rosa - 190221015
+ * @author Joao Cetano - 190221010
  */
 public class MenuPrint {
 
+    /**
+     * Displays all the information regarding the main menu
+     */
     public static void mainMenu() {
 
         System.out.println();
@@ -23,12 +29,18 @@ public class MenuPrint {
         System.out.print("Choose a Menu Option: ");
     }
 
+    /**
+     * Displays all the information regarding the welcome menu
+     */
     public static void welcomeMenu(User user) {
 
         System.out.println();
         System.out.println("Hello " + user.getName());
     }
 
+    /**
+     * Displays all the information regarding the new game menu
+     */
     public static void newGameMenu() {
 
         System.out.println();
@@ -39,6 +51,9 @@ public class MenuPrint {
         System.out.print("Choose a Game Difficulty: ");
     }
 
+    /**
+     * Displays all the information regarding the request of a users name
+     */
     public static void requestUserName() {
 
         System.out.println();

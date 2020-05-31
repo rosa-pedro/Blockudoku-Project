@@ -11,14 +11,23 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-/**
+/** This class helps with the serialization of the list of Users
+ * contains a save and read method
+ * 
  *
- * @author rosap
+ * @author Pedro Rosa - 190221015
+ * @author Joao Cetano - 190221010
  */
 public class UsersFileHandler {
 
+    /**
+     * Saves the Users obj to the filename 
+     * 
+     * @param obj obj to be saved
+     * @param filename filename where it'll be saved
+     */
     public static void saveFile(Users listOfUsers, String filename) {
-
+    
         try {
 
             ObjectOutputStream oos = new ObjectOutputStream(
@@ -33,11 +42,18 @@ public class UsersFileHandler {
             System.out.println(e.getMessage());
         }
     }
+    
+    
+    /**
+     * Method that reads the Users file and returns its contents
+     * 
+     * @param filename filename where Users is located
+     * @return Users read from file
+     */
 
     public static Users readFile(String filename) {
 
         Users listOfUsers = null;
-
         try {
 
             ObjectInputStream ois = new ObjectInputStream(

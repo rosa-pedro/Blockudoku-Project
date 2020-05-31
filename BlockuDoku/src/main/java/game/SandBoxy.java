@@ -87,6 +87,5 @@ public class SandBoxy {
         }
 
         UsersFileHandler.saveFile(loadedUsers, filename);
-
     }
 }

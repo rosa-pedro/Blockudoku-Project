@@ -8,8 +8,11 @@ package game;
 import java.io.Serializable;
 
 /**
+ * This class represents the User, his name, current game and his Scoreboard of
+ * personalScores
  *
- * @author Storm
+ * @author Pedro Rosa - 190221015
+ * @author Joao Cetano - 190221010
  */
 public class User implements Serializable {
 
@@ -45,3 +48,4 @@ public class User implements Serializable {
         return name + ":  " + personalScores.getHighestScore().getElement();
     }
 }
+        

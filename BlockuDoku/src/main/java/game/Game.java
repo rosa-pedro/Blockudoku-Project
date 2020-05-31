@@ -9,8 +9,10 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
+ * This class contains the parts that make up the game
  *
- * @author Storm
+ * @author Pedro Rosa - 190221015
+ * @author Joao Cetano - 190221010
  */
 public class Game implements Serializable {
 
@@ -22,6 +24,12 @@ public class Game implements Serializable {
     private boolean running;
     private boolean saved;
 
+    /**
+     * Constructor for game, initialises the Board and starts a new GameRound
+     * with the score at 0
+     *
+     * @param gameMode selects the GameMode to start the game with
+     */
     public Game(GameMode gameMode) {
 
         this.board = new Board();
@@ -32,6 +40,13 @@ public class Game implements Serializable {
         this.saved = false;
     }
 
+    /**
+     * Method to start the game, initiates the gameRound and starts receiving
+     * and parsing user inputs if the user cancels or saves it'll exit the
+     * method, if the game is completed it'll display gameOver()
+     *
+     *
+     */
     public void play(Parser parser) {
 
         saved = false;
@@ -67,32 +82,60 @@ public class Game implements Serializable {
                 gameRound.setErrorMessage(e.getMessage());
             }
         }
-        
+
         gameOver();
     }
 
+    /**
+     * method to signal that the game is over
+     */
     public void gameOver() {
-        System.out.println("Game Over");
+        System.out.println("\nGame Over");
+        System.out.println("Score: " + gameScore);
         setTime(LocalDateTime.now());
         gameScore = gameRound.getScore();
     }
 
+    /**
+     * setter for the date of the Game
+     *
+     * @param date
+     */
     public void setTime(LocalDateTime date) {
         this.date = date;
     }
 
+    /**
+     * Getter for the time of the Game
+     *
+     * @return time in d/M hh:mm
+     */
     public String getTime() {
         return date.getHour() + ":" + date.getMinute() + " " + date.getDayOfMonth() + "/" + date.getMonthValue();
     }
 
+    /**
+     * getter for gameScore
+     *
+     * @return the games score
+     */
     public int getGameScore() {
         return gameScore;
     }
 
+    /**
+     * Checks if the game is over
+     *
+     * @return true if games is not running, false if the game is still running
+     */
     public boolean isOver() {
         return !running;
     }
 
+    /**
+     *
+     * @return true if the game is saved
+     */
     public boolean isToBeSaved() {
         return saved;
     }

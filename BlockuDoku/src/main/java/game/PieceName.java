@@ -5,15 +5,24 @@
  */
 package game;
 
-/**
+/** This enum represents all the possible PieceNames
+ * 
  *
- * @author rosap
+ * @author Pedro Rosa - 190221015
+ * @author Joao Cetano - 190221010
  */
 public enum PieceName {
     I_BLOCK, Q_BLOCK, T_BLOCK, L_BLOCK, J_BLOCK, S_BLOCK, Z_BLOCK, 
     I_ONE_BLOCK, I_TWO_BLOCK, I_THREE_BLOCK, L_MINIMUM_BLOCK, 
     L_MAXIMUM_BLOCK, T_EXTENDED_BLOCK, Q_EXTENDED_BLOCK;
     
+    
+    /**
+     * Overrides the toString() method in order to return a String object corresponding
+     * to the enum value
+     * 
+     * @return String object
+     */
     @Override
     public String toString(){
         

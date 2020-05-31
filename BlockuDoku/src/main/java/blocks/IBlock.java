@@ -1,24 +1,31 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * 
  */
 package blocks;
 
 import game.Piece;
 import game.PieceName;
 
-/**
+/** This class consists exclusively of void methods that help building the IBlock Piece
+ * 
  *
- * @author rosap
+ * @author Pedro Rosa - 190221015
+ * @author Joao Cetano - 190221010
  */
 public class IBlock extends Piece {
 
+    /** Constructor for class IBlock, creates a piece after the PieceName enum
+     *
+     */
     public IBlock() {
         
         super(PieceName.I_BLOCK);
     }
 
+    /** Overrides the method buildPieceWithzeroRotation() to represent an IBlock
+     * with zero degree rotation.
+     *
+     */
     @Override
     public void buildPieceWithzeroRotation() {
 
@@ -26,6 +33,10 @@ public class IBlock extends Piece {
         buildPiece(coords, coords[0]);
     }
 
+    /** Overrides the method buildPieceWithNinetyRotation() to represent an IBlock
+     * with Ninety degree rotation.
+     *
+     */
     @Override
     public void buildPieceWithNinetyRotation() {
 
@@ -33,12 +44,20 @@ public class IBlock extends Piece {
         buildPiece(coords, coords[0]);
     }
 
+    /** Overrides the method buildPieceWithHundredEightyRotation() to represent an IBlock
+     * with hundred and eighty degree rotation.
+     *
+     */
     @Override
     public void buildPieceWithHundredEightyRotation() {
 
         buildPieceWithzeroRotation();
     }
 
+    /** Overrides the method buildPieceWithTwoHundredSeventyRotation() to represent an IBlock
+     * with two hundred and seventy degree rotation.
+     *
+     */
     @Override
     public void buildPieceWithTwoHundredSeventyRotation() {
 

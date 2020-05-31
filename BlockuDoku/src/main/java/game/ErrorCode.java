@@ -5,14 +5,22 @@
  */
 package game;
 
-/**
+/** This enum represents the error codes used for error control
+ * 
  *
- * @author rosap
+ * @author Pedro Rosa - 190221015
+ * @author Joao Cetano - 190221010
  */
 public enum ErrorCode {
     
     INVALID_ROUND_BLOCK, INVALID_COMMAND, INVALID_BLOCK_INSERTION;
     
+    /**
+     * Overrides the toString() method in order to return a 
+     * string corresponding to the error
+     * 
+     * @return String related to the enum value
+     */
     @Override
     public String toString(){
         switch(this){
