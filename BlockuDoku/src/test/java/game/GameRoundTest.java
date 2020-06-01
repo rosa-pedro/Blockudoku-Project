@@ -35,7 +35,7 @@ public class GameRoundTest {
     public void testCheckRound() {
         System.out.println("checkRound");
         Board board =  new Board();
-        GameRound instance = new GameRound(board, GameMode.BASIC_MODE);
+        GameRoundsLogic instance = new GameRoundsLogic(board, GameMode.BASIC_MODE);
         boolean expResult = true;
         boolean result = instance.checkRound();
         assertEquals(expResult, result);
@@ -48,7 +48,7 @@ public class GameRoundTest {
     public void testGetScore() {
         System.out.println("getScore");
         Board board =  new Board();
-        GameRound instance = new GameRound(board, GameMode.BASIC_MODE);
+        GameRoundsLogic instance = new GameRoundsLogic(board, GameMode.BASIC_MODE);
         int expResult = 0;
         int result = instance.getScore();
         assertEquals(expResult, result);
@@ -61,7 +61,7 @@ public class GameRoundTest {
     public void testIsGameOver() {
         System.out.println("isGameOver");
         Board board =  new Board();
-        GameRound instance = new GameRound(board, GameMode.BASIC_MODE);
+        GameRoundsLogic instance = new GameRoundsLogic(board, GameMode.BASIC_MODE);
         boolean expResult = true;
         boolean result = instance.isGameOver();
         assertEquals(expResult, result);

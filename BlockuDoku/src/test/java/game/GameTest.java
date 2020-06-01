@@ -28,6 +28,31 @@ public class GameTest {
     public static void tearDownClass() {
     }
 
+    /**
+     * Test of setTime method, of class Game.
+     */
+    @Test
+    public void testSetTime() {
+        System.out.println("setTime");
+        LocalDateTime date = LocalDateTime.now();
+        Game instance = new Game(GameMode.BASIC_MODE);
+        instance.setTime(date);
+        String expResult = date.getHour() + ":" + date.getMinute() + " " + date.getDayOfMonth() + "/" + date.getMonthValue();
+        assertEquals(expResult,instance.getTime());
+    }
+
+    /**
+     * Test of getTime method, of class Game.
+     */
+    @Test
+    public void testGetTime() {
+        System.out.println("getTime");
+        LocalDateTime date = LocalDateTime.now();
+        Game instance = new Game(GameMode.BASIC_MODE);
+        instance.setTime(date);
+        String expResult = date.getHour() + ":" + date.getMinute() + " " + date.getDayOfMonth() + "/" + date.getMonthValue();
+        assertEquals(expResult,instance.getTime());
+    }
 
     /**
      * Test of getGameScore method, of class Game.
@@ -54,27 +79,14 @@ public class GameTest {
     }
 
     /**
-     * Test of isSaved method, of class Game.
+     * Test of isToBeSaved method, of class Game.
      */
     @Test
-    public void testIsSaved() {
-        System.out.println("isSaved");
+    public void testIsToBeSaved() {
+        System.out.println("isToBeSaved");
         Game instance = new Game(GameMode.BASIC_MODE);
         boolean expResult = false;
-        boolean result = instance.isSaved();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of toString method, of class Game.
-     */
-    @Test
-    public void testToString() {
-        System.out.println("toString");
-        Game instance = new Game(GameMode.BASIC_MODE);
-        instance.setTime(LocalDateTime.now());
-        String expResult = instance.getTime();
-        String result = instance.toString();
+        boolean result = instance.isToBeSaved();
         assertEquals(expResult, result);
     }
     

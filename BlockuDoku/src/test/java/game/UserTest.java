@@ -28,17 +28,6 @@ public class UserTest {
     }
 
     /**
-     * Test of loadGame method, of class User.
-     */
-    @Test
-    public void testLoadGame() {
-        System.out.println("loadGame");
-        User instance = new User("Julia");
-        boolean expResult = false;
-        boolean result = instance.loadGame();
-        assertEquals(expResult, result);
-    }
-    /**
      * Test of getName method, of class User.
      */
     @Test
@@ -50,7 +39,6 @@ public class UserTest {
         assertEquals(expResult, result);
     }
 
-
     /**
      * Test of setGame method, of class User.
      */
@@ -60,8 +48,8 @@ public class UserTest {
         Game game = new Game(GameMode.BASIC_MODE);
         User instance = new User("Julia");
         instance.setGame(game);
-        Game game2 = instance.getGame();
-        assertEquals(game, game2);
+        Game expResult = instance.getGame();
+        assertEquals(expResult,game);
     }
 
     /**
@@ -70,11 +58,12 @@ public class UserTest {
     @Test
     public void testGetGame() {
         System.out.println("getGame");
-        User instance = new User("Julia");
         Game game = new Game(GameMode.BASIC_MODE);
+        User instance = new User("Julia");
         instance.setGame(game);
         Game result = instance.getGame();
         assertEquals(game, result);
     }
+
     
 }
