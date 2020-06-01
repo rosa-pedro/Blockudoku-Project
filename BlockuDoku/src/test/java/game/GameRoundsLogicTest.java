@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package game;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -15,19 +11,17 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Joao Cetano - 190221010 - 190221010@estudantes.ips.pt
  */
 public class GameRoundsLogicTest {
-    
+
     public GameRoundsLogicTest() {
     }
-    
+
     @BeforeAll
     public static void setUpClass() {
     }
-    
+
     @AfterAll
     public static void tearDownClass() {
     }
-
-    
 
     /**
      * Test of checkRound method, of class GameRound.
@@ -35,7 +29,7 @@ public class GameRoundsLogicTest {
     @Test
     public void testCheckRound() {
         System.out.println("checkRound");
-        Board board =  new Board();
+        Board board = new Board();
         GameRoundsLogic instance = new GameRoundsLogic(board, GameMode.BASIC_MODE);
         boolean expResult = true;
         boolean result = instance.checkRound();
@@ -48,7 +42,7 @@ public class GameRoundsLogicTest {
     @Test
     public void testGetScore() {
         System.out.println("getScore");
-        Board board =  new Board();
+        Board board = new Board();
         GameRoundsLogic instance = new GameRoundsLogic(board, GameMode.BASIC_MODE);
         int expResult = 0;
         int result = instance.getScore();
@@ -61,7 +55,7 @@ public class GameRoundsLogicTest {
     @Test
     public void testIsGameOver() {
         System.out.println("isGameOver");
-        Board board =  new Board();
+        Board board = new Board();
         GameRoundsLogic instance = new GameRoundsLogic(board, GameMode.BASIC_MODE);
         boolean expResult = true;
         boolean result = instance.isGameOver();

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package game;
 
 import java.io.Serializable;
@@ -22,8 +17,9 @@ public class User implements Serializable {
 
     public User(String name) {
 
+        this.game = null;
         this.name = name;
-        personalScores = new Scoreboard<>();
+        this.personalScores = new Scoreboard<>();
 
     }
 
@@ -48,4 +44,3 @@ public class User implements Serializable {
         return name + ":  " + personalScores.getHighestScore().getElement();
     }
 }
-        

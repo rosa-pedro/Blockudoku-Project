@@ -1,9 +1,3 @@
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package game;
 
 /**
@@ -38,10 +32,10 @@ public class Menu {
 
     /**
      * This method validates the username by checking if its blank or null
-     * 
+     *
      * @param username to be checked
      * @return username if valid
-     * @throws GameIllegalArgumentException according to the error 
+     * @throws GameIllegalArgumentException according to the error
      */
     public String validateUsername(String username) throws GameIllegalArgumentException {
 
@@ -77,10 +71,9 @@ public class Menu {
         }
     }
 
-    
     /**
      * Takes a userName and goes though the list of users
-     * 
+     *
      * @param userName username we are creating or getting
      * @return the User matching the name, or a newly created user
      */
@@ -135,10 +128,9 @@ public class Menu {
         return false;
     }
 
-    
     /**
      * Method to display the New Game Menu
-     * 
+     *
      */
     public void newGameMenu() {
 
@@ -177,7 +169,7 @@ public class Menu {
         printScoreboard(getTop10RankingToString());
 
     }
-    
+
     /**
      * Method to display the personal scores menu
      */
@@ -190,7 +182,7 @@ public class Menu {
 
     /**
      * Method to display the scoreboard
-     * 
+     *
      * @param scoreboard scoreboard we are displaying
      */
     public void printScoreboard(String scoreboard) {
@@ -213,8 +205,8 @@ public class Menu {
     }
 
     /**
-     * Method to return a String containing the TOP10 Ranking 
-     * 
+     * Method to return a String containing the TOP10 Ranking
+     *
      * @return String object
      */
     public String getTop10RankingToString() {
@@ -229,21 +221,19 @@ public class Menu {
         return scoreboard;
     }
 
-    
     /**
-     * Method to return a String containing the Personal Scores Ranking 
-     * 
+     * Method to return a String containing the Personal Scores Ranking
+     *
      * @return String object
      */
     public String getPersonalScoresToString() {
         return currentUser.getPersonalScores().toString();
     }
 
-    
     /**
      * Void method initializes a new game based on the gameMode it receives
-     * 
-     * @param gameMode to start the game with 
+     *
+     * @param gameMode to start the game with
      */
     public void InitializeNewGame(GameMode gameMode) {
 
@@ -257,8 +247,9 @@ public class Menu {
     }
 
     /**
-     * Method to load game, if a user has a game to load, if not it'll create a new one
-     * 
+     * Method to load game, if a user has a game to load, if not it'll create a
+     * new one
+     *
      */
     public void loadGame() {
 
@@ -277,10 +268,9 @@ public class Menu {
 
     }
 
-    
     /**
      * Method to check where the game isOver or if the game is to be saved
-     * 
+     *
      * @param game Game to be checked
      */
     public void checkGame(Game game) {

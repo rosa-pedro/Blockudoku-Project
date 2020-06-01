@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package game;
 
 import java.time.LocalDateTime;
@@ -17,14 +12,14 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Joao Cetano - 190221010 - 190221010@estudantes.ips.pt
  */
 public class GameTest {
-    
+
     public GameTest() {
     }
-    
+
     @BeforeAll
     public static void setUpClass() {
     }
-    
+
     @AfterAll
     public static void tearDownClass() {
     }
@@ -39,7 +34,7 @@ public class GameTest {
         Game instance = new Game(GameMode.BASIC_MODE);
         instance.setTime(date);
         String expResult = date.getHour() + ":" + date.getMinute() + " " + date.getDayOfMonth() + "/" + date.getMonthValue();
-        assertEquals(expResult,instance.getTime());
+        assertEquals(expResult, instance.getTime());
     }
 
     /**
@@ -52,7 +47,7 @@ public class GameTest {
         Game instance = new Game(GameMode.BASIC_MODE);
         instance.setTime(date);
         String expResult = date.getHour() + ":" + date.getMinute() + " " + date.getDayOfMonth() + "/" + date.getMonthValue();
-        assertEquals(expResult,instance.getTime());
+        assertEquals(expResult, instance.getTime());
     }
 
     /**
@@ -90,5 +85,5 @@ public class GameTest {
         boolean result = instance.isToBeSaved();
         assertEquals(expResult, result);
     }
-    
+
 }

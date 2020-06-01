@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package game;
 
 import java.util.ArrayList;
@@ -17,14 +12,14 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Joao Cetano - 190221010 - 190221010@estudantes.ips.pt
  */
 public class ScoreboardTest {
-    
+
     public ScoreboardTest() {
     }
-    
+
     @BeforeAll
     public static void setUpClass() {
     }
-    
+
     @AfterAll
     public static void tearDownClass() {
     }
@@ -47,12 +42,12 @@ public class ScoreboardTest {
     @Test
     public void testGetHighestScore() {
         System.out.println("getHighestScore");
-        
+
         Scoreboard instance = new Scoreboard();
         //System.out.println(instance);
-        
+
         User user = new User("Julia");
-        Score<User> instance1 = new Score<>(user,528);
+        Score<User> instance1 = new Score<>(user, 528);
         /*
         User user2 = new User("Julia");
         Score<User> instance2 = new Score<>(user2,545);
@@ -70,7 +65,7 @@ public class ScoreboardTest {
     public void testGetScoreboard() {
         System.out.println("getScoreboard");
         Scoreboard instance = new Scoreboard();
-        ArrayList<Score<User>> expResult = instance.scoreboard;
+        ArrayList<Score<User>> expResult = instance.getScoreboard();
         ArrayList<Score<User>> result = instance.getScoreboard();
         assertEquals(expResult, result);
     }
@@ -95,12 +90,12 @@ public class ScoreboardTest {
         System.out.println("clear");
         Scoreboard instance = new Scoreboard();
         User user = new User("Julia");
-        Score<User> instance1 = new Score<>(user,528);
+        Score<User> instance1 = new Score<>(user, 528);
         instance.insertScore(instance1, 1000);
         instance.clear();
         boolean expResult = true;
         boolean result = instance.isEmpty();
         assertEquals(expResult, result);
     }
-    
+
 }

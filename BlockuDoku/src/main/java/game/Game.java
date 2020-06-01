@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package game;
 
 import java.io.Serializable;
@@ -19,22 +14,22 @@ public class Game implements Serializable {
 
     private LocalDateTime date;
     private Board board;
-    private GameRoundsLogic gameRound;
+    private GameRoundsLogic gameRoundLogic;
     private int gameScore;
 
     private boolean running;
     private boolean saved;
 
     /**
-     * Constructor for game, initialises the Board and starts a new GameRoundsLogic
- with the score at 0
+     * Constructor for game, initialises the Board and starts a new
+     * GameRoundsLogic with the score at 0
      *
      * @param gameMode selects the GameMode to start the game with
      */
     public Game(GameMode gameMode) {
 
         this.board = new Board();
-        this.gameRound = new GameRoundsLogic(board, gameMode);
+        this.gameRoundLogic = new GameRoundsLogic(board, gameMode);
         this.gameScore = 0;
 
         this.running = true;
@@ -42,9 +37,9 @@ public class Game implements Serializable {
     }
 
     /**
-     * Method to start the game, initiates the gameRound and starts receiving
-     * and parsing user inputs if the user cancels or saves it'll exit the
-     * method, if the game is completed it'll display gameOver()
+     * Method to start the game, initiates the gameRoundLogic and starts
+     * receiving and parsing user inputs if the user cancels or saves it'll exit
+     * the method, if the game is completed it'll display gameOver()
      *
      *
      */
@@ -57,8 +52,8 @@ public class Game implements Serializable {
 
             try {
 
-                running = gameRound.checkRound();
-                gameRound.showRound();
+                running = gameRoundLogic.checkRound();
+                gameRoundLogic.showRound();
 
                 if (!running) {
                     break;
@@ -76,11 +71,11 @@ public class Game implements Serializable {
 
                 Command moveCommand = parser.getGameCommand(command);
 
-                gameRound.move(moveCommand);
+                gameRoundLogic.move(moveCommand);
 
             } catch (IllegalArgumentException e) {
 
-                gameRound.setErrorMessage(e.getMessage());
+                gameRoundLogic.setErrorMessage(e.getMessage());
             }
         }
 
@@ -91,12 +86,12 @@ public class Game implements Serializable {
      * method to signal that the game is over
      */
     public void gameOver() {
-        
+
+        gameScore = gameRoundLogic.getScore();
         System.out.println("\n");
         System.out.println("Game Over");
         System.out.println("Score: " + gameScore);
         setTime(LocalDateTime.now());
-        gameScore = gameRound.getScore();
     }
 
     /**

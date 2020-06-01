@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package game;
 
 import org.junit.jupiter.api.AfterAll;
@@ -11,20 +6,21 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import game.Block;
 import blocks.*;
+
 /**
  *
  * @author Pedro Rosa - 190221015 - 190221015@estudantes.ips.pt
  * @author Joao Cetano - 190221010 - 190221010@estudantes.ips.pt
  */
 public class BlockTest {
-    
+
     public BlockTest() {
     }
-    
+
     @BeforeAll
     public static void setUpClass() {
     }
-    
+
     @AfterAll
     public static void tearDownClass() {
     }
@@ -61,7 +57,7 @@ public class BlockTest {
     public void testToString() {
         System.out.println("toString");
         Block instance = new Block("A", new IBlock());
-        
+
         StringBuilder sb = new StringBuilder();
         sb.append("Block " + "A" + "\n");
         sb.append(instance.getBlockPiece());
@@ -69,5 +65,5 @@ public class BlockTest {
         String result = instance.toString();
         assertEquals(expResult, result);
     }
-    
+
 }

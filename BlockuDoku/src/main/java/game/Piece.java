@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package game;
 
 import java.io.Serializable;
@@ -12,9 +7,9 @@ import java.util.Random;
 import java.util.Set;
 
 /**
- * This class builds the piece based off its pieceName
- * by initialising a HashMap containing its Coordinates 
- * 
+ * This class builds the piece based off its pieceName by initialising a HashMap
+ * containing its Coordinates
+ *
  *
  * @author Pedro Rosa - 190221015 - 190221015@estudantes.ips.pt
  * @author Joao Cetano - 190221010 - 190221010@estudantes.ips.pt
@@ -22,7 +17,6 @@ import java.util.Set;
 public abstract class Piece implements Serializable {
 
     private HashMap<String, Square> piece;
-
     private PieceName pieceName;
 
     private String pivot;
@@ -30,15 +24,14 @@ public abstract class Piece implements Serializable {
     private int columns;
 
     /**
-     * Constructor for Piece, initialises the HashMap
-     * sets the pieceName and initialises the other attributes 
-     * with standard values 
-     * @param pieceName 
+     * Constructor for Piece, initialises the HashMap sets the pieceName and
+     * initialises the other attributes with standard values
+     *
+     * @param pieceName
      */
     public Piece(PieceName pieceName) {
 
-        piece = new HashMap<>();
-
+        this.piece = new HashMap<>();
         this.pieceName = pieceName;
 
         this.pivot = "Unassigned Pivot";
@@ -49,9 +42,9 @@ public abstract class Piece implements Serializable {
     }
 
     /**
-     * Generates a random number between [1,3] and uses it to 
-     * randomize the rotation that the piece will be built with 
-     * 
+     * Generates a random number between [1,3] and uses it to randomize the
+     * rotation that the piece will be built with
+     *
      */
     public void buildPieceWithRandomRotation() {
 
@@ -76,6 +69,7 @@ public abstract class Piece implements Serializable {
                 buildPieceWithzeroRotation();
         }
     }
+
     /**
      * Necessary abstract method for buildPieceWithzeroRotation()
      */
@@ -97,8 +91,8 @@ public abstract class Piece implements Serializable {
     public abstract void buildPieceWithTwoHundredSeventyRotation();
 
     /**
-     * Void method that builds the piece 
-     * 
+     * Void method that builds the piece
+     *
      * @param coords coordinates that map the Piece
      * @param pivot sets this as the pivot of the Piece
      */
@@ -113,22 +107,23 @@ public abstract class Piece implements Serializable {
             piece.put(coords[i], new Square(true));
         }
     }
-    
+
     /**
      * Gets the score that a piece would give
-     * 
-     * @param gameMode The GameMode is necessary as BASIC gives one point for each Square and 
-     * ADVANCED gives two instead
+     *
+     * @param gameMode The GameMode is necessary as BASIC gives one point for
+     * each Square and ADVANCED gives two instead
      * @return int representing the calculated score
      */
-    public int getPieceScore(GameMode gameMode){
-    
+    public int getPieceScore(GameMode gameMode) {
+
         return (gameMode == GameMode.BASIC_MODE) ? piece.size() : 2 * piece.size();
     }
 
     /**
-     * Initialises the matrix in which the piece will be put it initially 
+     * Initialises the matrix in which the piece will be put it initially
      * ensuring that we won't use bigger matrixes than what is needed
+     *
      * @param coords Coordinates of the Piece
      */
     public void initializePieceDimensions(String coords[]) {
@@ -148,6 +143,7 @@ public abstract class Piece implements Serializable {
 
     /**
      * Overrides toString() method to better display a piece
+     *
      * @return String
      */
     @Override
@@ -166,7 +162,7 @@ public abstract class Piece implements Serializable {
                 if (piece.containsKey(key)) {
 
                     sb.append(piece.get(key) + " ");
-                    
+
                 } else {
 
                     sb.append("  ");
@@ -177,27 +173,27 @@ public abstract class Piece implements Serializable {
 
         return sb.toString();
     }
-    
-    
+
     /**
      * getter for Piece
-     * @return returns a HashMap with the Coordinates as key and the corresponding Square
-     * as the value of each key
+     *
+     * @return returns a HashMap with the Coordinates as key and the
+     * corresponding Square as the value of each key
      */
     public HashMap<String, Square> getPiece() {
         return piece;
     }
 
     /**
-     * 
-     * @return pieceName 
+     *
+     * @return pieceName
      */
     public PieceName getPieceName() {
         return pieceName;
     }
 
     /**
-     * 
+     *
      * @return pivot
      */
     public String getPivot() {
@@ -205,7 +201,7 @@ public abstract class Piece implements Serializable {
     }
 
     /**
-     * 
+     *
      * @return rows
      */
     public int getRows() {
@@ -213,7 +209,7 @@ public abstract class Piece implements Serializable {
     }
 
     /**
-     * 
+     *
      * @return columns
      */
     public int getColumns() {

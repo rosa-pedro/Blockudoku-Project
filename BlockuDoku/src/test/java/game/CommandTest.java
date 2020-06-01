@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package game;
 
 import org.junit.jupiter.api.AfterAll;
@@ -16,13 +11,14 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Joao Cetano - 190221010 - 190221010@estudantes.ips.pt
  */
 public class CommandTest {
+
     public CommandTest() {
     }
-    
+
     @BeforeAll
     public static void setUpClass() {
     }
-    
+
     @AfterAll
     public static void tearDownClass() {
     }
@@ -33,7 +29,7 @@ public class CommandTest {
     @Test
     public void testGetBlockCommand() {
         System.out.println("getBlockCommand");
-        Command instance = new Command("A","C4");
+        Command instance = new Command("A", "C4");
         String expResult = "A";
         String result = instance.getBlockCommand();
         assertEquals(expResult, result);
@@ -45,7 +41,7 @@ public class CommandTest {
     @Test
     public void testGetCoordCommand() {
         System.out.println("getCoordCommand");
-        Command instance = new Command("A","C4");
+        Command instance = new Command("A", "C4");
         String expResult = "C4";
         String result = instance.getCoordCommand();
         assertEquals(expResult, result);
@@ -57,7 +53,7 @@ public class CommandTest {
     @Test
     public void testIsBlockCommandValid() {
         System.out.println("isBlockCommandValid");
-        Command instance =  new Command("A","C4");
+        Command instance = new Command("A", "C4");
         boolean expResult = true;
         boolean result = instance.isBlockCommandValid();
         assertEquals(expResult, result);
@@ -70,7 +66,7 @@ public class CommandTest {
     public void testIsCoordCommandvalid() {
         System.out.println("isCoordCommandvalid");
         Board board = new Board();
-        Command instance = new Command("A","C4");
+        Command instance = new Command("A", "C4");
         boolean expResult = true;
         boolean result = instance.isCoordCommandvalid(board);
         assertEquals(expResult, result);
@@ -83,10 +79,10 @@ public class CommandTest {
     public void testIsCommandValid() {
         System.out.println("isCommandValid");
         Board board = new Board();
-        Command instance = new Command("A","C4");
+        Command instance = new Command("A", "C4");
         boolean expResult = true;
         boolean result = instance.isCommandValid(board);
         assertEquals(expResult, result);
     }
-    
+
 }

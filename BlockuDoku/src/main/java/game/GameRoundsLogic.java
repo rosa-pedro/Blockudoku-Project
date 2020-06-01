@@ -1,24 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package game;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-/** 
- * This class represents an in-game round where the player selects the blocks and 
- * where he wants to insert them within the board
-  *
+/**
+ * This class represents an in-game round where the player selects the blocks
+ * and where he wants to insert them within the board
+ *
  * @author Pedro Rosa - 190221015 - 190221015@estudantes.ips.pt
  * @author Joao Cetano - 190221010 - 190221010@estudantes.ips.pt
  */
 public class GameRoundsLogic implements Serializable {
-
-    private static final long serialVersionUID = 9873268974234L;
 
     private Board board;
     private GameMode gameMode;
@@ -27,11 +20,11 @@ public class GameRoundsLogic implements Serializable {
     private String errorMessage;
 
     /**
-     * Constructor for GameRound takes the board we are playing in and the GameMode
-     * that the game will be set to
-     * 
+     * Constructor for GameRound takes the board we are playing in and the
+     * GameMode that the game will be set to
+     *
      * @param board
-     * @param gameMode 
+     * @param gameMode
      */
     public GameRoundsLogic(Board board, GameMode gameMode) {
 
@@ -41,32 +34,31 @@ public class GameRoundsLogic implements Serializable {
         this.score = 0;
         this.errorMessage = "";
     }
-    
+
     /**
      * Method to validate the Command it receives
-     * 
-     * @param command received 
-     * @return the Command if it's valid 
-     * @throws GameIllegalArgumentException if the command is invalid 
+     *
+     * @param command received
+     * @return the Command if it's valid
+     * @throws GameIllegalArgumentException if the command is invalid
      */
     public Command validateCommand(Command command) throws GameIllegalArgumentException {
 
-        if(command == null || !command.isCommandValid(board)){
-            
+        if (command == null || !command.isCommandValid(board)) {
+
             throw new GameIllegalArgumentException(ErrorCode.INVALID_COMMAND);
         }
-        
+
         return command;
     }
-    
-    
+
     /**
-     * Takes the command and removes the given block from the 
-     * three playable blocks each round has adds to the gameScore
-     * 
+     * Takes the command and removes the given block from the three playable
+     * blocks each round has adds to the gameScore
+     *
      * @param command Command we are using
-     * @throws GameIllegalArgumentException when the Command has Blocks out of bound
-     * or is trying to insert Blocks in invalid coordinates
+     * @throws GameIllegalArgumentException when the Command has Blocks out of
+     * bound or is trying to insert Blocks in invalid coordinates
      */
     public void move(Command command) throws GameIllegalArgumentException {
 
@@ -93,9 +85,10 @@ public class GameRoundsLogic implements Serializable {
     }
 
     /**
-     * checks if the round is over if all blocks have been inserted
-     * it'll generate new ones
-     * @return 
+     * checks if the round is over if all blocks have been inserted it'll
+     * generate new ones
+     *
+     * @return
      */
     public boolean checkRound() {
 
@@ -107,16 +100,17 @@ public class GameRoundsLogic implements Serializable {
     }
 
     /**
-     * 
-     * @return score 
+     *
+     * @return score
      */
     public int getScore() {
         return score;
     }
 
     /**
-     * returns if the game is over or not by checking if there is space left
-     * in the board for any of the remaining to be inserted pieces in the round
+     * returns if the game is over or not by checking if there is space left in
+     * the board for any of the remaining to be inserted pieces in the round
+     *
      * @return true if unable to play more, false if the game can continue
      */
     public boolean isGameOver() {
@@ -141,7 +135,7 @@ public class GameRoundsLogic implements Serializable {
     }
 
     /**
-     * Prints out the elements needed to display and play a round 
+     * Prints out the elements needed to display and play a round
      */
     public void showRound() {
 
@@ -158,9 +152,9 @@ public class GameRoundsLogic implements Serializable {
         for (int i = 0; i < roundBlocks.size(); i++) {
             System.out.println(roundBlocks.get(i));
         }
-        
-        if(!errorMessage.isBlank()) {
-            System.out.println("WARNING:" + errorMessage + "\n");
+
+        if (!errorMessage.isBlank()) {
+            System.out.println("WARNING: " + errorMessage + "\n");
             this.errorMessage = "";
         }
 
@@ -169,7 +163,7 @@ public class GameRoundsLogic implements Serializable {
 
     /**
      * Setter for error message
-     * 
+     *
      * @param errorMessage
      */
     public void setErrorMessage(String errorMessage) {

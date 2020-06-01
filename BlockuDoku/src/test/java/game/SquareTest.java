@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package game;
 
 import org.junit.jupiter.api.AfterAll;
@@ -16,14 +11,14 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Joao Cetano - 190221010 - 190221010@estudantes.ips.pt
  */
 public class SquareTest {
-    
+
     public SquareTest() {
     }
-    
+
     @BeforeAll
     public static void setUpClass() {
     }
-    
+
     @AfterAll
     public static void tearDownClass() {
     }
@@ -38,7 +33,7 @@ public class SquareTest {
         instance.changeVisibility();
         boolean expResult = false;
         boolean result = instance.isVisible();
-        assertEquals(expResult,result);
+        assertEquals(expResult, result);
     }
 
     /**
@@ -64,5 +59,5 @@ public class SquareTest {
         String result = instance.toString();
         assertEquals(expResult, result);
     }
-    
+
 }

@@ -1,28 +1,29 @@
-/*
- * 
- */
 package blocks;
 
 import game.Piece;
 import game.PieceName;
 
-/** This class consists exclusively of void methods that help building the IBlock Piece
- * 
+/**
+ * This class consists exclusively of void methods that help building the IBlock
+ * Piece
+ *
  *
  * @author Pedro Rosa - 190221015 - 190221015@estudantes.ips.pt
  * @author Joao Cetano - 190221010 - 190221010@estudantes.ips.pt
  */
 public class IBlock extends Piece {
 
-    /** Constructor for class IBlock, creates a piece after the PieceName enum
+    /**
+     * Constructor for class IBlock, creates a piece after the PieceName enum
      *
      */
     public IBlock() {
-        
+
         super(PieceName.I_BLOCK);
     }
 
-    /** Overrides the method buildPieceWithzeroRotation() to represent an IBlock
+    /**
+     * Overrides the method buildPieceWithzeroRotation() to represent an IBlock
      * with zero degree rotation.
      *
      */
@@ -33,8 +34,9 @@ public class IBlock extends Piece {
         buildPiece(coords, coords[0]);
     }
 
-    /** Overrides the method buildPieceWithNinetyRotation() to represent an IBlock
-     * with Ninety degree rotation.
+    /**
+     * Overrides the method buildPieceWithNinetyRotation() to represent an
+     * IBlock with Ninety degree rotation.
      *
      */
     @Override
@@ -44,8 +46,9 @@ public class IBlock extends Piece {
         buildPiece(coords, coords[0]);
     }
 
-    /** Overrides the method buildPieceWithHundredEightyRotation() to represent an IBlock
-     * with hundred and eighty degree rotation.
+    /**
+     * Overrides the method buildPieceWithHundredEightyRotation() to represent
+     * an IBlock with hundred and eighty degree rotation.
      *
      */
     @Override
@@ -54,8 +57,9 @@ public class IBlock extends Piece {
         buildPieceWithzeroRotation();
     }
 
-    /** Overrides the method buildPieceWithTwoHundredSeventyRotation() to represent an IBlock
-     * with two hundred and seventy degree rotation.
+    /**
+     * Overrides the method buildPieceWithTwoHundredSeventyRotation() to
+     * represent an IBlock with two hundred and seventy degree rotation.
      *
      */
     @Override

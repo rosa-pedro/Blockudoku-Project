@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package game;
 
 import java.util.HashMap;
@@ -14,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import game.Board.*;
 import game.Block;
 import blocks.*;
+
 /**
  *
  *
@@ -21,14 +17,14 @@ import blocks.*;
  * @author Joao Cetano - 190221010 - 190221010@estudantes.ips.pt
  */
 public class BoardTest {
-    
+
     public BoardTest() {
     }
-    
+
     @BeforeAll
     public static void setUpClass() {
     }
-    
+
     @AfterAll
     public static void tearDownClass() {
     }
@@ -61,7 +57,6 @@ public class BoardTest {
         assertEquals(expResult, result);
     }
 
-
     /**
      * Test of isValidInsertionCoords method, of class Board.
      */
@@ -70,14 +65,13 @@ public class BoardTest {
         System.out.println("isValidInsertionCoords");
         Piece piece = new IBlock();
         Board instance = new Board();
-        
+
         HashSet<String> coords = instance.convertBlockCoordsToBoardCoords(piece, "d5");
-        
+
         boolean expResult = false;
         boolean result = instance.isValidInsertionCoords(coords);
         assertEquals(expResult, result);
     }
-
 
     /**
      * Test of isThereSpaceleftInTheBoard method, of class Board.
@@ -99,8 +93,7 @@ public class BoardTest {
     public void testToString() {
         System.out.println("toString");
         Board instance = new Board();
-        
-        
+
         StringBuilder sb = new StringBuilder();
         String coord;
 
@@ -122,5 +115,4 @@ public class BoardTest {
         assertEquals(expResult, result);
     }
 
-    
 }
