@@ -36,11 +36,35 @@ public class Menu {
         this.currentUser = null;
     }
 
-    public void WelcomeMenu() {
+    public String validateUsername(String username) throws GameIllegalArgumentException {
 
-        MenuPrint.requestUserName();
-        this.currentUser = readUser(parser.readInput().toLowerCase());
-        MenuPrint.welcomeMenu(currentUser);
+        if (username == null) {
+            throw new GameIllegalArgumentException(ErrorCode.USERNAME_CANT_BE_NULL);
+        }
+        if (username.isBlank()) {
+            throw new GameIllegalArgumentException(ErrorCode.USERNAME_CANT_BE_EMPTY);
+        }
+
+        return username;
+    }
+
+    public void WelcomeMenu() {
+        
+        while (true) {
+            
+            try {
+
+                MenuPrint.requestUserName();
+                String username = validateUsername(parser.readInput().toLowerCase());
+                this.currentUser = readUser(username);
+                MenuPrint.welcomeMenu(currentUser);
+                break;
+
+            } catch (IllegalArgumentException e) {
+
+                System.out.println("\n" + e.getMessage() + " please try again!");
+            }
+        }
     }
 
     public User readUser(String userName) {

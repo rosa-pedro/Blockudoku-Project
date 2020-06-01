@@ -13,7 +13,8 @@ package game;
  */
 public enum ErrorCode {
     
-    INVALID_ROUND_BLOCK, INVALID_COMMAND, INVALID_BLOCK_INSERTION;
+    INVALID_ROUND_BLOCK, INVALID_COMMAND, INVALID_BLOCK_INSERTION, 
+    USERNAME_CANT_BE_NULL, USERNAME_CANT_BE_EMPTY;
     
     /**
      * Overrides the toString() method in order to return a 
@@ -28,6 +29,10 @@ public enum ErrorCode {
                 return "Invalid Block";
             case INVALID_BLOCK_INSERTION:
                 return "Invalid Block Insertion";
+            case USERNAME_CANT_BE_NULL:
+                return "Username can't be null";
+            case USERNAME_CANT_BE_EMPTY:
+                return "Username can't be empty";
             default:
                 return "Invalid Command";
         }

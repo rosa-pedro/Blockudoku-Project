@@ -34,8 +34,10 @@ public class MenuPrint {
      */
     public static void welcomeMenu(User user) {
 
+        String username = user.getName();
+        
         System.out.println();
-        System.out.println("Hello " + user.getName());
+        System.out.println("Hello " + username.substring(0,1).toUpperCase() + username.substring(1));
     }
 
     /**

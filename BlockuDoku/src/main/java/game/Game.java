@@ -90,7 +90,9 @@ public class Game implements Serializable {
      * method to signal that the game is over
      */
     public void gameOver() {
-        System.out.println("\nGame Over");
+        
+        System.out.println("\n");
+        System.out.println("Game Over");
         System.out.println("Score: " + gameScore);
         setTime(LocalDateTime.now());
         gameScore = gameRound.getScore();

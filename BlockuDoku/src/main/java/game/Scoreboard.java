@@ -110,7 +110,7 @@ public class Scoreboard<E> implements Serializable {
             if (it.hasNext()) {
 
                 Score<E> score = (Score<E>) it.next();
-                sb.append(String.format("%d - %-25s - %3d \n", position, score.getElement().toString(), score.getValue()));
+                sb.append(String.format("%d - %-26s - %3d \n", position, score.getElement().toString(), score.getValue()));
                 
             } else {
 

@@ -5,7 +5,6 @@
  */
 package game;
 
-import static game.MenuPrint.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
@@ -28,8 +27,8 @@ public class SandBoxy {
             User user1 = new User("Maleque");
             User user2 = new User("Leleque");
             User user3 = new User("Jaleque");
-            User user4 = new User("Feleque");
-            User user5 = new User("Baleque");
+            User user4 = new User("Rosa");
+            User user5 = new User("João");
             User user6 = new User("Kaleque");
 
             Game game1 = new Game(GameMode.BASIC_MODE);
