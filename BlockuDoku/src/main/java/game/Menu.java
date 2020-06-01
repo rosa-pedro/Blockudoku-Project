@@ -36,6 +36,13 @@ public class Menu {
         this.currentUser = null;
     }
 
+    /**
+     * This method validates the username by checking if its blank or null
+     * 
+     * @param username to be checked
+     * @return username if valid
+     * @throws GameIllegalArgumentException according to the error 
+     */
     public String validateUsername(String username) throws GameIllegalArgumentException {
 
         if (username == null) {
@@ -48,6 +55,9 @@ public class Menu {
         return username;
     }
 
+    /**
+     * Method to display the WelcomeMenu
+     */
     public void WelcomeMenu() {
 
         while (true) {
@@ -67,6 +77,13 @@ public class Menu {
         }
     }
 
+    
+    /**
+     * Takes a userName and goes though the list of users
+     * 
+     * @param userName username we are creating or getting
+     * @return the User matching the name, or a newly created user
+     */
     public User readUser(String userName) {
 
         User user = listOfUsers.getUser(userName);
@@ -118,6 +135,11 @@ public class Menu {
         return false;
     }
 
+    
+    /**
+     * Method to display the New Game Menu
+     * 
+     */
     public void newGameMenu() {
 
         System.out.println("\nEntered to the New Game Menu!");
@@ -146,13 +168,19 @@ public class Menu {
         }
     }
 
+    /**
+     * Method to display the top10 ranking menu
+     */
     public void printTop10RankingMenu() {
 
         System.out.println("\nEntered to the Top 10 Ranking!");
         printScoreboard(getTop10RankingToString());
 
     }
-
+    
+    /**
+     * Method to display the personal scores menu
+     */
     public void printPersonalScoresMenu() {
 
         System.out.println("\nEntered to the Personal Score!");
@@ -160,6 +188,11 @@ public class Menu {
 
     }
 
+    /**
+     * Method to display the scoreboard
+     * 
+     * @param scoreboard scoreboard we are displaying
+     */
     public void printScoreboard(String scoreboard) {
 
         while (true) {
@@ -179,6 +212,11 @@ public class Menu {
         }
     }
 
+    /**
+     * Method to return a String containing the TOP10 Ranking 
+     * 
+     * @return String object
+     */
     public String getTop10RankingToString() {
 
         listOfUsers.stream()
@@ -191,10 +229,22 @@ public class Menu {
         return scoreboard;
     }
 
+    
+    /**
+     * Method to return a String containing the Personal Scores Ranking 
+     * 
+     * @return String object
+     */
     public String getPersonalScoresToString() {
         return currentUser.getPersonalScores().toString();
     }
 
+    
+    /**
+     * Void method initializes a new game based on the gameMode it receives
+     * 
+     * @param gameMode to start the game with 
+     */
     public void InitializeNewGame(GameMode gameMode) {
 
         Game game = new Game(gameMode);
@@ -206,6 +256,10 @@ public class Menu {
         checkGame(game);
     }
 
+    /**
+     * Method to load game, if a user has a game to load, if not it'll create a new one
+     * 
+     */
     public void loadGame() {
 
         Game game = currentUser.getGame();
@@ -223,6 +277,12 @@ public class Menu {
 
     }
 
+    
+    /**
+     * Method to check where the game isOver or if the game is to be saved
+     * 
+     * @param game Game to be checked
+     */
     public void checkGame(Game game) {
 
         if (game.isOver()) {

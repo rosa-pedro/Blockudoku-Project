@@ -64,6 +64,9 @@ public class MenuPrint {
         System.out.print("Enter your User Name: ");
     }
 
+    /**
+     * Displays information exclusively related to returning to the main menu
+     */
     public static void returnToMainMenu() {
 
         System.out.println("0 - Return");

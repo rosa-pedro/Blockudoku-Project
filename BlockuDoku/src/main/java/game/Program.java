@@ -10,8 +10,10 @@ import java.nio.file.Paths;
 import java.time.LocalDateTime;
 
 /**
+ * Program class
  *
- * @author Storm
+ * @author Pedro Rosa - 190221015
+ * @author Joao Cetano - 190221010
  */
 public class Program {
 
