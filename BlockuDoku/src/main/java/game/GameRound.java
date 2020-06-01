@@ -11,7 +11,7 @@ import java.util.Iterator;
  * @author Pedro Rosa - 190221015 - 190221015@estudantes.ips.pt
  * @author Joao Cetano - 190221010 - 190221010@estudantes.ips.pt
  */
-public class GameRoundsLogic implements Serializable {
+public class GameRound implements Serializable {
 
     private Board board;
     private GameMode gameMode;
@@ -26,7 +26,7 @@ public class GameRoundsLogic implements Serializable {
      * @param board
      * @param gameMode
      */
-    public GameRoundsLogic(Board board, GameMode gameMode) {
+    public GameRound(Board board, GameMode gameMode) {
 
         this.board = board;
         this.gameMode = gameMode;

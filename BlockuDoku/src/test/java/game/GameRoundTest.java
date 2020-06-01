@@ -10,9 +10,9 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Pedro Rosa - 190221015 - 190221015@estudantes.ips.pt
  * @author Joao Cetano - 190221010 - 190221010@estudantes.ips.pt
  */
-public class GameRoundsLogicTest {
+public class GameRoundTest {
 
-    public GameRoundsLogicTest() {
+    public GameRoundTest() {
     }
 
     @BeforeAll
@@ -30,7 +30,7 @@ public class GameRoundsLogicTest {
     public void testCheckRound() {
         System.out.println("checkRound");
         Board board = new Board();
-        GameRoundsLogic instance = new GameRoundsLogic(board, GameMode.BASIC_MODE);
+        GameRound instance = new GameRound(board, GameMode.BASIC_MODE);
         boolean expResult = true;
         boolean result = instance.checkRound();
         assertEquals(expResult, result);
@@ -43,7 +43,7 @@ public class GameRoundsLogicTest {
     public void testGetScore() {
         System.out.println("getScore");
         Board board = new Board();
-        GameRoundsLogic instance = new GameRoundsLogic(board, GameMode.BASIC_MODE);
+        GameRound instance = new GameRound(board, GameMode.BASIC_MODE);
         int expResult = 0;
         int result = instance.getScore();
         assertEquals(expResult, result);
@@ -56,7 +56,7 @@ public class GameRoundsLogicTest {
     public void testIsGameOver() {
         System.out.println("isGameOver");
         Board board = new Board();
-        GameRoundsLogic instance = new GameRoundsLogic(board, GameMode.BASIC_MODE);
+        GameRound instance = new GameRound(board, GameMode.BASIC_MODE);
         boolean expResult = true;
         boolean result = instance.isGameOver();
         assertEquals(expResult, result);
