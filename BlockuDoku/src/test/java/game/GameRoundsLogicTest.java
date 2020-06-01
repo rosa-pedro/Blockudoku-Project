@@ -13,9 +13,9 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author Storm
  */
-public class GameRoundTest {
+public class GameRoundsLogicTest {
     
-    public GameRoundTest() {
+    public GameRoundsLogicTest() {
     }
     
     @BeforeAll
