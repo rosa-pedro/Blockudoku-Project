@@ -13,8 +13,8 @@ import java.util.Iterator;
 /** This class Stores the ArrayList of scores of type
  * Score<E>
  *
- * @author Pedro Rosa - 190221015
- * @author Joao Cetano - 190221010
+ * @author Pedro Rosa - 190221015 - 190221015@estudantes.ips.pt
+ * @author Joao Cetano - 190221010 - 190221010@estudantes.ips.pt
  */
 public class Scoreboard<E> implements Serializable {
 

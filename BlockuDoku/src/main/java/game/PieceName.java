@@ -8,8 +8,8 @@ package game;
 /** This enum represents all the possible PieceNames
  * 
  *
- * @author Pedro Rosa - 190221015
- * @author Joao Cetano - 190221010
+ * @author Pedro Rosa - 190221015 - 190221015@estudantes.ips.pt
+ * @author Joao Cetano - 190221010 - 190221010@estudantes.ips.pt
  */
 public enum PieceName {
     I_BLOCK, Q_BLOCK, T_BLOCK, L_BLOCK, J_BLOCK, S_BLOCK, Z_BLOCK, 

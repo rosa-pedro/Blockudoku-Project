@@ -10,9 +10,9 @@ import java.io.Serializable;
 /** 
  * This class represents a Square, several Squares will be used to fill up the Board
  * 
- * 
- * @author Pedro Rosa - 190221015
- * @author Joao Cetano - 190221010
+ *
+ * @author Pedro Rosa - 190221015 - 190221015@estudantes.ips.pt
+ * @author Joao Cetano - 190221010 - 190221010@estudantes.ips.pt
  */
 public class Square implements Serializable{
     
@@ -33,6 +33,7 @@ public class Square implements Serializable{
     
     /**
      * Changes the value of isVisible to its opposite 
+     * 
      */
     public void changeVisibility() {
         
