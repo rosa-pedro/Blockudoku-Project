@@ -9,8 +9,8 @@ package game;
  * This class consists of method to help display the menu
  *
  *
- * @author Pedro Rosa - 190221015
- * @author Joao Cetano - 190221010
+ * @author Pedro Rosa - 190221015 - 190221015@estudantes.ips.pt
+ * @author Joao Cetano - 190221010 - 190221010@estudantes.ips.pt
  */
 public class MenuPrint {
 
@@ -64,6 +64,9 @@ public class MenuPrint {
         System.out.print("Enter your User Name: ");
     }
 
+    /**
+     * Displays information exclusively related to returning to the main menu
+     */
     public static void returnToMainMenu() {
 
         System.out.println("0 - Return");

@@ -12,9 +12,9 @@ import java.util.Iterator;
 /** 
  * This class represents an in-game round where the player selects the blocks and 
  * where he wants to insert them within the board
- * 
- * @author Pedro Rosa - 190221015
- * @author Joao Cetano - 190221010
+  *
+ * @author Pedro Rosa - 190221015 - 190221015@estudantes.ips.pt
+ * @author Joao Cetano - 190221010 - 190221010@estudantes.ips.pt
  */
 public class GameRoundsLogic implements Serializable {
 

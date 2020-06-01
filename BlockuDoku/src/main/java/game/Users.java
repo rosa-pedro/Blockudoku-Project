@@ -11,8 +11,8 @@ import java.util.ArrayList;
 /** This class extends ArrayList<User> in order to create a List of Users
  * 
  *
- * @author Pedro Rosa - 190221015
- * @author Joao Cetano - 190221010
+ * @author Pedro Rosa - 190221015 - 190221015@estudantes.ips.pt
+ * @author Joao Cetano - 190221010 - 190221010@estudantes.ips.pt
  */
 
 public class Users extends ArrayList<User> implements Serializable {

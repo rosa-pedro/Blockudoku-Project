@@ -12,8 +12,8 @@ import java.util.Random;
  * based on the different GameMode it will produce different kinds of blocks
  * 
  *
- * @author Pedro Rosa - 190221015
- * @author Joao Cetano - 190221010
+ * @author Pedro Rosa - 190221015 - 190221015@estudantes.ips.pt
+ * @author Joao Cetano - 190221010 - 190221010@estudantes.ips.pt
  */
 public class BlockGenerator {
     

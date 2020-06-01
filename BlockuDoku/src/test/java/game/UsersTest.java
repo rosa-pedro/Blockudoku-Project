@@ -12,7 +12,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
- * @author Storm
+ * @author Pedro Rosa - 190221015 - 190221015@estudantes.ips.pt
+ * @author Joao Cetano - 190221010 - 190221010@estudantes.ips.pt
  */
 public class UsersTest {
     

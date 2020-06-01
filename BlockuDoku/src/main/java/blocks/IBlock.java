@@ -9,8 +9,8 @@ import game.PieceName;
 /** This class consists exclusively of void methods that help building the IBlock Piece
  * 
  *
- * @author Pedro Rosa - 190221015
- * @author Joao Cetano - 190221010
+ * @author Pedro Rosa - 190221015 - 190221015@estudantes.ips.pt
+ * @author Joao Cetano - 190221010 - 190221010@estudantes.ips.pt
  */
 public class IBlock extends Piece {
 
